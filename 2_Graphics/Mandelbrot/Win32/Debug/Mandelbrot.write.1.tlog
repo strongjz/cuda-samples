@@ -1,10 +1,5 @@
-^C:\ProgramData\NVIDIA Corporation\CUDA Samples\v5.5\2_Graphics\Mandelbrot\Mandelbrot_vs2012.vcxproj
-C:\ProgramData\NVIDIA Corporation\CUDA Samples\v5.5\bin\win32\Debug\Mandelbrot.lib
-C:\ProgramData\NVIDIA Corporation\CUDA Samples\v5.5\bin\win32\Debug\Mandelbrot.lib
-C:\ProgramData\NVIDIA Corporation\CUDA Samples\v5.5\bin\win32\Debug\Mandelbrot.exp
-C:\ProgramData\NVIDIA Corporation\CUDA Samples\v5.5\bin\win32\Debug\Mandelbrot.exp
-^C:\ProgramData\NVIDIA Corporation\CUDA Samples\v5.5\2_Graphics\Mandelbrot\Mandelbrot_vs2012.vcxproj
-C:\ProgramData\NVIDIA Corporation\CUDA Samples\v5.5\bin\win32\Debug\Mandelbrot.lib
-C:\ProgramData\NVIDIA Corporation\CUDA Samples\v5.5\bin\win32\Debug\Mandelbrot.lib
-C:\ProgramData\NVIDIA Corporation\CUDA Samples\v5.5\bin\win32\Debug\Mandelbrot.exp
-C:\ProgramData\NVIDIA Corporation\CUDA Samples\v5.5\bin\win32\Debug\Mandelbrot.exp
+^C:\Users\Administrator\Documents\cuda-samples\2_Graphics\Mandelbrot\Mandelbrot_vs2012.vcxproj
+C:\Users\Administrator\Documents\cuda-samples\bin\win32\Debug\Mandelbrot.lib
+C:\Users\Administrator\Documents\cuda-samples\bin\win32\Debug\Mandelbrot.lib
+C:\Users\Administrator\Documents\cuda-samples\bin\win32\Debug\Mandelbrot.exp
+C:\Users\Administrator\Documents\cuda-samples\bin\win32\Debug\Mandelbrot.exp

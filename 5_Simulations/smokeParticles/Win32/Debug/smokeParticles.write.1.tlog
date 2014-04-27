@@ -1,10 +1,5 @@
-^C:\ProgramData\NVIDIA Corporation\CUDA Samples\v5.5\5_Simulations\smokeParticles\smokeParticles_vs2012.vcxproj
-C:\ProgramData\NVIDIA Corporation\CUDA Samples\v5.5\bin\win32\Debug\smokeParticles.lib
-C:\ProgramData\NVIDIA Corporation\CUDA Samples\v5.5\bin\win32\Debug\smokeParticles.lib
-C:\ProgramData\NVIDIA Corporation\CUDA Samples\v5.5\bin\win32\Debug\smokeParticles.exp
-C:\ProgramData\NVIDIA Corporation\CUDA Samples\v5.5\bin\win32\Debug\smokeParticles.exp
-^C:\Users\Administrator\Google Drive\Classes\Spring-2014-PP\DEMO-CLASS-CODE\CUDA Samples\v5.5\5_Simulations\smokeParticles\SmokeParticles_vs2012.vcxproj
-C:\Users\Administrator\Google Drive\Classes\Spring-2014-PP\DEMO-CLASS-CODE\CUDA Samples\v5.5\bin\win32\Debug\smokeParticles.lib
-C:\Users\Administrator\Google Drive\Classes\Spring-2014-PP\DEMO-CLASS-CODE\CUDA Samples\v5.5\bin\win32\Debug\smokeParticles.lib
-C:\Users\Administrator\Google Drive\Classes\Spring-2014-PP\DEMO-CLASS-CODE\CUDA Samples\v5.5\bin\win32\Debug\smokeParticles.exp
-C:\Users\Administrator\Google Drive\Classes\Spring-2014-PP\DEMO-CLASS-CODE\CUDA Samples\v5.5\bin\win32\Debug\smokeParticles.exp
+^C:\Users\Administrator\Documents\cuda-samples\5_Simulations\smokeParticles\SmokeParticles_vs2012.vcxproj
+C:\Users\Administrator\Documents\cuda-samples\bin\win32\Debug\smokeParticles.lib
+C:\Users\Administrator\Documents\cuda-samples\bin\win32\Debug\smokeParticles.lib
+C:\Users\Administrator\Documents\cuda-samples\bin\win32\Debug\smokeParticles.exp
+C:\Users\Administrator\Documents\cuda-samples\bin\win32\Debug\smokeParticles.exp
