@@ -1,0 +1,4783 @@
+	.version 1.4
+	.target sm_10, map_f64_to_f32
+	// compiled with C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.5\bin/../open64/lib//be.exe
+	// nvopencc 4.1 built on 2013-07-10
+
+	//-----------------------------------------------------------
+	// Compiling C:/Users/strongjz/AppData/Local/Temp/tmpxft_00001734_00000000-12_simpleTexture_kernel.cpp3.i (C:/Users/strongjz/AppData/Local/Temp/ccBI#.a09460)
+	//-----------------------------------------------------------
+
+	//-----------------------------------------------------------
+	// Options:
+	//-----------------------------------------------------------
+	//  Target:ptx, ISA:sm_10, Endian:little, Pointer Size:32
+	//  -O0	(Optimization level)
+	//  -g2	(Debug level)
+	//  -m2	(Report advisories)
+	//-----------------------------------------------------------
+
+	.file	1	"C:/Users/strongjz/AppData/Local/Temp/tmpxft_00001734_00000000-11_simpleTexture_kernel.cudafe2.gpu"
+	.file	2	"E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\crtdefs.h"
+	.file	3	"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v5.5/include\crt/device_runtime.h"
+	.file	4	"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v5.5/include\host_defines.h"
+	.file	5	"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v5.5/include\builtin_types.h"
+	.file	6	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\device_types.h"
+	.file	7	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\host_defines.h"
+	.file	8	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\driver_types.h"
+	.file	9	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\surface_types.h"
+	.file	10	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\texture_types.h"
+	.file	11	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\vector_types.h"
+	.file	12	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\builtin_types.h"
+	.file	13	"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v5.5/include\device_launch_parameters.h"
+	.file	14	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\crt\storage_class.h"
+	.file	15	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\vector_functions.h"
+	.file	16	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\texture_fetch_functions.h"
+	.file	17	"C:/ProgramData/NVIDIA Corporation/CUDA Samples/v5.5/0_Simple/simpleTextureDrv/simpleTexture_kernel.cu"
+	.file	18	"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v5.5/include\common_functions.h"
+	.file	19	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\math_functions.h"
+	.file	20	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\math_constants.h"
+	.file	21	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\device_functions.h"
+	.file	22	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\sm_11_atomic_functions.h"
+	.file	23	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\sm_12_atomic_functions.h"
+	.file	24	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\sm_13_double_functions.h"
+	.file	25	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\sm_20_atomic_functions.h"
+	.file	26	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\sm_32_atomic_functions.h"
+	.file	27	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\sm_35_atomic_functions.h"
+	.file	28	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\sm_20_intrinsics.h"
+	.file	29	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\sm_30_intrinsics.h"
+	.file	30	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\sm_32_intrinsics.h"
+	.file	31	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\sm_35_intrinsics.h"
+	.file	32	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\surface_functions.h"
+	.file	33	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\texture_indirect_functions.h"
+	.file	34	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\surface_indirect_functions.h"
+	.file	35	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\math_functions_dbl_ptx1.h"
+
+	.tex .u32 tex;
+	.const .align 4 .b8 __cudart_i2opi_f[24] = {65,144,67,60,153,149,98,219,192,221,52,245,209,87,39,252,41,21,68,78,110,131,249,162};
+
+	.entry transformKernel (
+		.param .u32 __cudaparm_transformKernel_g_odata,
+		.param .s32 __cudaparm_transformKernel_width,
+		.param .s32 __cudaparm_transformKernel_height,
+		.param .f32 __cudaparm_transformKernel_theta)
+	{
+	.reg .u32 %r<848>;
+	.reg .f32 %f<872>;
+	.reg .pred %p<58>;
+	.local .f32 __cuda_s_64;
+	.local .f32 __cuda___cuda_c_728;
+	.local .s32 __cuda___cuda_quadrant_8812;
+	.local .s32 __cuda___cuda_q_9216;
+	.local .align 8 .b8 __cuda_res_200[8];
+	.local .align 8 .b8 __cuda_rr_208[8];
+	.local .align 8 .b8 __cuda__temp__Mreturn___internal_umad32wide13_216[8];
+	.local .align 8 .b8 __cuda_p_224[8];
+	.local .f32 __cuda___cuda_s_41656;
+	.local .f32 __cuda___cuda_c_42460;
+	.local .s32 __cuda___cuda_quadrant_44064;
+	.local .s32 __cuda___cuda_q_44468;
+	.local .align 8 .b8 __cuda_res_552[8];
+	.local .align 8 .b8 __cuda_rr_560[8];
+	.local .align 8 .b8 __cuda__temp__Mreturn___internal_umad32wide13_568[8];
+	.local .align 8 .b8 __cuda_p_576[8];
+	.local .align 4 .b8 __cuda___cuda_result_23616[28];
+	.local .align 4 .b8 __cuda___cuda_result_58844[28];
+	.local .align 16 .b8 __cuda_local_var_41588_10_non_const_t_800[16];
+	.local .align 16 .b8 __cuda_rr_816[16];
+	.local .align 16 .b8 __cuda__temp__Mreturn__ZN72_INTERNAL_55_tmpxft_00001734_00000000_5_simpleTexture_kernel_cpp1_ii_tex11make_float4Effff26_832[16];
+	.local .align 16 .b8 __cuda__temp_coord_arg27_848[16];
+	.local .align 16 .b8 __cuda_local_var_116048_10_non_const_v_864[16];
+	.loc	17	24	0
+$LDWbegin_transformKernel:
+$LDWbeginblock_242_1:
+	.loc	17	27	0
+	cvt.u32.u16 	%r1, %tid.x;
+	cvt.u32.u16 	%r2, %ctaid.x;
+	cvt.u32.u16 	%r3, %ntid.x;
+	mul.lo.u32 	%r4, %r2, %r3;
+	add.u32 	%r5, %r1, %r4;
+	mov.s32 	%r6, %r5;
+	.loc	17	28	0
+	cvt.u32.u16 	%r7, %tid.y;
+	cvt.u32.u16 	%r8, %ctaid.y;
+	cvt.u32.u16 	%r9, %ntid.y;
+	mul.lo.u32 	%r10, %r8, %r9;
+	add.u32 	%r11, %r7, %r10;
+	mov.s32 	%r12, %r11;
+	.loc	17	30	0
+	mov.s32 	%r13, %r6;
+	cvt.rn.f32.u32 	%f1, %r13;
+	mov.f32 	%f2, %f1;
+	ld.param.s32 	%r14, [__cudaparm_transformKernel_width];
+	cvt.rn.f32.s32 	%f3, %r14;
+	mov.f32 	%f4, %f3;
+$LDWbegini_fdividef_242_194:
+	.loc	21	3985	0
+	mov.f32 	%f5, %f2;
+	mov.f32 	%f6, %f4;
+	div.full.f32 	%f7, %f5, %f6;
+$LDWendi_fdividef_242_193:
+	.loc	17	30	0
+	mov.f32 	%f8, %f7;
+	.loc	17	31	0
+	mov.s32 	%r15, %r12;
+	cvt.rn.f32.u32 	%f9, %r15;
+	mov.f32 	%f10, %f9;
+	ld.param.s32 	%r16, [__cudaparm_transformKernel_height];
+	cvt.rn.f32.s32 	%f11, %r16;
+	mov.f32 	%f12, %f11;
+$LDWbegini_fdividef_242_192:
+	.loc	21	3985	0
+	mov.f32 	%f13, %f10;
+	mov.f32 	%f14, %f12;
+	div.full.f32 	%f15, %f13, %f14;
+$LDWendi_fdividef_242_191:
+	.loc	17	31	0
+	mov.f32 	%f16, %f15;
+	.loc	17	34	0
+	mov.f32 	%f17, %f8;
+	mov.f32 	%f18, 0fbf000000;    	// -0.5
+	add.f32 	%f19, %f17, %f18;
+	mov.f32 	%f8, %f19;
+	.loc	17	35	0
+	mov.f32 	%f20, %f16;
+	mov.f32 	%f21, 0fbf000000;    	// -0.5
+	add.f32 	%f22, %f20, %f21;
+	mov.f32 	%f16, %f22;
+	.loc	17	36	0
+	ld.param.f32 	%f23, [__cudaparm_transformKernel_theta];
+	mov.f32 	%f24, %f23;
+$LDWbegini_cosf_242_190:
+	.loc	19	9611	0
+	mov.f32 	%f25, %f24;
+	mov.f32 	%f26, %f25;
+$LDWbegini___internal_accurate_cosf_242_189:
+	.loc	19	9561	0
+	mov.f32 	%f27, %f26;
+	mov.f32 	%f28, %f27;
+	mov.u32 	%r17, __cuda_s_64;
+	mov.s32 	%r18, %r17;
+	mov.u32 	%r19, __cuda___cuda_c_728;
+	mov.s32 	%r20, %r19;
+$LDWbegini___internal_accurate_sincosf_242_188:
+	.loc	19	9511	0
+	mov.f32 	%f29, %f28;
+	mov.f32 	%f30, %f29;
+$LDWbegini___isinff_242_187:
+	.loc	19	8806	0
+	mov.f32 	%f31, %f30;
+	abs.f32 	%f32, %f31;
+	mov.f32 	%f33, 0f7f800000;    	// 1.#INF
+	set.eq.u32.f32 	%r21, %f32, %f33;
+	neg.s32 	%r22, %r21;
+$LDWendi___isinff_242_186:
+	.loc	19	9511	0
+	mov.u32 	%r23, 0;
+	setp.eq.s32 	%p1, %r22, %r23;
+	@%p1 bra 	$L_0_76546;
+	.loc	19	9512	0
+	mov.f32 	%f34, %f28;
+	mov.f32 	%f35, 0f00000000;    	// 0
+	mul.rn.f32 	%f36, %f34, %f35;
+	mov.f32 	%f28, %f36;
+$L_0_76546:
+	.loc	19	9514	0
+	mov.f32 	%f37, %f28;
+	mov.f32 	%f38, %f37;
+	mov.u32 	%r24, __cuda___cuda_quadrant_8812;
+	mov.s32 	%r25, %r24;
+$LDWbegini___internal_trig_reduction_kernel_242_185:
+	.loc	19	9281	0
+	mov.f32 	%f39, %f38;
+	mov.f32 	%f40, 0f3f22f983;    	// 0.63662
+	mul.f32 	%f41, %f39, %f40;
+	cvt.rni.s32.f32 	%r26, %f41;
+	st.local.s32 	[__cuda___cuda_q_9216], %r26;
+	.loc	19	9282	0
+	ld.local.s32 	%r27, [__cuda___cuda_q_9216];
+	cvt.rn.f32.s32 	%f42, %r27;
+	mov.f32 	%f43, %f42;
+	.loc	19	9289	0
+	mov.f32 	%f44, %f43;
+	neg.f32 	%f45, %f44;
+	mov.f32 	%f46, %f45;
+	mov.f32 	%f47, 0f3fc90000;    	// 1.57031
+	mov.f32 	%f48, %f47;
+	mov.f32 	%f49, %f38;
+	mov.f32 	%f50, %f49;
+$LDWbegini___internal_fmad_242_184:
+	.loc	19	8936	0
+	mov.f32 	%f51, %f46;
+	mov.f32 	%f52, %f51;
+	mov.f32 	%f53, %f48;
+	mov.f32 	%f54, %f53;
+	mov.f32 	%f55, %f50;
+	mov.f32 	%f56, %f55;
+	mad.f32 %f57, %f52, %f54, %f56;
+	mov.f32 	%f58, %f57;
+	.loc	19	8937	0
+	mov.f32 	%f59, %f58;
+$LDWendi___internal_fmad_242_183:
+	.loc	19	9289	0
+	mov.f32 	%f60, %f59;
+	.loc	19	9290	0
+	mov.f32 	%f61, %f43;
+	neg.f32 	%f62, %f61;
+	mov.f32 	%f63, %f62;
+	mov.f32 	%f64, 0f39fd8000;    	// 0.000483513
+	mov.f32 	%f65, %f64;
+	mov.f32 	%f66, %f60;
+	mov.f32 	%f67, %f66;
+$LDWbegini___internal_fmad_242_182:
+	.loc	19	8936	0
+	mov.f32 	%f68, %f63;
+	mov.f32 	%f69, %f68;
+	mov.f32 	%f70, %f65;
+	mov.f32 	%f71, %f70;
+	mov.f32 	%f72, %f67;
+	mov.f32 	%f73, %f72;
+	mad.f32 %f74, %f69, %f71, %f73;
+	mov.f32 	%f58, %f74;
+	.loc	19	8937	0
+	mov.f32 	%f75, %f58;
+$LDWendi___internal_fmad_242_181:
+	.loc	19	9290	0
+	mov.f32 	%f60, %f75;
+	.loc	19	9291	0
+	mov.f32 	%f76, %f43;
+	neg.f32 	%f77, %f76;
+	mov.f32 	%f78, %f77;
+	mov.f32 	%f79, 0f34a88000;    	// 3.13856e-007
+	mov.f32 	%f80, %f79;
+	mov.f32 	%f81, %f60;
+	mov.f32 	%f82, %f81;
+$LDWbegini___internal_fmad_242_180:
+	.loc	19	8936	0
+	mov.f32 	%f83, %f78;
+	mov.f32 	%f84, %f83;
+	mov.f32 	%f85, %f80;
+	mov.f32 	%f86, %f85;
+	mov.f32 	%f87, %f82;
+	mov.f32 	%f88, %f87;
+	mad.f32 %f89, %f84, %f86, %f88;
+	mov.f32 	%f58, %f89;
+	.loc	19	8937	0
+	mov.f32 	%f90, %f58;
+$LDWendi___internal_fmad_242_179:
+	.loc	19	9291	0
+	mov.f32 	%f60, %f90;
+	.loc	19	9292	0
+	mov.f32 	%f91, %f43;
+	neg.f32 	%f92, %f91;
+	mov.f32 	%f93, %f92;
+	mov.f32 	%f94, 0f2e85a309;    	// 6.0771e-011
+	mov.f32 	%f95, %f94;
+	mov.f32 	%f96, %f60;
+	mov.f32 	%f97, %f96;
+$LDWbegini___internal_fmad_242_178:
+	.loc	19	8936	0
+	mov.f32 	%f98, %f93;
+	mov.f32 	%f99, %f98;
+	mov.f32 	%f100, %f95;
+	mov.f32 	%f101, %f100;
+	mov.f32 	%f102, %f97;
+	mov.f32 	%f103, %f102;
+	mad.f32 %f104, %f99, %f101, %f103;
+	mov.f32 	%f58, %f104;
+	.loc	19	8937	0
+	mov.f32 	%f105, %f58;
+$LDWendi___internal_fmad_242_177:
+	.loc	19	9292	0
+	mov.f32 	%f60, %f105;
+	.loc	19	9294	0
+	mov.f32 	%f106, %f38;
+	abs.f32 	%f107, %f106;
+	mov.f32 	%f108, 0f473ba700;   	// 48039
+	setp.gt.f32 	%p2, %f107, %f108;
+	@!%p2 bra 	$L_0_76802;
+	.loc	19	9295	0
+	mov.f32 	%f109, %f38;
+	mov.f32 	%f110, %f109;
+	mov.u32 	%r28, __cuda___cuda_q_9216;
+	mov.s32 	%r29, %r28;
+$LDWbegini___internal_trig_reduction_slowpath_242_176:
+	.loc	19	9214	0
+	mov.f32 	%f111, %f110;
+	mov.b32 	%r30, %f111;
+	mov.s32 	%r31, %r30;
+	.loc	19	9215	0
+	mov.s32 	%r32, %r31;
+	and.b32 	%r33, %r32, -2147483648;
+	mov.s32 	%r34, %r33;
+	.loc	19	9221	0
+	mov.s32 	%r35, %r31;
+	shl.b32 	%r36, %r35, 1;
+	shr.u32 	%r37, %r36, 24;
+	sub.u32 	%r38, %r37, 128;
+	mov.s32 	%r39, %r38;
+	.loc	19	9222	0
+	mov.s32 	%r40, %r31;
+	shl.b32 	%r41, %r40, 8;
+	or.b32 	%r42, %r41, -2147483648;
+	mov.s32 	%r31, %r42;
+	.loc	19	9224	0
+	mov.s32 	%r43, %r39;
+	shr.u32 	%r44, %r43, 5;
+	mov.u32 	%r45, 4;
+	sub.u32 	%r46, %r45, %r44;
+	mov.s32 	%r47, %r46;
+	.loc	19	9225	0
+	mov.u32 	%r48, 0;
+	mov.s32 	%r49, %r48;
+	.loc	19	9227	0
+	mov.s32 	%r50, 0;
+	mov.s32 	%r51, %r50;
+	mov.s32 	%r52, %r51;
+	mov.u32 	%r53, 5;
+	setp.gt.s32 	%p3, %r52, %r53;
+	@%p3 bra 	$L_0_77314;
+$L_0_77058:
+	.loc	19	9228	0
+	mov.u32 	%r54, __cudart_i2opi_f;
+	mov.s32 	%r55, %r51;
+	mul.lo.u32 	%r56, %r55, 4;
+	add.u32 	%r57, %r54, %r56;
+	ld.const.u32 	%r58, [%r57+0];
+	mov.s32 	%r59, %r58;
+	mov.s32 	%r60, %r31;
+	mov.s32 	%r61, %r60;
+	mov.s32 	%r62, %r49;
+	mov.s32 	%r63, %r62;
+$LDWbegini___internal_umad32wide_242_175:
+	.loc	19	9187	0
+	mov.s32 	%r64, %r59;
+	mov.u32 	%r65, %r64;
+	mov.s32 	%r66, %r61;
+	mov.u32 	%r67, %r66;
+	mov.s32 	%r68, %r63;
+	mov.u32 	%r69, %r68;
+	{
+	.reg .u64 tmp;
+	mul.wide.u32 tmp, %r65, %r67;
+	mov.b64         {%r70,%r71}, tmp;
+	add.cc.u32      %r70, %r70, %r69;
+	addc.u32        %r71, %r71, 0;
+	}
+	st.local.u32 	[__cuda_res_200+0], %r70;
+	st.local.u32 	[__cuda_res_200+4], %r71;
+	.loc	19	9201	0
+	ld.local.u32 	%r72, [__cuda_res_200+0];
+	st.local.u32 	[__cuda_rr_208+0], %r72;
+	ld.local.u32 	%r73, [__cuda_res_200+4];
+	st.local.u32 	[__cuda_rr_208+4], %r73;
+$LDWendi___internal_umad32wide_242_174:
+	.loc	19	9228	0
+	ld.local.u32 	%r74, [__cuda_rr_208+0];
+	st.local.u32 	[__cuda__temp__Mreturn___internal_umad32wide13_216+0], %r74;
+	ld.local.u32 	%r75, [__cuda_rr_208+4];
+	st.local.u32 	[__cuda__temp__Mreturn___internal_umad32wide13_216+4], %r75;
+	ld.local.u32 	%r76, [__cuda__temp__Mreturn___internal_umad32wide13_216+0];
+	st.local.u32 	[__cuda_p_224+0], %r76;
+	ld.local.u32 	%r77, [__cuda__temp__Mreturn___internal_umad32wide13_216+4];
+	st.local.u32 	[__cuda_p_224+4], %r77;
+	.loc	19	9229	0
+	ld.local.u32 	%r78, [__cuda_p_224+0];
+	mov.s32 	%r79, %r78;
+	.loc	19	9230	0
+	ld.local.u32 	%r80, [__cuda_p_224+4];
+	mov.s32 	%r49, %r80;
+	.loc	19	9231	0
+	mov.s32 	%r81, %r79;
+	mov.u32 	%r82, __cuda___cuda_result_23616;
+	mov.s32 	%r83, %r51;
+	mul.lo.u32 	%r84, %r83, 4;
+	add.u32 	%r85, %r82, %r84;
+	st.local.u32 	[%r85+0], %r81;
+	.loc	19	9227	0
+	mov.s32 	%r86, %r51;
+	add.s32 	%r87, %r86, 1;
+	mov.s32 	%r51, %r87;
+$Lt_0_43266:
+	mov.s32 	%r88, %r51;
+	mov.u32 	%r89, 5;
+	setp.le.s32 	%p4, %r88, %r89;
+	@%p4 bra 	$L_0_77058;
+$L_0_77314:
+	.loc	19	9233	0
+	mov.s32 	%r90, %r49;
+	mov.u32 	%r91, __cuda___cuda_result_23616;
+	mov.s32 	%r92, %r51;
+	mul.lo.u32 	%r93, %r92, 4;
+	add.u32 	%r94, %r91, %r93;
+	st.local.u32 	[%r94+0], %r90;
+	.loc	19	9234	0
+	mov.s32 	%r95, %r39;
+	and.b32 	%r96, %r95, 31;
+	mov.s32 	%r39, %r96;
+	.loc	19	9238	0
+	mov.u32 	%r97, __cuda___cuda_result_23616;
+	mov.s32 	%r98, %r47;
+	add.s32 	%r99, %r98, 2;
+	mul.lo.u32 	%r100, %r99, 4;
+	add.u32 	%r101, %r97, %r100;
+	ld.local.u32 	%r102, [%r101+0];
+	mov.s32 	%r49, %r102;
+	.loc	19	9239	0
+	mov.u32 	%r103, __cuda___cuda_result_23616;
+	mov.s32 	%r104, %r47;
+	add.s32 	%r105, %r104, 1;
+	mul.lo.u32 	%r106, %r105, 4;
+	add.u32 	%r107, %r103, %r106;
+	ld.local.u32 	%r108, [%r107+0];
+	mov.s32 	%r79, %r108;
+	.loc	19	9240	0
+	mov.s32 	%r109, %r39;
+	mov.u32 	%r110, 0;
+	setp.eq.u32 	%p5, %r109, %r110;
+	@%p5 bra 	$L_0_77570;
+	.loc	19	9241	0
+	mov.s32 	%r111, %r39;
+	mov.u32 	%r112, 32;
+	sub.u32 	%r113, %r112, %r111;
+	mov.s32 	%r51, %r113;
+	.loc	19	9242	0
+	mov.s32 	%r114, %r79;
+	mov.s32 	%r115, %r51;
+	shr.u32 	%r116, %r114, %r115;
+	mov.s32 	%r117, %r49;
+	mov.s32 	%r118, %r39;
+	shl.b32 	%r119, %r117, %r118;
+	add.u32 	%r120, %r116, %r119;
+	mov.s32 	%r49, %r120;
+	.loc	19	9243	0
+	mov.u32 	%r121, __cuda___cuda_result_23616;
+	mov.s32 	%r122, %r47;
+	mul.lo.u32 	%r123, %r122, 4;
+	add.u32 	%r124, %r121, %r123;
+	ld.local.u32 	%r125, [%r124+0];
+	mov.s32 	%r126, %r51;
+	shr.u32 	%r127, %r125, %r126;
+	mov.s32 	%r128, %r79;
+	mov.s32 	%r129, %r39;
+	shl.b32 	%r130, %r128, %r129;
+	add.u32 	%r131, %r127, %r130;
+	mov.s32 	%r79, %r131;
+$L_0_77570:
+	.loc	19	9245	0
+	mov.s32 	%r132, %r49;
+	shr.u32 	%r133, %r132, 30;
+	mov.s32 	%r51, %r133;
+	.loc	19	9247	0
+	mov.s32 	%r134, %r79;
+	shr.u32 	%r135, %r134, 30;
+	mov.s32 	%r136, %r49;
+	shl.b32 	%r137, %r136, 2;
+	add.u32 	%r138, %r135, %r137;
+	mov.s32 	%r49, %r138;
+	.loc	19	9248	0
+	mov.s32 	%r139, %r79;
+	shl.b32 	%r140, %r139, 2;
+	mov.s32 	%r79, %r140;
+	.loc	19	9249	0
+	mov.s32 	%r141, %r49;
+	shr.u32 	%r142, %r141, 31;
+	mov.s32 	%r39, %r142;
+	.loc	19	9250	0
+	mov.s32 	%r143, %r39;
+	mov.s32 	%r144, %r51;
+	add.u32 	%r145, %r143, %r144;
+	mov.s32 	%r51, %r145;
+	.loc	19	9251	0
+	mov.s32 	%r146, %r34;
+	mov.u32 	%r147, 0;
+	setp.eq.u32 	%p6, %r146, %r147;
+	@%p6 bra 	$L_0_77826;
+	mov.s32 	%r148, %r51;
+	neg.s32 	%r149, %r148;
+	mov.s32 	%r51, %r149;
+$L_0_77826:
+	.loc	19	9252	0
+	mov.s32 	%r150, %r51;
+	mov.s32 	%r151, %r29;
+	st.local.s32 	[%r151+0], %r150;
+	.loc	19	9253	0
+	mov.s32 	%r152, %r39;
+	mov.u32 	%r153, 0;
+	setp.eq.u32 	%p7, %r152, %r153;
+	@%p7 bra 	$L_0_78082;
+$LDWbeginblock_242_170:
+	.loc	19	9255	0
+	mov.s32 	%r154, %r49;
+	not.b32 	%r155, %r154;
+	mov.s32 	%r49, %r155;
+	.loc	19	9256	0
+	mov.s32 	%r156, %r79;
+	neg.s32 	%r157, %r156;
+	mov.s32 	%r79, %r157;
+	.loc	19	9257	0
+	mov.s32 	%r158, %r79;
+	mov.u32 	%r159, 0;
+	set.eq.u32.u32 	%r160, %r158, %r159;
+	neg.s32 	%r161, %r160;
+	mov.s32 	%r162, %r161;
+	.loc	19	9258	0
+	mov.s32 	%r163, %r49;
+	mov.s32 	%r164, %r162;
+	add.u32 	%r165, %r163, %r164;
+	mov.s32 	%r49, %r165;
+	.loc	19	9259	0
+	mov.s32 	%r166, %r34;
+	xor.b32 	%r167, %r166, -2147483648;
+	mov.s32 	%r34, %r167;
+$LDWendblock_242_170:
+$L_0_78082:
+	.loc	19	9262	0
+	mov.s32 	%r168, %r49;
+	mov.s32 	%r169, %r168;
+$LDWbegini___clz_242_173:
+	.loc	21	6283	0
+	mov.s32 	%r170, %r169;
+	mov.u32 	%r171, 0;
+	setp.eq.s32 	%p8, %r170, %r171;
+	@%p8 bra 	$L_0_78594;
+	mov.s32 	%r172, %r169;
+	cvt.rz.f32.u32 	%f112, %r172;
+	mov.b32 	%r173, %f112;
+	shr.s32 	%r174, %r173, 23;
+	mov.s32 	%r175, 158;
+	sub.s32 	%r176, %r175, %r174;
+	bra.uni 	$L_0_78338;
+$L_0_78594:
+	.loc	21	6283	0
+	mov.s32 	%r176, 32;
+$L_0_78338:
+	.loc	21	6283	0
+	mov.s32 	%r177, %r176;
+$LDWendi___clz_242_172:
+	.loc	19	9262	0
+	mov.s32 	%r39, %r177;
+	.loc	19	9263	0
+	mov.s32 	%r178, %r39;
+	mov.u32 	%r179, 0;
+	setp.eq.u32 	%p9, %r178, %r179;
+	@%p9 bra 	$L_0_78850;
+	.loc	19	9264	0
+	mov.s32 	%r180, %r79;
+	mov.s32 	%r181, %r39;
+	mov.u32 	%r182, 32;
+	sub.u32 	%r183, %r182, %r181;
+	shr.u32 	%r184, %r180, %r183;
+	mov.s32 	%r185, %r49;
+	mov.s32 	%r186, %r39;
+	shl.b32 	%r187, %r185, %r186;
+	add.u32 	%r188, %r184, %r187;
+	mov.s32 	%r49, %r188;
+$L_0_78850:
+	.loc	19	9266	0
+	mov.s32 	%r189, %r49;
+	mul.lo.u32 	%r190, %r189, -921707870;
+	mov.s32 	%r79, %r190;
+	.loc	19	9267	0
+	mov.s32 	%r191, %r49;
+	mov.u32 	%r192, -921707870;
+	mul.hi.u32 	%r193, %r191, %r192;
+	mov.s32 	%r49, %r193;
+	.loc	19	9268	0
+	mov.s32 	%r194, %r49;
+	mov.u32 	%r195, 0;
+	setp.le.s32 	%p10, %r194, %r195;
+	@%p10 bra 	$L_0_79106;
+	.loc	19	9269	0
+	mov.s32 	%r196, %r79;
+	shr.u32 	%r197, %r196, 31;
+	mov.s32 	%r198, %r49;
+	shl.b32 	%r199, %r198, 1;
+	add.u32 	%r200, %r197, %r199;
+	mov.s32 	%r49, %r200;
+	.loc	19	9270	0
+	mov.s32 	%r201, %r39;
+	add.u32 	%r202, %r201, 1;
+	mov.s32 	%r39, %r202;
+$L_0_79106:
+	.loc	19	9272	0
+	mov.s32 	%r203, %r34;
+	mov.s32 	%r204, %r49;
+	add.u32 	%r205, %r204, 1;
+	shr.u32 	%r206, %r205, 7;
+	add.u32 	%r207, %r206, 1;
+	shr.u32 	%r208, %r207, 1;
+	mov.s32 	%r209, %r39;
+	mov.u32 	%r210, 126;
+	sub.u32 	%r211, %r210, %r209;
+	shl.b32 	%r212, %r211, 23;
+	add.u32 	%r213, %r208, %r212;
+	or.b32 	%r214, %r203, %r213;
+	mov.s32 	%r31, %r214;
+	.loc	19	9273	0
+	mov.s32 	%r215, %r31;
+	mov.b32 	%f113, %r215;
+$LDWendi___internal_trig_reduction_slowpath_242_168:
+	.loc	19	9295	0
+	mov.f32 	%f60, %f113;
+$L_0_76802:
+	.loc	19	9297	0
+	ld.local.s32 	%r216, [__cuda___cuda_q_9216];
+	mov.s32 	%r217, %r25;
+	st.local.s32 	[%r217+0], %r216;
+	.loc	19	9298	0
+	mov.f32 	%f114, %f60;
+$LDWendi___internal_trig_reduction_kernel_242_167:
+	.loc	19	9514	0
+	mov.f32 	%f28, %f114;
+	.loc	19	9515	0
+	mov.f32 	%f115, %f28;
+	mov.f32 	%f116, %f115;
+$LDWbegini___internal_cos_kernel_242_166:
+	.loc	19	9458	0
+	mov.f32 	%f117, %f116;
+	mov.f32 	%f118, %f116;
+	mul.f32 	%f119, %f117, %f118;
+	mov.f32 	%f120, %f119;
+	.loc	19	9459	0
+	mov.f32 	%f121, 0f37ccf5ce;   	// 2.44332e-005
+	mov.f32 	%f122, %f121;
+	.loc	19	9460	0
+	mov.f32 	%f123, %f122;
+	mov.f32 	%f124, %f123;
+	mov.f32 	%f125, %f120;
+	mov.f32 	%f126, %f125;
+	mov.f32 	%f127, 0fbab6061a;   	// -0.00138873
+	mov.f32 	%f128, %f127;
+$LDWbegini___internal_fmad_242_165:
+	.loc	19	8936	0
+	mov.f32 	%f129, %f124;
+	mov.f32 	%f130, %f129;
+	mov.f32 	%f131, %f126;
+	mov.f32 	%f132, %f131;
+	mov.f32 	%f133, %f128;
+	mov.f32 	%f134, %f133;
+	mad.f32 %f135, %f130, %f132, %f134;
+	mov.f32 	%f136, %f135;
+	.loc	19	8937	0
+	mov.f32 	%f137, %f136;
+$LDWendi___internal_fmad_242_164:
+	.loc	19	9460	0
+	mov.f32 	%f122, %f137;
+	.loc	19	9461	0
+	mov.f32 	%f138, %f122;
+	mov.f32 	%f139, %f138;
+	mov.f32 	%f140, %f120;
+	mov.f32 	%f141, %f140;
+	mov.f32 	%f142, 0f3d2aaaa5;   	// 0.0416666
+	mov.f32 	%f143, %f142;
+$LDWbegini___internal_fmad_242_163:
+	.loc	19	8936	0
+	mov.f32 	%f144, %f139;
+	mov.f32 	%f145, %f144;
+	mov.f32 	%f146, %f141;
+	mov.f32 	%f147, %f146;
+	mov.f32 	%f148, %f143;
+	mov.f32 	%f149, %f148;
+	mad.f32 %f150, %f145, %f147, %f149;
+	mov.f32 	%f136, %f150;
+	.loc	19	8937	0
+	mov.f32 	%f151, %f136;
+$LDWendi___internal_fmad_242_162:
+	.loc	19	9461	0
+	mov.f32 	%f122, %f151;
+	.loc	19	9462	0
+	mov.f32 	%f152, %f122;
+	mov.f32 	%f153, %f152;
+	mov.f32 	%f154, %f120;
+	mov.f32 	%f155, %f154;
+	mov.f32 	%f156, 0fbf000000;   	// -0.5
+	mov.f32 	%f157, %f156;
+$LDWbegini___internal_fmad_242_161:
+	.loc	19	8936	0
+	mov.f32 	%f158, %f153;
+	mov.f32 	%f159, %f158;
+	mov.f32 	%f160, %f155;
+	mov.f32 	%f161, %f160;
+	mov.f32 	%f162, %f157;
+	mov.f32 	%f163, %f162;
+	mad.f32 %f164, %f159, %f161, %f163;
+	mov.f32 	%f136, %f164;
+	.loc	19	8937	0
+	mov.f32 	%f165, %f136;
+$LDWendi___internal_fmad_242_160:
+	.loc	19	9462	0
+	mov.f32 	%f122, %f165;
+	.loc	19	9463	0
+	mov.f32 	%f166, %f122;
+	mov.f32 	%f167, %f166;
+	mov.f32 	%f168, %f120;
+	mov.f32 	%f169, %f168;
+	mov.f32 	%f170, 0f3f800000;   	// 1
+	mov.f32 	%f171, %f170;
+$LDWbegini___internal_fmad_242_159:
+	.loc	19	8936	0
+	mov.f32 	%f172, %f167;
+	mov.f32 	%f173, %f172;
+	mov.f32 	%f174, %f169;
+	mov.f32 	%f175, %f174;
+	mov.f32 	%f176, %f171;
+	mov.f32 	%f177, %f176;
+	mad.f32 %f178, %f173, %f175, %f177;
+	mov.f32 	%f136, %f178;
+	.loc	19	8937	0
+	mov.f32 	%f179, %f136;
+$LDWendi___internal_fmad_242_158:
+	.loc	19	9463	0
+	mov.f32 	%f122, %f179;
+	.loc	19	9464	0
+	mov.f32 	%f180, %f122;
+$LDWendi___internal_cos_kernel_242_157:
+	.loc	19	9515	0
+	mov.f32 	%f181, %f180;
+	.loc	19	9516	0
+	mov.f32 	%f182, %f28;
+	mov.f32 	%f183, %f182;
+$LDWbegini___internal_sin_kernel_242_156:
+	.loc	19	9440	0
+	mov.f32 	%f184, %f183;
+	mov.f32 	%f185, %f183;
+	mul.f32 	%f186, %f184, %f185;
+	mov.f32 	%f187, %f186;
+	.loc	19	9441	0
+	mov.f32 	%f188, 0fb94ca1f9;   	// -0.000195153
+	mov.f32 	%f189, %f188;
+	.loc	19	9442	0
+	mov.f32 	%f190, %f189;
+	mov.f32 	%f191, %f190;
+	mov.f32 	%f192, %f187;
+	mov.f32 	%f193, %f192;
+	mov.f32 	%f194, 0f3c08839e;   	// 0.00833216
+	mov.f32 	%f195, %f194;
+$LDWbegini___internal_fmad_242_155:
+	.loc	19	8936	0
+	mov.f32 	%f196, %f191;
+	mov.f32 	%f197, %f196;
+	mov.f32 	%f198, %f193;
+	mov.f32 	%f199, %f198;
+	mov.f32 	%f200, %f195;
+	mov.f32 	%f201, %f200;
+	mad.f32 %f202, %f197, %f199, %f201;
+	mov.f32 	%f203, %f202;
+	.loc	19	8937	0
+	mov.f32 	%f204, %f203;
+$LDWendi___internal_fmad_242_154:
+	.loc	19	9442	0
+	mov.f32 	%f189, %f204;
+	.loc	19	9443	0
+	mov.f32 	%f205, %f189;
+	mov.f32 	%f206, %f205;
+	mov.f32 	%f207, %f187;
+	mov.f32 	%f208, %f207;
+	mov.f32 	%f209, 0fbe2aaaa3;   	// -0.166667
+	mov.f32 	%f210, %f209;
+$LDWbegini___internal_fmad_242_153:
+	.loc	19	8936	0
+	mov.f32 	%f211, %f206;
+	mov.f32 	%f212, %f211;
+	mov.f32 	%f213, %f208;
+	mov.f32 	%f214, %f213;
+	mov.f32 	%f215, %f210;
+	mov.f32 	%f216, %f215;
+	mad.f32 %f217, %f212, %f214, %f216;
+	mov.f32 	%f203, %f217;
+	.loc	19	8937	0
+	mov.f32 	%f218, %f203;
+$LDWendi___internal_fmad_242_152:
+	.loc	19	9443	0
+	mov.f32 	%f189, %f218;
+	.loc	19	9447	0
+	mov.f32 	%f219, %f187;
+	mov.f32 	%f220, %f189;
+	mul.f32 	%f221, %f219, %f220;
+	mov.f32 	%f189, %f221;
+	.loc	19	9449	0
+	mov.f32 	%f222, %f189;
+	mov.f32 	%f223, %f222;
+	mov.f32 	%f224, %f183;
+	mov.f32 	%f225, %f224;
+	mov.f32 	%f226, %f183;
+	mov.f32 	%f227, %f226;
+$LDWbegini___internal_fmad_242_151:
+	.loc	19	8936	0
+	mov.f32 	%f228, %f223;
+	mov.f32 	%f229, %f228;
+	mov.f32 	%f230, %f225;
+	mov.f32 	%f231, %f230;
+	mov.f32 	%f232, %f227;
+	mov.f32 	%f233, %f232;
+	mad.f32 %f234, %f229, %f231, %f233;
+	mov.f32 	%f203, %f234;
+	.loc	19	8937	0
+	mov.f32 	%f235, %f203;
+$LDWendi___internal_fmad_242_150:
+	.loc	19	9449	0
+	mov.f32 	%f189, %f235;
+	.loc	19	9450	0
+	mov.f32 	%f236, %f189;
+$LDWendi___internal_sin_kernel_242_149:
+	.loc	19	9516	0
+	mov.f32 	%f237, %f236;
+	.loc	19	9517	0
+	mov.f32 	%f238, %f237;
+	mov.f32 	%f239, %f238;
+	.loc	19	9518	0
+	ld.local.s32 	%r218, [__cuda___cuda_quadrant_8812];
+	and.b32 	%r219, %r218, 1;
+	mov.u32 	%r220, 0;
+	setp.eq.s32 	%p11, %r219, %r220;
+	@%p11 bra 	$L_0_79362;
+	.loc	19	9519	0
+	mov.f32 	%f240, %f181;
+	mov.f32 	%f237, %f240;
+	.loc	19	9520	0
+	mov.f32 	%f241, %f239;
+	mov.f32 	%f181, %f241;
+$L_0_79362:
+	.loc	19	9522	0
+	ld.local.s32 	%r221, [__cuda___cuda_quadrant_8812];
+	and.b32 	%r222, %r221, 2;
+	mov.u32 	%r223, 0;
+	setp.eq.s32 	%p12, %r222, %r223;
+	@%p12 bra 	$L_0_79618;
+	.loc	19	9523	0
+	mov.f32 	%f242, %f237;
+	neg.f32 	%f243, %f242;
+	mov.f32 	%f237, %f243;
+$L_0_79618:
+	.loc	19	9525	0
+	ld.local.s32 	%r224, [__cuda___cuda_quadrant_8812];
+	add.s32 	%r225, %r224, 1;
+	st.local.s32 	[__cuda___cuda_quadrant_8812], %r225;
+	.loc	19	9526	0
+	ld.local.s32 	%r226, [__cuda___cuda_quadrant_8812];
+	and.b32 	%r227, %r226, 2;
+	mov.u32 	%r228, 0;
+	setp.eq.s32 	%p13, %r227, %r228;
+	@%p13 bra 	$L_0_79874;
+	.loc	19	9527	0
+	mov.f32 	%f244, %f181;
+	neg.f32 	%f245, %f244;
+	mov.f32 	%f181, %f245;
+$L_0_79874:
+	.loc	19	9530	0
+	mov.f32 	%f246, %f28;
+	mov.f32 	%f247, 0f00000000;   	// 0
+	setp.eq.f32 	%p14, %f246, %f247;
+	@!%p14 bra 	$L_0_80130;
+	.loc	19	9531	0
+	mov.f32 	%f248, %f28;
+	mov.f32 	%f249, 0f00000000;   	// 0
+	mul.rn.f32 	%f250, %f248, %f249;
+	mov.f32 	%f237, %f250;
+$L_0_80130:
+	.loc	19	9534	0
+	mov.f32 	%f251, %f237;
+	mov.s32 	%r229, %r18;
+	st.local.f32 	[%r229+0], %f251;
+	.loc	19	9535	0
+	mov.f32 	%f252, %f181;
+	mov.s32 	%r230, %r20;
+	st.local.f32 	[%r230+0], %f252;
+$LDWendi___internal_accurate_sincosf_242_148:
+	.loc	19	9562	0
+	ld.local.f32 	%f253, [__cuda___cuda_c_728];
+$LDWendi___internal_accurate_cosf_242_147:
+	.loc	19	9611	0
+	mov.f32 	%f254, %f253;
+$LDWendi_cosf_242_146:
+	.loc	17	36	0
+	ld.param.f32 	%f255, [__cudaparm_transformKernel_theta];
+	mov.f32 	%f256, %f255;
+$LDWbegini_sinf_242_145:
+	.loc	19	9602	0
+	mov.f32 	%f257, %f256;
+	mov.f32 	%f258, %f257;
+$LDWbegini___internal_accurate_sinf_242_144:
+	.loc	19	9542	0
+	mov.f32 	%f259, %f258;
+	mov.f32 	%f260, %f259;
+	mov.u32 	%r231, __cuda___cuda_s_41656;
+	mov.s32 	%r232, %r231;
+	mov.u32 	%r233, __cuda___cuda_c_42460;
+	mov.s32 	%r234, %r233;
+$LDWbegini___internal_accurate_sincosf_242_143:
+	.loc	19	9511	0
+	mov.f32 	%f261, %f260;
+	mov.f32 	%f262, %f261;
+$LDWbegini___isinff_242_142:
+	.loc	19	8806	0
+	mov.f32 	%f263, %f262;
+	abs.f32 	%f264, %f263;
+	mov.f32 	%f265, 0f7f800000;   	// 1.#INF
+	set.eq.u32.f32 	%r235, %f264, %f265;
+	neg.s32 	%r236, %r235;
+$LDWendi___isinff_242_141:
+	.loc	19	9511	0
+	mov.u32 	%r237, 0;
+	setp.eq.s32 	%p15, %r236, %r237;
+	@%p15 bra 	$L_0_80386;
+	.loc	19	9512	0
+	mov.f32 	%f266, %f260;
+	mov.f32 	%f267, 0f00000000;   	// 0
+	mul.rn.f32 	%f268, %f266, %f267;
+	mov.f32 	%f260, %f268;
+$L_0_80386:
+	.loc	19	9514	0
+	mov.f32 	%f269, %f260;
+	mov.f32 	%f270, %f269;
+	mov.u32 	%r238, __cuda___cuda_quadrant_44064;
+	mov.s32 	%r239, %r238;
+$LDWbegini___internal_trig_reduction_kernel_242_140:
+	.loc	19	9281	0
+	mov.f32 	%f271, %f270;
+	mov.f32 	%f272, 0f3f22f983;   	// 0.63662
+	mul.f32 	%f273, %f271, %f272;
+	cvt.rni.s32.f32 	%r240, %f273;
+	st.local.s32 	[__cuda___cuda_q_44468], %r240;
+	.loc	19	9282	0
+	ld.local.s32 	%r241, [__cuda___cuda_q_44468];
+	cvt.rn.f32.s32 	%f274, %r241;
+	mov.f32 	%f275, %f274;
+	.loc	19	9289	0
+	mov.f32 	%f276, %f275;
+	neg.f32 	%f277, %f276;
+	mov.f32 	%f278, %f277;
+	mov.f32 	%f279, 0f3fc90000;   	// 1.57031
+	mov.f32 	%f280, %f279;
+	mov.f32 	%f281, %f270;
+	mov.f32 	%f282, %f281;
+$LDWbegini___internal_fmad_242_139:
+	.loc	19	8936	0
+	mov.f32 	%f283, %f278;
+	mov.f32 	%f284, %f283;
+	mov.f32 	%f285, %f280;
+	mov.f32 	%f286, %f285;
+	mov.f32 	%f287, %f282;
+	mov.f32 	%f288, %f287;
+	mad.f32 %f289, %f284, %f286, %f288;
+	mov.f32 	%f290, %f289;
+	.loc	19	8937	0
+	mov.f32 	%f291, %f290;
+$LDWendi___internal_fmad_242_138:
+	.loc	19	9289	0
+	mov.f32 	%f292, %f291;
+	.loc	19	9290	0
+	mov.f32 	%f293, %f275;
+	neg.f32 	%f294, %f293;
+	mov.f32 	%f295, %f294;
+	mov.f32 	%f296, 0f39fd8000;   	// 0.000483513
+	mov.f32 	%f297, %f296;
+	mov.f32 	%f298, %f292;
+	mov.f32 	%f299, %f298;
+$LDWbegini___internal_fmad_242_137:
+	.loc	19	8936	0
+	mov.f32 	%f300, %f295;
+	mov.f32 	%f301, %f300;
+	mov.f32 	%f302, %f297;
+	mov.f32 	%f303, %f302;
+	mov.f32 	%f304, %f299;
+	mov.f32 	%f305, %f304;
+	mad.f32 %f306, %f301, %f303, %f305;
+	mov.f32 	%f290, %f306;
+	.loc	19	8937	0
+	mov.f32 	%f307, %f290;
+$LDWendi___internal_fmad_242_136:
+	.loc	19	9290	0
+	mov.f32 	%f292, %f307;
+	.loc	19	9291	0
+	mov.f32 	%f308, %f275;
+	neg.f32 	%f309, %f308;
+	mov.f32 	%f310, %f309;
+	mov.f32 	%f311, 0f34a88000;   	// 3.13856e-007
+	mov.f32 	%f312, %f311;
+	mov.f32 	%f313, %f292;
+	mov.f32 	%f314, %f313;
+$LDWbegini___internal_fmad_242_135:
+	.loc	19	8936	0
+	mov.f32 	%f315, %f310;
+	mov.f32 	%f316, %f315;
+	mov.f32 	%f317, %f312;
+	mov.f32 	%f318, %f317;
+	mov.f32 	%f319, %f314;
+	mov.f32 	%f320, %f319;
+	mad.f32 %f321, %f316, %f318, %f320;
+	mov.f32 	%f290, %f321;
+	.loc	19	8937	0
+	mov.f32 	%f322, %f290;
+$LDWendi___internal_fmad_242_134:
+	.loc	19	9291	0
+	mov.f32 	%f292, %f322;
+	.loc	19	9292	0
+	mov.f32 	%f323, %f275;
+	neg.f32 	%f324, %f323;
+	mov.f32 	%f325, %f324;
+	mov.f32 	%f326, 0f2e85a309;   	// 6.0771e-011
+	mov.f32 	%f327, %f326;
+	mov.f32 	%f328, %f292;
+	mov.f32 	%f329, %f328;
+$LDWbegini___internal_fmad_242_133:
+	.loc	19	8936	0
+	mov.f32 	%f330, %f325;
+	mov.f32 	%f331, %f330;
+	mov.f32 	%f332, %f327;
+	mov.f32 	%f333, %f332;
+	mov.f32 	%f334, %f329;
+	mov.f32 	%f335, %f334;
+	mad.f32 %f336, %f331, %f333, %f335;
+	mov.f32 	%f290, %f336;
+	.loc	19	8937	0
+	mov.f32 	%f337, %f290;
+$LDWendi___internal_fmad_242_132:
+	.loc	19	9292	0
+	mov.f32 	%f292, %f337;
+	.loc	19	9294	0
+	mov.f32 	%f338, %f270;
+	abs.f32 	%f339, %f338;
+	mov.f32 	%f340, 0f473ba700;   	// 48039
+	setp.gt.f32 	%p16, %f339, %f340;
+	@!%p16 bra 	$L_0_80642;
+	.loc	19	9295	0
+	mov.f32 	%f341, %f270;
+	mov.f32 	%f342, %f341;
+	mov.u32 	%r242, __cuda___cuda_q_44468;
+	mov.s32 	%r243, %r242;
+$LDWbegini___internal_trig_reduction_slowpath_242_131:
+	.loc	19	9214	0
+	mov.f32 	%f343, %f342;
+	mov.b32 	%r244, %f343;
+	mov.s32 	%r245, %r244;
+	.loc	19	9215	0
+	mov.s32 	%r246, %r245;
+	and.b32 	%r247, %r246, -2147483648;
+	mov.s32 	%r248, %r247;
+	.loc	19	9221	0
+	mov.s32 	%r249, %r245;
+	shl.b32 	%r250, %r249, 1;
+	shr.u32 	%r251, %r250, 24;
+	sub.u32 	%r252, %r251, 128;
+	mov.s32 	%r253, %r252;
+	.loc	19	9222	0
+	mov.s32 	%r254, %r245;
+	shl.b32 	%r255, %r254, 8;
+	or.b32 	%r256, %r255, -2147483648;
+	mov.s32 	%r245, %r256;
+	.loc	19	9224	0
+	mov.s32 	%r257, %r253;
+	shr.u32 	%r258, %r257, 5;
+	mov.u32 	%r259, 4;
+	sub.u32 	%r260, %r259, %r258;
+	mov.s32 	%r261, %r260;
+	.loc	19	9225	0
+	mov.u32 	%r262, 0;
+	mov.s32 	%r263, %r262;
+	.loc	19	9227	0
+	mov.s32 	%r264, 0;
+	mov.s32 	%r265, %r264;
+	mov.s32 	%r266, %r265;
+	mov.u32 	%r267, 5;
+	setp.gt.s32 	%p17, %r266, %r267;
+	@%p17 bra 	$L_0_81154;
+$L_0_80898:
+	.loc	19	9228	0
+	mov.u32 	%r268, __cudart_i2opi_f;
+	mov.s32 	%r269, %r265;
+	mul.lo.u32 	%r270, %r269, 4;
+	add.u32 	%r271, %r268, %r270;
+	ld.const.u32 	%r272, [%r271+0];
+	mov.s32 	%r273, %r272;
+	mov.s32 	%r274, %r245;
+	mov.s32 	%r275, %r274;
+	mov.s32 	%r276, %r263;
+	mov.s32 	%r277, %r276;
+$LDWbegini___internal_umad32wide_242_130:
+	.loc	19	9187	0
+	mov.s32 	%r278, %r273;
+	mov.u32 	%r279, %r278;
+	mov.s32 	%r280, %r275;
+	mov.u32 	%r281, %r280;
+	mov.s32 	%r282, %r277;
+	mov.u32 	%r283, %r282;
+	{
+	.reg .u64 tmp;
+	mul.wide.u32 tmp, %r279, %r281;
+	mov.b64         {%r284,%r285}, tmp;
+	add.cc.u32      %r284, %r284, %r283;
+	addc.u32        %r285, %r285, 0;
+	}
+	st.local.u32 	[__cuda_res_552+0], %r284;
+	st.local.u32 	[__cuda_res_552+4], %r285;
+	.loc	19	9201	0
+	ld.local.u32 	%r286, [__cuda_res_552+0];
+	st.local.u32 	[__cuda_rr_560+0], %r286;
+	ld.local.u32 	%r287, [__cuda_res_552+4];
+	st.local.u32 	[__cuda_rr_560+4], %r287;
+$LDWendi___internal_umad32wide_242_129:
+	.loc	19	9228	0
+	ld.local.u32 	%r288, [__cuda_rr_560+0];
+	st.local.u32 	[__cuda__temp__Mreturn___internal_umad32wide13_568+0], %r288;
+	ld.local.u32 	%r289, [__cuda_rr_560+4];
+	st.local.u32 	[__cuda__temp__Mreturn___internal_umad32wide13_568+4], %r289;
+	ld.local.u32 	%r290, [__cuda__temp__Mreturn___internal_umad32wide13_568+0];
+	st.local.u32 	[__cuda_p_576+0], %r290;
+	ld.local.u32 	%r291, [__cuda__temp__Mreturn___internal_umad32wide13_568+4];
+	st.local.u32 	[__cuda_p_576+4], %r291;
+	.loc	19	9229	0
+	ld.local.u32 	%r292, [__cuda_p_576+0];
+	mov.s32 	%r293, %r292;
+	.loc	19	9230	0
+	ld.local.u32 	%r294, [__cuda_p_576+4];
+	mov.s32 	%r263, %r294;
+	.loc	19	9231	0
+	mov.s32 	%r295, %r293;
+	mov.u32 	%r296, __cuda___cuda_result_58844;
+	mov.s32 	%r297, %r265;
+	mul.lo.u32 	%r298, %r297, 4;
+	add.u32 	%r299, %r296, %r298;
+	st.local.u32 	[%r299+0], %r295;
+	.loc	19	9227	0
+	mov.s32 	%r300, %r265;
+	add.s32 	%r301, %r300, 1;
+	mov.s32 	%r265, %r301;
+$Lt_0_31746:
+	mov.s32 	%r302, %r265;
+	mov.u32 	%r303, 5;
+	setp.le.s32 	%p18, %r302, %r303;
+	@%p18 bra 	$L_0_80898;
+$L_0_81154:
+	.loc	19	9233	0
+	mov.s32 	%r304, %r263;
+	mov.u32 	%r305, __cuda___cuda_result_58844;
+	mov.s32 	%r306, %r265;
+	mul.lo.u32 	%r307, %r306, 4;
+	add.u32 	%r308, %r305, %r307;
+	st.local.u32 	[%r308+0], %r304;
+	.loc	19	9234	0
+	mov.s32 	%r309, %r253;
+	and.b32 	%r310, %r309, 31;
+	mov.s32 	%r253, %r310;
+	.loc	19	9238	0
+	mov.u32 	%r311, __cuda___cuda_result_58844;
+	mov.s32 	%r312, %r261;
+	add.s32 	%r313, %r312, 2;
+	mul.lo.u32 	%r314, %r313, 4;
+	add.u32 	%r315, %r311, %r314;
+	ld.local.u32 	%r316, [%r315+0];
+	mov.s32 	%r263, %r316;
+	.loc	19	9239	0
+	mov.u32 	%r317, __cuda___cuda_result_58844;
+	mov.s32 	%r318, %r261;
+	add.s32 	%r319, %r318, 1;
+	mul.lo.u32 	%r320, %r319, 4;
+	add.u32 	%r321, %r317, %r320;
+	ld.local.u32 	%r322, [%r321+0];
+	mov.s32 	%r293, %r322;
+	.loc	19	9240	0
+	mov.s32 	%r323, %r253;
+	mov.u32 	%r324, 0;
+	setp.eq.u32 	%p19, %r323, %r324;
+	@%p19 bra 	$L_0_81410;
+	.loc	19	9241	0
+	mov.s32 	%r325, %r253;
+	mov.u32 	%r326, 32;
+	sub.u32 	%r327, %r326, %r325;
+	mov.s32 	%r265, %r327;
+	.loc	19	9242	0
+	mov.s32 	%r328, %r293;
+	mov.s32 	%r329, %r265;
+	shr.u32 	%r330, %r328, %r329;
+	mov.s32 	%r331, %r263;
+	mov.s32 	%r332, %r253;
+	shl.b32 	%r333, %r331, %r332;
+	add.u32 	%r334, %r330, %r333;
+	mov.s32 	%r263, %r334;
+	.loc	19	9243	0
+	mov.u32 	%r335, __cuda___cuda_result_58844;
+	mov.s32 	%r336, %r261;
+	mul.lo.u32 	%r337, %r336, 4;
+	add.u32 	%r338, %r335, %r337;
+	ld.local.u32 	%r339, [%r338+0];
+	mov.s32 	%r340, %r265;
+	shr.u32 	%r341, %r339, %r340;
+	mov.s32 	%r342, %r293;
+	mov.s32 	%r343, %r253;
+	shl.b32 	%r344, %r342, %r343;
+	add.u32 	%r345, %r341, %r344;
+	mov.s32 	%r293, %r345;
+$L_0_81410:
+	.loc	19	9245	0
+	mov.s32 	%r346, %r263;
+	shr.u32 	%r347, %r346, 30;
+	mov.s32 	%r265, %r347;
+	.loc	19	9247	0
+	mov.s32 	%r348, %r293;
+	shr.u32 	%r349, %r348, 30;
+	mov.s32 	%r350, %r263;
+	shl.b32 	%r351, %r350, 2;
+	add.u32 	%r352, %r349, %r351;
+	mov.s32 	%r263, %r352;
+	.loc	19	9248	0
+	mov.s32 	%r353, %r293;
+	shl.b32 	%r354, %r353, 2;
+	mov.s32 	%r293, %r354;
+	.loc	19	9249	0
+	mov.s32 	%r355, %r263;
+	shr.u32 	%r356, %r355, 31;
+	mov.s32 	%r253, %r356;
+	.loc	19	9250	0
+	mov.s32 	%r357, %r253;
+	mov.s32 	%r358, %r265;
+	add.u32 	%r359, %r357, %r358;
+	mov.s32 	%r265, %r359;
+	.loc	19	9251	0
+	mov.s32 	%r360, %r248;
+	mov.u32 	%r361, 0;
+	setp.eq.u32 	%p20, %r360, %r361;
+	@%p20 bra 	$L_0_81666;
+	mov.s32 	%r362, %r265;
+	neg.s32 	%r363, %r362;
+	mov.s32 	%r265, %r363;
+$L_0_81666:
+	.loc	19	9252	0
+	mov.s32 	%r364, %r265;
+	mov.s32 	%r365, %r243;
+	st.local.s32 	[%r365+0], %r364;
+	.loc	19	9253	0
+	mov.s32 	%r366, %r253;
+	mov.u32 	%r367, 0;
+	setp.eq.u32 	%p21, %r366, %r367;
+	@%p21 bra 	$L_0_81922;
+$LDWbeginblock_242_125:
+	.loc	19	9255	0
+	mov.s32 	%r368, %r263;
+	not.b32 	%r369, %r368;
+	mov.s32 	%r263, %r369;
+	.loc	19	9256	0
+	mov.s32 	%r370, %r293;
+	neg.s32 	%r371, %r370;
+	mov.s32 	%r293, %r371;
+	.loc	19	9257	0
+	mov.s32 	%r372, %r293;
+	mov.u32 	%r373, 0;
+	set.eq.u32.u32 	%r374, %r372, %r373;
+	neg.s32 	%r375, %r374;
+	mov.s32 	%r376, %r375;
+	.loc	19	9258	0
+	mov.s32 	%r377, %r263;
+	mov.s32 	%r378, %r376;
+	add.u32 	%r379, %r377, %r378;
+	mov.s32 	%r263, %r379;
+	.loc	19	9259	0
+	mov.s32 	%r380, %r248;
+	xor.b32 	%r381, %r380, -2147483648;
+	mov.s32 	%r248, %r381;
+$LDWendblock_242_125:
+$L_0_81922:
+	.loc	19	9262	0
+	mov.s32 	%r382, %r263;
+	mov.s32 	%r383, %r382;
+$LDWbegini___clz_242_128:
+	.loc	21	6283	0
+	mov.s32 	%r384, %r383;
+	mov.u32 	%r385, 0;
+	setp.eq.s32 	%p22, %r384, %r385;
+	@%p22 bra 	$L_0_82434;
+	mov.s32 	%r386, %r383;
+	cvt.rz.f32.u32 	%f344, %r386;
+	mov.b32 	%r387, %f344;
+	shr.s32 	%r388, %r387, 23;
+	mov.s32 	%r389, 158;
+	sub.s32 	%r390, %r389, %r388;
+	bra.uni 	$L_0_82178;
+$L_0_82434:
+	.loc	21	6283	0
+	mov.s32 	%r390, 32;
+$L_0_82178:
+	.loc	21	6283	0
+	mov.s32 	%r391, %r390;
+$LDWendi___clz_242_127:
+	.loc	19	9262	0
+	mov.s32 	%r253, %r391;
+	.loc	19	9263	0
+	mov.s32 	%r392, %r253;
+	mov.u32 	%r393, 0;
+	setp.eq.u32 	%p23, %r392, %r393;
+	@%p23 bra 	$L_0_82690;
+	.loc	19	9264	0
+	mov.s32 	%r394, %r293;
+	mov.s32 	%r395, %r253;
+	mov.u32 	%r396, 32;
+	sub.u32 	%r397, %r396, %r395;
+	shr.u32 	%r398, %r394, %r397;
+	mov.s32 	%r399, %r263;
+	mov.s32 	%r400, %r253;
+	shl.b32 	%r401, %r399, %r400;
+	add.u32 	%r402, %r398, %r401;
+	mov.s32 	%r263, %r402;
+$L_0_82690:
+	.loc	19	9266	0
+	mov.s32 	%r403, %r263;
+	mul.lo.u32 	%r404, %r403, -921707870;
+	mov.s32 	%r293, %r404;
+	.loc	19	9267	0
+	mov.s32 	%r405, %r263;
+	mov.u32 	%r406, -921707870;
+	mul.hi.u32 	%r407, %r405, %r406;
+	mov.s32 	%r263, %r407;
+	.loc	19	9268	0
+	mov.s32 	%r408, %r263;
+	mov.u32 	%r409, 0;
+	setp.le.s32 	%p24, %r408, %r409;
+	@%p24 bra 	$L_0_82946;
+	.loc	19	9269	0
+	mov.s32 	%r410, %r293;
+	shr.u32 	%r411, %r410, 31;
+	mov.s32 	%r412, %r263;
+	shl.b32 	%r413, %r412, 1;
+	add.u32 	%r414, %r411, %r413;
+	mov.s32 	%r263, %r414;
+	.loc	19	9270	0
+	mov.s32 	%r415, %r253;
+	add.u32 	%r416, %r415, 1;
+	mov.s32 	%r253, %r416;
+$L_0_82946:
+	.loc	19	9272	0
+	mov.s32 	%r417, %r248;
+	mov.s32 	%r418, %r263;
+	add.u32 	%r419, %r418, 1;
+	shr.u32 	%r420, %r419, 7;
+	add.u32 	%r421, %r420, 1;
+	shr.u32 	%r422, %r421, 1;
+	mov.s32 	%r423, %r253;
+	mov.u32 	%r424, 126;
+	sub.u32 	%r425, %r424, %r423;
+	shl.b32 	%r426, %r425, 23;
+	add.u32 	%r427, %r422, %r426;
+	or.b32 	%r428, %r417, %r427;
+	mov.s32 	%r245, %r428;
+	.loc	19	9273	0
+	mov.s32 	%r429, %r245;
+	mov.b32 	%f345, %r429;
+$LDWendi___internal_trig_reduction_slowpath_242_123:
+	.loc	19	9295	0
+	mov.f32 	%f292, %f345;
+$L_0_80642:
+	.loc	19	9297	0
+	ld.local.s32 	%r430, [__cuda___cuda_q_44468];
+	mov.s32 	%r431, %r239;
+	st.local.s32 	[%r431+0], %r430;
+	.loc	19	9298	0
+	mov.f32 	%f346, %f292;
+$LDWendi___internal_trig_reduction_kernel_242_122:
+	.loc	19	9514	0
+	mov.f32 	%f260, %f346;
+	.loc	19	9515	0
+	mov.f32 	%f347, %f260;
+	mov.f32 	%f348, %f347;
+$LDWbegini___internal_cos_kernel_242_121:
+	.loc	19	9458	0
+	mov.f32 	%f349, %f348;
+	mov.f32 	%f350, %f348;
+	mul.f32 	%f351, %f349, %f350;
+	mov.f32 	%f352, %f351;
+	.loc	19	9459	0
+	mov.f32 	%f353, 0f37ccf5ce;   	// 2.44332e-005
+	mov.f32 	%f354, %f353;
+	.loc	19	9460	0
+	mov.f32 	%f355, %f354;
+	mov.f32 	%f356, %f355;
+	mov.f32 	%f357, %f352;
+	mov.f32 	%f358, %f357;
+	mov.f32 	%f359, 0fbab6061a;   	// -0.00138873
+	mov.f32 	%f360, %f359;
+$LDWbegini___internal_fmad_242_120:
+	.loc	19	8936	0
+	mov.f32 	%f361, %f356;
+	mov.f32 	%f362, %f361;
+	mov.f32 	%f363, %f358;
+	mov.f32 	%f364, %f363;
+	mov.f32 	%f365, %f360;
+	mov.f32 	%f366, %f365;
+	mad.f32 %f367, %f362, %f364, %f366;
+	mov.f32 	%f368, %f367;
+	.loc	19	8937	0
+	mov.f32 	%f369, %f368;
+$LDWendi___internal_fmad_242_119:
+	.loc	19	9460	0
+	mov.f32 	%f354, %f369;
+	.loc	19	9461	0
+	mov.f32 	%f370, %f354;
+	mov.f32 	%f371, %f370;
+	mov.f32 	%f372, %f352;
+	mov.f32 	%f373, %f372;
+	mov.f32 	%f374, 0f3d2aaaa5;   	// 0.0416666
+	mov.f32 	%f375, %f374;
+$LDWbegini___internal_fmad_242_118:
+	.loc	19	8936	0
+	mov.f32 	%f376, %f371;
+	mov.f32 	%f377, %f376;
+	mov.f32 	%f378, %f373;
+	mov.f32 	%f379, %f378;
+	mov.f32 	%f380, %f375;
+	mov.f32 	%f381, %f380;
+	mad.f32 %f382, %f377, %f379, %f381;
+	mov.f32 	%f368, %f382;
+	.loc	19	8937	0
+	mov.f32 	%f383, %f368;
+$LDWendi___internal_fmad_242_117:
+	.loc	19	9461	0
+	mov.f32 	%f354, %f383;
+	.loc	19	9462	0
+	mov.f32 	%f384, %f354;
+	mov.f32 	%f385, %f384;
+	mov.f32 	%f386, %f352;
+	mov.f32 	%f387, %f386;
+	mov.f32 	%f388, 0fbf000000;   	// -0.5
+	mov.f32 	%f389, %f388;
+$LDWbegini___internal_fmad_242_116:
+	.loc	19	8936	0
+	mov.f32 	%f390, %f385;
+	mov.f32 	%f391, %f390;
+	mov.f32 	%f392, %f387;
+	mov.f32 	%f393, %f392;
+	mov.f32 	%f394, %f389;
+	mov.f32 	%f395, %f394;
+	mad.f32 %f396, %f391, %f393, %f395;
+	mov.f32 	%f368, %f396;
+	.loc	19	8937	0
+	mov.f32 	%f397, %f368;
+$LDWendi___internal_fmad_242_115:
+	.loc	19	9462	0
+	mov.f32 	%f354, %f397;
+	.loc	19	9463	0
+	mov.f32 	%f398, %f354;
+	mov.f32 	%f399, %f398;
+	mov.f32 	%f400, %f352;
+	mov.f32 	%f401, %f400;
+	mov.f32 	%f402, 0f3f800000;   	// 1
+	mov.f32 	%f403, %f402;
+$LDWbegini___internal_fmad_242_114:
+	.loc	19	8936	0
+	mov.f32 	%f404, %f399;
+	mov.f32 	%f405, %f404;
+	mov.f32 	%f406, %f401;
+	mov.f32 	%f407, %f406;
+	mov.f32 	%f408, %f403;
+	mov.f32 	%f409, %f408;
+	mad.f32 %f410, %f405, %f407, %f409;
+	mov.f32 	%f368, %f410;
+	.loc	19	8937	0
+	mov.f32 	%f411, %f368;
+$LDWendi___internal_fmad_242_113:
+	.loc	19	9463	0
+	mov.f32 	%f354, %f411;
+	.loc	19	9464	0
+	mov.f32 	%f412, %f354;
+$LDWendi___internal_cos_kernel_242_112:
+	.loc	19	9515	0
+	mov.f32 	%f413, %f412;
+	.loc	19	9516	0
+	mov.f32 	%f414, %f260;
+	mov.f32 	%f415, %f414;
+$LDWbegini___internal_sin_kernel_242_111:
+	.loc	19	9440	0
+	mov.f32 	%f416, %f415;
+	mov.f32 	%f417, %f415;
+	mul.f32 	%f418, %f416, %f417;
+	mov.f32 	%f419, %f418;
+	.loc	19	9441	0
+	mov.f32 	%f420, 0fb94ca1f9;   	// -0.000195153
+	mov.f32 	%f421, %f420;
+	.loc	19	9442	0
+	mov.f32 	%f422, %f421;
+	mov.f32 	%f423, %f422;
+	mov.f32 	%f424, %f419;
+	mov.f32 	%f425, %f424;
+	mov.f32 	%f426, 0f3c08839e;   	// 0.00833216
+	mov.f32 	%f427, %f426;
+$LDWbegini___internal_fmad_242_110:
+	.loc	19	8936	0
+	mov.f32 	%f428, %f423;
+	mov.f32 	%f429, %f428;
+	mov.f32 	%f430, %f425;
+	mov.f32 	%f431, %f430;
+	mov.f32 	%f432, %f427;
+	mov.f32 	%f433, %f432;
+	mad.f32 %f434, %f429, %f431, %f433;
+	mov.f32 	%f435, %f434;
+	.loc	19	8937	0
+	mov.f32 	%f436, %f435;
+$LDWendi___internal_fmad_242_109:
+	.loc	19	9442	0
+	mov.f32 	%f421, %f436;
+	.loc	19	9443	0
+	mov.f32 	%f437, %f421;
+	mov.f32 	%f438, %f437;
+	mov.f32 	%f439, %f419;
+	mov.f32 	%f440, %f439;
+	mov.f32 	%f441, 0fbe2aaaa3;   	// -0.166667
+	mov.f32 	%f442, %f441;
+$LDWbegini___internal_fmad_242_108:
+	.loc	19	8936	0
+	mov.f32 	%f443, %f438;
+	mov.f32 	%f444, %f443;
+	mov.f32 	%f445, %f440;
+	mov.f32 	%f446, %f445;
+	mov.f32 	%f447, %f442;
+	mov.f32 	%f448, %f447;
+	mad.f32 %f449, %f444, %f446, %f448;
+	mov.f32 	%f435, %f449;
+	.loc	19	8937	0
+	mov.f32 	%f450, %f435;
+$LDWendi___internal_fmad_242_107:
+	.loc	19	9443	0
+	mov.f32 	%f421, %f450;
+	.loc	19	9447	0
+	mov.f32 	%f451, %f419;
+	mov.f32 	%f452, %f421;
+	mul.f32 	%f453, %f451, %f452;
+	mov.f32 	%f421, %f453;
+	.loc	19	9449	0
+	mov.f32 	%f454, %f421;
+	mov.f32 	%f455, %f454;
+	mov.f32 	%f456, %f415;
+	mov.f32 	%f457, %f456;
+	mov.f32 	%f458, %f415;
+	mov.f32 	%f459, %f458;
+$LDWbegini___internal_fmad_242_106:
+	.loc	19	8936	0
+	mov.f32 	%f460, %f455;
+	mov.f32 	%f461, %f460;
+	mov.f32 	%f462, %f457;
+	mov.f32 	%f463, %f462;
+	mov.f32 	%f464, %f459;
+	mov.f32 	%f465, %f464;
+	mad.f32 %f466, %f461, %f463, %f465;
+	mov.f32 	%f435, %f466;
+	.loc	19	8937	0
+	mov.f32 	%f467, %f435;
+$LDWendi___internal_fmad_242_105:
+	.loc	19	9449	0
+	mov.f32 	%f421, %f467;
+	.loc	19	9450	0
+	mov.f32 	%f468, %f421;
+$LDWendi___internal_sin_kernel_242_104:
+	.loc	19	9516	0
+	mov.f32 	%f469, %f468;
+	.loc	19	9517	0
+	mov.f32 	%f470, %f469;
+	mov.f32 	%f471, %f470;
+	.loc	19	9518	0
+	ld.local.s32 	%r432, [__cuda___cuda_quadrant_44064];
+	and.b32 	%r433, %r432, 1;
+	mov.u32 	%r434, 0;
+	setp.eq.s32 	%p25, %r433, %r434;
+	@%p25 bra 	$L_0_83202;
+	.loc	19	9519	0
+	mov.f32 	%f472, %f413;
+	mov.f32 	%f469, %f472;
+	.loc	19	9520	0
+	mov.f32 	%f473, %f471;
+	mov.f32 	%f413, %f473;
+$L_0_83202:
+	.loc	19	9522	0
+	ld.local.s32 	%r435, [__cuda___cuda_quadrant_44064];
+	and.b32 	%r436, %r435, 2;
+	mov.u32 	%r437, 0;
+	setp.eq.s32 	%p26, %r436, %r437;
+	@%p26 bra 	$L_0_83458;
+	.loc	19	9523	0
+	mov.f32 	%f474, %f469;
+	neg.f32 	%f475, %f474;
+	mov.f32 	%f469, %f475;
+$L_0_83458:
+	.loc	19	9525	0
+	ld.local.s32 	%r438, [__cuda___cuda_quadrant_44064];
+	add.s32 	%r439, %r438, 1;
+	st.local.s32 	[__cuda___cuda_quadrant_44064], %r439;
+	.loc	19	9526	0
+	ld.local.s32 	%r440, [__cuda___cuda_quadrant_44064];
+	and.b32 	%r441, %r440, 2;
+	mov.u32 	%r442, 0;
+	setp.eq.s32 	%p27, %r441, %r442;
+	@%p27 bra 	$L_0_83714;
+	.loc	19	9527	0
+	mov.f32 	%f476, %f413;
+	neg.f32 	%f477, %f476;
+	mov.f32 	%f413, %f477;
+$L_0_83714:
+	.loc	19	9530	0
+	mov.f32 	%f478, %f260;
+	mov.f32 	%f479, 0f00000000;   	// 0
+	setp.eq.f32 	%p28, %f478, %f479;
+	@!%p28 bra 	$L_0_83970;
+	.loc	19	9531	0
+	mov.f32 	%f480, %f260;
+	mov.f32 	%f481, 0f00000000;   	// 0
+	mul.rn.f32 	%f482, %f480, %f481;
+	mov.f32 	%f469, %f482;
+$L_0_83970:
+	.loc	19	9534	0
+	mov.f32 	%f483, %f469;
+	mov.s32 	%r443, %r232;
+	st.local.f32 	[%r443+0], %f483;
+	.loc	19	9535	0
+	mov.f32 	%f484, %f413;
+	mov.s32 	%r444, %r234;
+	st.local.f32 	[%r444+0], %f484;
+$LDWendi___internal_accurate_sincosf_242_103:
+	.loc	19	9543	0
+	ld.local.f32 	%f485, [__cuda___cuda_s_41656];
+$LDWendi___internal_accurate_sinf_242_102:
+	.loc	19	9602	0
+	mov.f32 	%f486, %f485;
+$LDWendi_sinf_242_101:
+	.loc	17	36	0
+	mov.f32 	%f487, %f16;
+	mul.f32 	%f488, %f487, %f486;
+	mov.f32 	%f489, %f8;
+	mul.f32 	%f490, %f489, %f254;
+	sub.f32 	%f491, %f490, %f488;
+	mov.f32 	%f492, 0f3f000000;   	// 0.5
+	add.f32 	%f493, %f491, %f492;
+	mov.f32 	%f494, %f493;
+	.loc	17	37	0
+	ld.param.f32 	%f495, [__cudaparm_transformKernel_theta];
+	mov.f32 	%f496, %f495;
+$LDWbegini_cosf_242_100:
+	.loc	19	9611	0
+	mov.f32 	%f497, %f496;
+	mov.f32 	%f26, %f497;
+$LDWbegini___internal_accurate_cosf_242_99:
+	.loc	19	9561	0
+	mov.f32 	%f498, %f26;
+	mov.f32 	%f28, %f498;
+	mov.u32 	%r445, __cuda_s_64;
+	mov.s32 	%r18, %r445;
+	mov.u32 	%r446, __cuda___cuda_c_728;
+	mov.s32 	%r20, %r446;
+$LDWbegini___internal_accurate_sincosf_242_98:
+	.loc	19	9511	0
+	mov.f32 	%f499, %f28;
+	mov.f32 	%f30, %f499;
+$LDWbegini___isinff_242_97:
+	.loc	19	8806	0
+	mov.f32 	%f500, %f30;
+	abs.f32 	%f501, %f500;
+	mov.f32 	%f502, 0f7f800000;   	// 1.#INF
+	set.eq.u32.f32 	%r447, %f501, %f502;
+	neg.s32 	%r22, %r447;
+$LDWendi___isinff_242_96:
+	.loc	19	9511	0
+	mov.u32 	%r448, 0;
+	setp.eq.s32 	%p29, %r22, %r448;
+	@%p29 bra 	$L_0_84226;
+	.loc	19	9512	0
+	mov.f32 	%f503, %f28;
+	mov.f32 	%f504, 0f00000000;   	// 0
+	mul.rn.f32 	%f505, %f503, %f504;
+	mov.f32 	%f28, %f505;
+$L_0_84226:
+	.loc	19	9514	0
+	mov.f32 	%f506, %f28;
+	mov.f32 	%f38, %f506;
+	mov.u32 	%r449, __cuda___cuda_quadrant_8812;
+	mov.s32 	%r25, %r449;
+$LDWbegini___internal_trig_reduction_kernel_242_95:
+	.loc	19	9281	0
+	mov.f32 	%f507, %f38;
+	mov.f32 	%f508, 0f3f22f983;   	// 0.63662
+	mul.f32 	%f509, %f507, %f508;
+	cvt.rni.s32.f32 	%r450, %f509;
+	st.local.s32 	[__cuda___cuda_q_9216], %r450;
+	.loc	19	9282	0
+	ld.local.s32 	%r451, [__cuda___cuda_q_9216];
+	cvt.rn.f32.s32 	%f510, %r451;
+	mov.f32 	%f43, %f510;
+	.loc	19	9289	0
+	mov.f32 	%f511, %f43;
+	neg.f32 	%f512, %f511;
+	mov.f32 	%f46, %f512;
+	mov.f32 	%f513, 0f3fc90000;   	// 1.57031
+	mov.f32 	%f48, %f513;
+	mov.f32 	%f514, %f38;
+	mov.f32 	%f50, %f514;
+$LDWbegini___internal_fmad_242_94:
+	.loc	19	8936	0
+	mov.f32 	%f515, %f46;
+	mov.f32 	%f516, %f515;
+	mov.f32 	%f517, %f48;
+	mov.f32 	%f518, %f517;
+	mov.f32 	%f519, %f50;
+	mov.f32 	%f520, %f519;
+	mad.f32 %f521, %f516, %f518, %f520;
+	mov.f32 	%f58, %f521;
+	.loc	19	8937	0
+	mov.f32 	%f59, %f58;
+$LDWendi___internal_fmad_242_93:
+	.loc	19	9289	0
+	mov.f32 	%f60, %f59;
+	.loc	19	9290	0
+	mov.f32 	%f522, %f43;
+	neg.f32 	%f523, %f522;
+	mov.f32 	%f63, %f523;
+	mov.f32 	%f524, 0f39fd8000;   	// 0.000483513
+	mov.f32 	%f65, %f524;
+	mov.f32 	%f525, %f60;
+	mov.f32 	%f67, %f525;
+$LDWbegini___internal_fmad_242_92:
+	.loc	19	8936	0
+	mov.f32 	%f526, %f63;
+	mov.f32 	%f527, %f526;
+	mov.f32 	%f528, %f65;
+	mov.f32 	%f529, %f528;
+	mov.f32 	%f530, %f67;
+	mov.f32 	%f531, %f530;
+	mad.f32 %f532, %f527, %f529, %f531;
+	mov.f32 	%f58, %f532;
+	.loc	19	8937	0
+	mov.f32 	%f75, %f58;
+$LDWendi___internal_fmad_242_91:
+	.loc	19	9290	0
+	mov.f32 	%f60, %f75;
+	.loc	19	9291	0
+	mov.f32 	%f533, %f43;
+	neg.f32 	%f534, %f533;
+	mov.f32 	%f78, %f534;
+	mov.f32 	%f535, 0f34a88000;   	// 3.13856e-007
+	mov.f32 	%f80, %f535;
+	mov.f32 	%f536, %f60;
+	mov.f32 	%f82, %f536;
+$LDWbegini___internal_fmad_242_90:
+	.loc	19	8936	0
+	mov.f32 	%f537, %f78;
+	mov.f32 	%f538, %f537;
+	mov.f32 	%f539, %f80;
+	mov.f32 	%f540, %f539;
+	mov.f32 	%f541, %f82;
+	mov.f32 	%f542, %f541;
+	mad.f32 %f543, %f538, %f540, %f542;
+	mov.f32 	%f58, %f543;
+	.loc	19	8937	0
+	mov.f32 	%f90, %f58;
+$LDWendi___internal_fmad_242_89:
+	.loc	19	9291	0
+	mov.f32 	%f60, %f90;
+	.loc	19	9292	0
+	mov.f32 	%f544, %f43;
+	neg.f32 	%f545, %f544;
+	mov.f32 	%f93, %f545;
+	mov.f32 	%f546, 0f2e85a309;   	// 6.0771e-011
+	mov.f32 	%f95, %f546;
+	mov.f32 	%f547, %f60;
+	mov.f32 	%f97, %f547;
+$LDWbegini___internal_fmad_242_88:
+	.loc	19	8936	0
+	mov.f32 	%f548, %f93;
+	mov.f32 	%f549, %f548;
+	mov.f32 	%f550, %f95;
+	mov.f32 	%f551, %f550;
+	mov.f32 	%f552, %f97;
+	mov.f32 	%f553, %f552;
+	mad.f32 %f554, %f549, %f551, %f553;
+	mov.f32 	%f58, %f554;
+	.loc	19	8937	0
+	mov.f32 	%f105, %f58;
+$LDWendi___internal_fmad_242_87:
+	.loc	19	9292	0
+	mov.f32 	%f60, %f105;
+	.loc	19	9294	0
+	mov.f32 	%f555, %f38;
+	abs.f32 	%f556, %f555;
+	mov.f32 	%f557, 0f473ba700;   	// 48039
+	setp.gt.f32 	%p30, %f556, %f557;
+	@!%p30 bra 	$L_0_84482;
+	.loc	19	9295	0
+	mov.f32 	%f558, %f38;
+	mov.f32 	%f110, %f558;
+	mov.u32 	%r452, __cuda___cuda_q_9216;
+	mov.s32 	%r29, %r452;
+$LDWbegini___internal_trig_reduction_slowpath_242_86:
+	.loc	19	9214	0
+	mov.f32 	%f559, %f110;
+	mov.b32 	%r453, %f559;
+	mov.s32 	%r31, %r453;
+	.loc	19	9215	0
+	mov.s32 	%r454, %r31;
+	and.b32 	%r455, %r454, -2147483648;
+	mov.s32 	%r34, %r455;
+	.loc	19	9221	0
+	mov.s32 	%r456, %r31;
+	shl.b32 	%r457, %r456, 1;
+	shr.u32 	%r458, %r457, 24;
+	sub.u32 	%r459, %r458, 128;
+	mov.s32 	%r39, %r459;
+	.loc	19	9222	0
+	mov.s32 	%r460, %r31;
+	shl.b32 	%r461, %r460, 8;
+	or.b32 	%r462, %r461, -2147483648;
+	mov.s32 	%r31, %r462;
+	.loc	19	9224	0
+	mov.s32 	%r463, %r39;
+	shr.u32 	%r464, %r463, 5;
+	mov.u32 	%r465, 4;
+	sub.u32 	%r466, %r465, %r464;
+	mov.s32 	%r47, %r466;
+	.loc	19	9225	0
+	mov.u32 	%r467, 0;
+	mov.s32 	%r49, %r467;
+	.loc	19	9227	0
+	mov.s32 	%r468, 0;
+	mov.s32 	%r51, %r468;
+	mov.s32 	%r469, %r51;
+	mov.u32 	%r470, 5;
+	setp.gt.s32 	%p31, %r469, %r470;
+	@%p31 bra 	$L_0_84994;
+$L_0_84738:
+	.loc	19	9228	0
+	mov.u32 	%r471, __cudart_i2opi_f;
+	mov.s32 	%r472, %r51;
+	mul.lo.u32 	%r473, %r472, 4;
+	add.u32 	%r474, %r471, %r473;
+	ld.const.u32 	%r475, [%r474+0];
+	mov.s32 	%r59, %r475;
+	mov.s32 	%r476, %r31;
+	mov.s32 	%r61, %r476;
+	mov.s32 	%r477, %r49;
+	mov.s32 	%r63, %r477;
+$LDWbegini___internal_umad32wide_242_85:
+	.loc	19	9187	0
+	mov.s32 	%r478, %r59;
+	mov.u32 	%r479, %r478;
+	mov.s32 	%r480, %r61;
+	mov.u32 	%r481, %r480;
+	mov.s32 	%r482, %r63;
+	mov.u32 	%r483, %r482;
+	{
+	.reg .u64 tmp;
+	mul.wide.u32 tmp, %r479, %r481;
+	mov.b64         {%r484,%r485}, tmp;
+	add.cc.u32      %r484, %r484, %r483;
+	addc.u32        %r485, %r485, 0;
+	}
+	st.local.u32 	[__cuda_res_200+0], %r484;
+	st.local.u32 	[__cuda_res_200+4], %r485;
+	.loc	19	9201	0
+	ld.local.u32 	%r486, [__cuda_res_200+0];
+	st.local.u32 	[__cuda_rr_208+0], %r486;
+	ld.local.u32 	%r487, [__cuda_res_200+4];
+	st.local.u32 	[__cuda_rr_208+4], %r487;
+$LDWendi___internal_umad32wide_242_84:
+	.loc	19	9228	0
+	ld.local.u32 	%r488, [__cuda_rr_208+0];
+	st.local.u32 	[__cuda__temp__Mreturn___internal_umad32wide13_216+0], %r488;
+	ld.local.u32 	%r489, [__cuda_rr_208+4];
+	st.local.u32 	[__cuda__temp__Mreturn___internal_umad32wide13_216+4], %r489;
+	ld.local.u32 	%r490, [__cuda__temp__Mreturn___internal_umad32wide13_216+0];
+	st.local.u32 	[__cuda_p_224+0], %r490;
+	ld.local.u32 	%r491, [__cuda__temp__Mreturn___internal_umad32wide13_216+4];
+	st.local.u32 	[__cuda_p_224+4], %r491;
+	.loc	19	9229	0
+	ld.local.u32 	%r492, [__cuda_p_224+0];
+	mov.s32 	%r79, %r492;
+	.loc	19	9230	0
+	ld.local.u32 	%r493, [__cuda_p_224+4];
+	mov.s32 	%r49, %r493;
+	.loc	19	9231	0
+	mov.s32 	%r494, %r79;
+	mov.u32 	%r495, __cuda___cuda_result_23616;
+	mov.s32 	%r496, %r51;
+	mul.lo.u32 	%r497, %r496, 4;
+	add.u32 	%r498, %r495, %r497;
+	st.local.u32 	[%r498+0], %r494;
+	.loc	19	9227	0
+	mov.s32 	%r499, %r51;
+	add.s32 	%r500, %r499, 1;
+	mov.s32 	%r51, %r500;
+$Lt_0_20226:
+	mov.s32 	%r501, %r51;
+	mov.u32 	%r502, 5;
+	setp.le.s32 	%p32, %r501, %r502;
+	@%p32 bra 	$L_0_84738;
+$L_0_84994:
+	.loc	19	9233	0
+	mov.s32 	%r503, %r49;
+	mov.u32 	%r504, __cuda___cuda_result_23616;
+	mov.s32 	%r505, %r51;
+	mul.lo.u32 	%r506, %r505, 4;
+	add.u32 	%r507, %r504, %r506;
+	st.local.u32 	[%r507+0], %r503;
+	.loc	19	9234	0
+	mov.s32 	%r508, %r39;
+	and.b32 	%r509, %r508, 31;
+	mov.s32 	%r39, %r509;
+	.loc	19	9238	0
+	mov.u32 	%r510, __cuda___cuda_result_23616;
+	mov.s32 	%r511, %r47;
+	add.s32 	%r512, %r511, 2;
+	mul.lo.u32 	%r513, %r512, 4;
+	add.u32 	%r514, %r510, %r513;
+	ld.local.u32 	%r515, [%r514+0];
+	mov.s32 	%r49, %r515;
+	.loc	19	9239	0
+	mov.u32 	%r516, __cuda___cuda_result_23616;
+	mov.s32 	%r517, %r47;
+	add.s32 	%r518, %r517, 1;
+	mul.lo.u32 	%r519, %r518, 4;
+	add.u32 	%r520, %r516, %r519;
+	ld.local.u32 	%r521, [%r520+0];
+	mov.s32 	%r79, %r521;
+	.loc	19	9240	0
+	mov.s32 	%r522, %r39;
+	mov.u32 	%r523, 0;
+	setp.eq.u32 	%p33, %r522, %r523;
+	@%p33 bra 	$L_0_85250;
+	.loc	19	9241	0
+	mov.s32 	%r524, %r39;
+	mov.u32 	%r525, 32;
+	sub.u32 	%r526, %r525, %r524;
+	mov.s32 	%r51, %r526;
+	.loc	19	9242	0
+	mov.s32 	%r527, %r79;
+	mov.s32 	%r528, %r51;
+	shr.u32 	%r529, %r527, %r528;
+	mov.s32 	%r530, %r49;
+	mov.s32 	%r531, %r39;
+	shl.b32 	%r532, %r530, %r531;
+	add.u32 	%r533, %r529, %r532;
+	mov.s32 	%r49, %r533;
+	.loc	19	9243	0
+	mov.u32 	%r534, __cuda___cuda_result_23616;
+	mov.s32 	%r535, %r47;
+	mul.lo.u32 	%r536, %r535, 4;
+	add.u32 	%r537, %r534, %r536;
+	ld.local.u32 	%r538, [%r537+0];
+	mov.s32 	%r539, %r51;
+	shr.u32 	%r540, %r538, %r539;
+	mov.s32 	%r541, %r79;
+	mov.s32 	%r542, %r39;
+	shl.b32 	%r543, %r541, %r542;
+	add.u32 	%r544, %r540, %r543;
+	mov.s32 	%r79, %r544;
+$L_0_85250:
+	.loc	19	9245	0
+	mov.s32 	%r545, %r49;
+	shr.u32 	%r546, %r545, 30;
+	mov.s32 	%r51, %r546;
+	.loc	19	9247	0
+	mov.s32 	%r547, %r79;
+	shr.u32 	%r548, %r547, 30;
+	mov.s32 	%r549, %r49;
+	shl.b32 	%r550, %r549, 2;
+	add.u32 	%r551, %r548, %r550;
+	mov.s32 	%r49, %r551;
+	.loc	19	9248	0
+	mov.s32 	%r552, %r79;
+	shl.b32 	%r553, %r552, 2;
+	mov.s32 	%r79, %r553;
+	.loc	19	9249	0
+	mov.s32 	%r554, %r49;
+	shr.u32 	%r555, %r554, 31;
+	mov.s32 	%r39, %r555;
+	.loc	19	9250	0
+	mov.s32 	%r556, %r39;
+	mov.s32 	%r557, %r51;
+	add.u32 	%r558, %r556, %r557;
+	mov.s32 	%r51, %r558;
+	.loc	19	9251	0
+	mov.s32 	%r559, %r34;
+	mov.u32 	%r560, 0;
+	setp.eq.u32 	%p34, %r559, %r560;
+	@%p34 bra 	$L_0_85506;
+	mov.s32 	%r561, %r51;
+	neg.s32 	%r562, %r561;
+	mov.s32 	%r51, %r562;
+$L_0_85506:
+	.loc	19	9252	0
+	mov.s32 	%r563, %r51;
+	mov.s32 	%r564, %r29;
+	st.local.s32 	[%r564+0], %r563;
+	.loc	19	9253	0
+	mov.s32 	%r565, %r39;
+	mov.u32 	%r566, 0;
+	setp.eq.u32 	%p35, %r565, %r566;
+	@%p35 bra 	$L_0_85762;
+$LDWbeginblock_242_80:
+	.loc	19	9255	0
+	mov.s32 	%r567, %r49;
+	not.b32 	%r568, %r567;
+	mov.s32 	%r49, %r568;
+	.loc	19	9256	0
+	mov.s32 	%r569, %r79;
+	neg.s32 	%r570, %r569;
+	mov.s32 	%r79, %r570;
+	.loc	19	9257	0
+	mov.s32 	%r571, %r79;
+	mov.u32 	%r572, 0;
+	set.eq.u32.u32 	%r573, %r571, %r572;
+	neg.s32 	%r574, %r573;
+	mov.s32 	%r162, %r574;
+	.loc	19	9258	0
+	mov.s32 	%r575, %r49;
+	mov.s32 	%r576, %r162;
+	add.u32 	%r577, %r575, %r576;
+	mov.s32 	%r49, %r577;
+	.loc	19	9259	0
+	mov.s32 	%r578, %r34;
+	xor.b32 	%r579, %r578, -2147483648;
+	mov.s32 	%r34, %r579;
+$LDWendblock_242_80:
+$L_0_85762:
+	.loc	19	9262	0
+	mov.s32 	%r580, %r49;
+	mov.s32 	%r169, %r580;
+$LDWbegini___clz_242_83:
+	.loc	21	6283	0
+	mov.s32 	%r581, %r169;
+	mov.u32 	%r582, 0;
+	setp.eq.s32 	%p36, %r581, %r582;
+	@%p36 bra 	$L_0_86274;
+	mov.s32 	%r583, %r169;
+	cvt.rz.f32.u32 	%f560, %r583;
+	mov.b32 	%r584, %f560;
+	shr.s32 	%r585, %r584, 23;
+	mov.s32 	%r586, 158;
+	sub.s32 	%r587, %r586, %r585;
+	bra.uni 	$L_0_86018;
+$L_0_86274:
+	.loc	21	6283	0
+	mov.s32 	%r587, 32;
+$L_0_86018:
+	.loc	21	6283	0
+	mov.s32 	%r177, %r587;
+$LDWendi___clz_242_82:
+	.loc	19	9262	0
+	mov.s32 	%r39, %r177;
+	.loc	19	9263	0
+	mov.s32 	%r588, %r39;
+	mov.u32 	%r589, 0;
+	setp.eq.u32 	%p37, %r588, %r589;
+	@%p37 bra 	$L_0_86530;
+	.loc	19	9264	0
+	mov.s32 	%r590, %r79;
+	mov.s32 	%r591, %r39;
+	mov.u32 	%r592, 32;
+	sub.u32 	%r593, %r592, %r591;
+	shr.u32 	%r594, %r590, %r593;
+	mov.s32 	%r595, %r49;
+	mov.s32 	%r596, %r39;
+	shl.b32 	%r597, %r595, %r596;
+	add.u32 	%r598, %r594, %r597;
+	mov.s32 	%r49, %r598;
+$L_0_86530:
+	.loc	19	9266	0
+	mov.s32 	%r599, %r49;
+	mul.lo.u32 	%r600, %r599, -921707870;
+	mov.s32 	%r79, %r600;
+	.loc	19	9267	0
+	mov.s32 	%r601, %r49;
+	mov.u32 	%r602, -921707870;
+	mul.hi.u32 	%r603, %r601, %r602;
+	mov.s32 	%r49, %r603;
+	.loc	19	9268	0
+	mov.s32 	%r604, %r49;
+	mov.u32 	%r605, 0;
+	setp.le.s32 	%p38, %r604, %r605;
+	@%p38 bra 	$L_0_86786;
+	.loc	19	9269	0
+	mov.s32 	%r606, %r79;
+	shr.u32 	%r607, %r606, 31;
+	mov.s32 	%r608, %r49;
+	shl.b32 	%r609, %r608, 1;
+	add.u32 	%r610, %r607, %r609;
+	mov.s32 	%r49, %r610;
+	.loc	19	9270	0
+	mov.s32 	%r611, %r39;
+	add.u32 	%r612, %r611, 1;
+	mov.s32 	%r39, %r612;
+$L_0_86786:
+	.loc	19	9272	0
+	mov.s32 	%r613, %r34;
+	mov.s32 	%r614, %r49;
+	add.u32 	%r615, %r614, 1;
+	shr.u32 	%r616, %r615, 7;
+	add.u32 	%r617, %r616, 1;
+	shr.u32 	%r618, %r617, 1;
+	mov.s32 	%r619, %r39;
+	mov.u32 	%r620, 126;
+	sub.u32 	%r621, %r620, %r619;
+	shl.b32 	%r622, %r621, 23;
+	add.u32 	%r623, %r618, %r622;
+	or.b32 	%r624, %r613, %r623;
+	mov.s32 	%r31, %r624;
+	.loc	19	9273	0
+	mov.s32 	%r625, %r31;
+	mov.b32 	%f113, %r625;
+$LDWendi___internal_trig_reduction_slowpath_242_78:
+	.loc	19	9295	0
+	mov.f32 	%f60, %f113;
+$L_0_84482:
+	.loc	19	9297	0
+	ld.local.s32 	%r626, [__cuda___cuda_q_9216];
+	mov.s32 	%r627, %r25;
+	st.local.s32 	[%r627+0], %r626;
+	.loc	19	9298	0
+	mov.f32 	%f114, %f60;
+$LDWendi___internal_trig_reduction_kernel_242_77:
+	.loc	19	9514	0
+	mov.f32 	%f28, %f114;
+	.loc	19	9515	0
+	mov.f32 	%f561, %f28;
+	mov.f32 	%f116, %f561;
+$LDWbegini___internal_cos_kernel_242_76:
+	.loc	19	9458	0
+	mov.f32 	%f562, %f116;
+	mov.f32 	%f563, %f116;
+	mul.f32 	%f564, %f562, %f563;
+	mov.f32 	%f120, %f564;
+	.loc	19	9459	0
+	mov.f32 	%f565, 0f37ccf5ce;   	// 2.44332e-005
+	mov.f32 	%f122, %f565;
+	.loc	19	9460	0
+	mov.f32 	%f566, %f122;
+	mov.f32 	%f124, %f566;
+	mov.f32 	%f567, %f120;
+	mov.f32 	%f126, %f567;
+	mov.f32 	%f568, 0fbab6061a;   	// -0.00138873
+	mov.f32 	%f128, %f568;
+$LDWbegini___internal_fmad_242_75:
+	.loc	19	8936	0
+	mov.f32 	%f569, %f124;
+	mov.f32 	%f570, %f569;
+	mov.f32 	%f571, %f126;
+	mov.f32 	%f572, %f571;
+	mov.f32 	%f573, %f128;
+	mov.f32 	%f574, %f573;
+	mad.f32 %f575, %f570, %f572, %f574;
+	mov.f32 	%f136, %f575;
+	.loc	19	8937	0
+	mov.f32 	%f137, %f136;
+$LDWendi___internal_fmad_242_74:
+	.loc	19	9460	0
+	mov.f32 	%f122, %f137;
+	.loc	19	9461	0
+	mov.f32 	%f576, %f122;
+	mov.f32 	%f139, %f576;
+	mov.f32 	%f577, %f120;
+	mov.f32 	%f141, %f577;
+	mov.f32 	%f578, 0f3d2aaaa5;   	// 0.0416666
+	mov.f32 	%f143, %f578;
+$LDWbegini___internal_fmad_242_73:
+	.loc	19	8936	0
+	mov.f32 	%f579, %f139;
+	mov.f32 	%f580, %f579;
+	mov.f32 	%f581, %f141;
+	mov.f32 	%f582, %f581;
+	mov.f32 	%f583, %f143;
+	mov.f32 	%f584, %f583;
+	mad.f32 %f585, %f580, %f582, %f584;
+	mov.f32 	%f136, %f585;
+	.loc	19	8937	0
+	mov.f32 	%f151, %f136;
+$LDWendi___internal_fmad_242_72:
+	.loc	19	9461	0
+	mov.f32 	%f122, %f151;
+	.loc	19	9462	0
+	mov.f32 	%f586, %f122;
+	mov.f32 	%f153, %f586;
+	mov.f32 	%f587, %f120;
+	mov.f32 	%f155, %f587;
+	mov.f32 	%f588, 0fbf000000;   	// -0.5
+	mov.f32 	%f157, %f588;
+$LDWbegini___internal_fmad_242_71:
+	.loc	19	8936	0
+	mov.f32 	%f589, %f153;
+	mov.f32 	%f590, %f589;
+	mov.f32 	%f591, %f155;
+	mov.f32 	%f592, %f591;
+	mov.f32 	%f593, %f157;
+	mov.f32 	%f594, %f593;
+	mad.f32 %f595, %f590, %f592, %f594;
+	mov.f32 	%f136, %f595;
+	.loc	19	8937	0
+	mov.f32 	%f165, %f136;
+$LDWendi___internal_fmad_242_70:
+	.loc	19	9462	0
+	mov.f32 	%f122, %f165;
+	.loc	19	9463	0
+	mov.f32 	%f596, %f122;
+	mov.f32 	%f167, %f596;
+	mov.f32 	%f597, %f120;
+	mov.f32 	%f169, %f597;
+	mov.f32 	%f598, 0f3f800000;   	// 1
+	mov.f32 	%f171, %f598;
+$LDWbegini___internal_fmad_242_69:
+	.loc	19	8936	0
+	mov.f32 	%f599, %f167;
+	mov.f32 	%f600, %f599;
+	mov.f32 	%f601, %f169;
+	mov.f32 	%f602, %f601;
+	mov.f32 	%f603, %f171;
+	mov.f32 	%f604, %f603;
+	mad.f32 %f605, %f600, %f602, %f604;
+	mov.f32 	%f136, %f605;
+	.loc	19	8937	0
+	mov.f32 	%f179, %f136;
+$LDWendi___internal_fmad_242_68:
+	.loc	19	9463	0
+	mov.f32 	%f122, %f179;
+	.loc	19	9464	0
+	mov.f32 	%f180, %f122;
+$LDWendi___internal_cos_kernel_242_67:
+	.loc	19	9515	0
+	mov.f32 	%f181, %f180;
+	.loc	19	9516	0
+	mov.f32 	%f606, %f28;
+	mov.f32 	%f183, %f606;
+$LDWbegini___internal_sin_kernel_242_66:
+	.loc	19	9440	0
+	mov.f32 	%f607, %f183;
+	mov.f32 	%f608, %f183;
+	mul.f32 	%f609, %f607, %f608;
+	mov.f32 	%f187, %f609;
+	.loc	19	9441	0
+	mov.f32 	%f610, 0fb94ca1f9;   	// -0.000195153
+	mov.f32 	%f189, %f610;
+	.loc	19	9442	0
+	mov.f32 	%f611, %f189;
+	mov.f32 	%f191, %f611;
+	mov.f32 	%f612, %f187;
+	mov.f32 	%f193, %f612;
+	mov.f32 	%f613, 0f3c08839e;   	// 0.00833216
+	mov.f32 	%f195, %f613;
+$LDWbegini___internal_fmad_242_65:
+	.loc	19	8936	0
+	mov.f32 	%f614, %f191;
+	mov.f32 	%f615, %f614;
+	mov.f32 	%f616, %f193;
+	mov.f32 	%f617, %f616;
+	mov.f32 	%f618, %f195;
+	mov.f32 	%f619, %f618;
+	mad.f32 %f620, %f615, %f617, %f619;
+	mov.f32 	%f203, %f620;
+	.loc	19	8937	0
+	mov.f32 	%f204, %f203;
+$LDWendi___internal_fmad_242_64:
+	.loc	19	9442	0
+	mov.f32 	%f189, %f204;
+	.loc	19	9443	0
+	mov.f32 	%f621, %f189;
+	mov.f32 	%f206, %f621;
+	mov.f32 	%f622, %f187;
+	mov.f32 	%f208, %f622;
+	mov.f32 	%f623, 0fbe2aaaa3;   	// -0.166667
+	mov.f32 	%f210, %f623;
+$LDWbegini___internal_fmad_242_63:
+	.loc	19	8936	0
+	mov.f32 	%f624, %f206;
+	mov.f32 	%f625, %f624;
+	mov.f32 	%f626, %f208;
+	mov.f32 	%f627, %f626;
+	mov.f32 	%f628, %f210;
+	mov.f32 	%f629, %f628;
+	mad.f32 %f630, %f625, %f627, %f629;
+	mov.f32 	%f203, %f630;
+	.loc	19	8937	0
+	mov.f32 	%f218, %f203;
+$LDWendi___internal_fmad_242_62:
+	.loc	19	9443	0
+	mov.f32 	%f189, %f218;
+	.loc	19	9447	0
+	mov.f32 	%f631, %f187;
+	mov.f32 	%f632, %f189;
+	mul.f32 	%f633, %f631, %f632;
+	mov.f32 	%f189, %f633;
+	.loc	19	9449	0
+	mov.f32 	%f634, %f189;
+	mov.f32 	%f223, %f634;
+	mov.f32 	%f635, %f183;
+	mov.f32 	%f225, %f635;
+	mov.f32 	%f636, %f183;
+	mov.f32 	%f227, %f636;
+$LDWbegini___internal_fmad_242_61:
+	.loc	19	8936	0
+	mov.f32 	%f637, %f223;
+	mov.f32 	%f638, %f637;
+	mov.f32 	%f639, %f225;
+	mov.f32 	%f640, %f639;
+	mov.f32 	%f641, %f227;
+	mov.f32 	%f642, %f641;
+	mad.f32 %f643, %f638, %f640, %f642;
+	mov.f32 	%f203, %f643;
+	.loc	19	8937	0
+	mov.f32 	%f235, %f203;
+$LDWendi___internal_fmad_242_60:
+	.loc	19	9449	0
+	mov.f32 	%f189, %f235;
+	.loc	19	9450	0
+	mov.f32 	%f236, %f189;
+$LDWendi___internal_sin_kernel_242_59:
+	.loc	19	9516	0
+	mov.f32 	%f237, %f236;
+	.loc	19	9517	0
+	mov.f32 	%f644, %f237;
+	mov.f32 	%f239, %f644;
+	.loc	19	9518	0
+	ld.local.s32 	%r628, [__cuda___cuda_quadrant_8812];
+	and.b32 	%r629, %r628, 1;
+	mov.u32 	%r630, 0;
+	setp.eq.s32 	%p39, %r629, %r630;
+	@%p39 bra 	$L_0_87042;
+	.loc	19	9519	0
+	mov.f32 	%f645, %f181;
+	mov.f32 	%f237, %f645;
+	.loc	19	9520	0
+	mov.f32 	%f646, %f239;
+	mov.f32 	%f181, %f646;
+$L_0_87042:
+	.loc	19	9522	0
+	ld.local.s32 	%r631, [__cuda___cuda_quadrant_8812];
+	and.b32 	%r632, %r631, 2;
+	mov.u32 	%r633, 0;
+	setp.eq.s32 	%p40, %r632, %r633;
+	@%p40 bra 	$L_0_87298;
+	.loc	19	9523	0
+	mov.f32 	%f647, %f237;
+	neg.f32 	%f648, %f647;
+	mov.f32 	%f237, %f648;
+$L_0_87298:
+	.loc	19	9525	0
+	ld.local.s32 	%r634, [__cuda___cuda_quadrant_8812];
+	add.s32 	%r635, %r634, 1;
+	st.local.s32 	[__cuda___cuda_quadrant_8812], %r635;
+	.loc	19	9526	0
+	ld.local.s32 	%r636, [__cuda___cuda_quadrant_8812];
+	and.b32 	%r637, %r636, 2;
+	mov.u32 	%r638, 0;
+	setp.eq.s32 	%p41, %r637, %r638;
+	@%p41 bra 	$L_0_87554;
+	.loc	19	9527	0
+	mov.f32 	%f649, %f181;
+	neg.f32 	%f650, %f649;
+	mov.f32 	%f181, %f650;
+$L_0_87554:
+	.loc	19	9530	0
+	mov.f32 	%f651, %f28;
+	mov.f32 	%f652, 0f00000000;   	// 0
+	setp.eq.f32 	%p42, %f651, %f652;
+	@!%p42 bra 	$L_0_87810;
+	.loc	19	9531	0
+	mov.f32 	%f653, %f28;
+	mov.f32 	%f654, 0f00000000;   	// 0
+	mul.rn.f32 	%f655, %f653, %f654;
+	mov.f32 	%f237, %f655;
+$L_0_87810:
+	.loc	19	9534	0
+	mov.f32 	%f656, %f237;
+	mov.s32 	%r639, %r18;
+	st.local.f32 	[%r639+0], %f656;
+	.loc	19	9535	0
+	mov.f32 	%f657, %f181;
+	mov.s32 	%r640, %r20;
+	st.local.f32 	[%r640+0], %f657;
+$LDWendi___internal_accurate_sincosf_242_58:
+	.loc	19	9562	0
+	ld.local.f32 	%f253, [__cuda___cuda_c_728];
+$LDWendi___internal_accurate_cosf_242_57:
+	.loc	19	9611	0
+	mov.f32 	%f658, %f253;
+$LDWendi_cosf_242_56:
+	.loc	17	37	0
+	ld.param.f32 	%f659, [__cudaparm_transformKernel_theta];
+	mov.f32 	%f660, %f659;
+$LDWbegini_sinf_242_55:
+	.loc	19	9602	0
+	mov.f32 	%f661, %f660;
+	mov.f32 	%f258, %f661;
+$LDWbegini___internal_accurate_sinf_242_54:
+	.loc	19	9542	0
+	mov.f32 	%f662, %f258;
+	mov.f32 	%f260, %f662;
+	mov.u32 	%r641, __cuda___cuda_s_41656;
+	mov.s32 	%r232, %r641;
+	mov.u32 	%r642, __cuda___cuda_c_42460;
+	mov.s32 	%r234, %r642;
+$LDWbegini___internal_accurate_sincosf_242_53:
+	.loc	19	9511	0
+	mov.f32 	%f663, %f260;
+	mov.f32 	%f262, %f663;
+$LDWbegini___isinff_242_52:
+	.loc	19	8806	0
+	mov.f32 	%f664, %f262;
+	abs.f32 	%f665, %f664;
+	mov.f32 	%f666, 0f7f800000;   	// 1.#INF
+	set.eq.u32.f32 	%r643, %f665, %f666;
+	neg.s32 	%r236, %r643;
+$LDWendi___isinff_242_51:
+	.loc	19	9511	0
+	mov.u32 	%r644, 0;
+	setp.eq.s32 	%p43, %r236, %r644;
+	@%p43 bra 	$L_0_88066;
+	.loc	19	9512	0
+	mov.f32 	%f667, %f260;
+	mov.f32 	%f668, 0f00000000;   	// 0
+	mul.rn.f32 	%f669, %f667, %f668;
+	mov.f32 	%f260, %f669;
+$L_0_88066:
+	.loc	19	9514	0
+	mov.f32 	%f670, %f260;
+	mov.f32 	%f270, %f670;
+	mov.u32 	%r645, __cuda___cuda_quadrant_44064;
+	mov.s32 	%r239, %r645;
+$LDWbegini___internal_trig_reduction_kernel_242_50:
+	.loc	19	9281	0
+	mov.f32 	%f671, %f270;
+	mov.f32 	%f672, 0f3f22f983;   	// 0.63662
+	mul.f32 	%f673, %f671, %f672;
+	cvt.rni.s32.f32 	%r646, %f673;
+	st.local.s32 	[__cuda___cuda_q_44468], %r646;
+	.loc	19	9282	0
+	ld.local.s32 	%r647, [__cuda___cuda_q_44468];
+	cvt.rn.f32.s32 	%f674, %r647;
+	mov.f32 	%f275, %f674;
+	.loc	19	9289	0
+	mov.f32 	%f675, %f275;
+	neg.f32 	%f676, %f675;
+	mov.f32 	%f278, %f676;
+	mov.f32 	%f677, 0f3fc90000;   	// 1.57031
+	mov.f32 	%f280, %f677;
+	mov.f32 	%f678, %f270;
+	mov.f32 	%f282, %f678;
+$LDWbegini___internal_fmad_242_49:
+	.loc	19	8936	0
+	mov.f32 	%f679, %f278;
+	mov.f32 	%f680, %f679;
+	mov.f32 	%f681, %f280;
+	mov.f32 	%f682, %f681;
+	mov.f32 	%f683, %f282;
+	mov.f32 	%f684, %f683;
+	mad.f32 %f685, %f680, %f682, %f684;
+	mov.f32 	%f290, %f685;
+	.loc	19	8937	0
+	mov.f32 	%f291, %f290;
+$LDWendi___internal_fmad_242_48:
+	.loc	19	9289	0
+	mov.f32 	%f292, %f291;
+	.loc	19	9290	0
+	mov.f32 	%f686, %f275;
+	neg.f32 	%f687, %f686;
+	mov.f32 	%f295, %f687;
+	mov.f32 	%f688, 0f39fd8000;   	// 0.000483513
+	mov.f32 	%f297, %f688;
+	mov.f32 	%f689, %f292;
+	mov.f32 	%f299, %f689;
+$LDWbegini___internal_fmad_242_47:
+	.loc	19	8936	0
+	mov.f32 	%f690, %f295;
+	mov.f32 	%f691, %f690;
+	mov.f32 	%f692, %f297;
+	mov.f32 	%f693, %f692;
+	mov.f32 	%f694, %f299;
+	mov.f32 	%f695, %f694;
+	mad.f32 %f696, %f691, %f693, %f695;
+	mov.f32 	%f290, %f696;
+	.loc	19	8937	0
+	mov.f32 	%f307, %f290;
+$LDWendi___internal_fmad_242_46:
+	.loc	19	9290	0
+	mov.f32 	%f292, %f307;
+	.loc	19	9291	0
+	mov.f32 	%f697, %f275;
+	neg.f32 	%f698, %f697;
+	mov.f32 	%f310, %f698;
+	mov.f32 	%f699, 0f34a88000;   	// 3.13856e-007
+	mov.f32 	%f312, %f699;
+	mov.f32 	%f700, %f292;
+	mov.f32 	%f314, %f700;
+$LDWbegini___internal_fmad_242_45:
+	.loc	19	8936	0
+	mov.f32 	%f701, %f310;
+	mov.f32 	%f702, %f701;
+	mov.f32 	%f703, %f312;
+	mov.f32 	%f704, %f703;
+	mov.f32 	%f705, %f314;
+	mov.f32 	%f706, %f705;
+	mad.f32 %f707, %f702, %f704, %f706;
+	mov.f32 	%f290, %f707;
+	.loc	19	8937	0
+	mov.f32 	%f322, %f290;
+$LDWendi___internal_fmad_242_44:
+	.loc	19	9291	0
+	mov.f32 	%f292, %f322;
+	.loc	19	9292	0
+	mov.f32 	%f708, %f275;
+	neg.f32 	%f709, %f708;
+	mov.f32 	%f325, %f709;
+	mov.f32 	%f710, 0f2e85a309;   	// 6.0771e-011
+	mov.f32 	%f327, %f710;
+	mov.f32 	%f711, %f292;
+	mov.f32 	%f329, %f711;
+$LDWbegini___internal_fmad_242_43:
+	.loc	19	8936	0
+	mov.f32 	%f712, %f325;
+	mov.f32 	%f713, %f712;
+	mov.f32 	%f714, %f327;
+	mov.f32 	%f715, %f714;
+	mov.f32 	%f716, %f329;
+	mov.f32 	%f717, %f716;
+	mad.f32 %f718, %f713, %f715, %f717;
+	mov.f32 	%f290, %f718;
+	.loc	19	8937	0
+	mov.f32 	%f337, %f290;
+$LDWendi___internal_fmad_242_42:
+	.loc	19	9292	0
+	mov.f32 	%f292, %f337;
+	.loc	19	9294	0
+	mov.f32 	%f719, %f270;
+	abs.f32 	%f720, %f719;
+	mov.f32 	%f721, 0f473ba700;   	// 48039
+	setp.gt.f32 	%p44, %f720, %f721;
+	@!%p44 bra 	$L_0_88322;
+	.loc	19	9295	0
+	mov.f32 	%f722, %f270;
+	mov.f32 	%f342, %f722;
+	mov.u32 	%r648, __cuda___cuda_q_44468;
+	mov.s32 	%r243, %r648;
+$LDWbegini___internal_trig_reduction_slowpath_242_41:
+	.loc	19	9214	0
+	mov.f32 	%f723, %f342;
+	mov.b32 	%r649, %f723;
+	mov.s32 	%r245, %r649;
+	.loc	19	9215	0
+	mov.s32 	%r650, %r245;
+	and.b32 	%r651, %r650, -2147483648;
+	mov.s32 	%r248, %r651;
+	.loc	19	9221	0
+	mov.s32 	%r652, %r245;
+	shl.b32 	%r653, %r652, 1;
+	shr.u32 	%r654, %r653, 24;
+	sub.u32 	%r655, %r654, 128;
+	mov.s32 	%r253, %r655;
+	.loc	19	9222	0
+	mov.s32 	%r656, %r245;
+	shl.b32 	%r657, %r656, 8;
+	or.b32 	%r658, %r657, -2147483648;
+	mov.s32 	%r245, %r658;
+	.loc	19	9224	0
+	mov.s32 	%r659, %r253;
+	shr.u32 	%r660, %r659, 5;
+	mov.u32 	%r661, 4;
+	sub.u32 	%r662, %r661, %r660;
+	mov.s32 	%r261, %r662;
+	.loc	19	9225	0
+	mov.u32 	%r663, 0;
+	mov.s32 	%r263, %r663;
+	.loc	19	9227	0
+	mov.s32 	%r664, 0;
+	mov.s32 	%r265, %r664;
+	mov.s32 	%r665, %r265;
+	mov.u32 	%r666, 5;
+	setp.gt.s32 	%p45, %r665, %r666;
+	@%p45 bra 	$L_0_88834;
+$L_0_88578:
+	.loc	19	9228	0
+	mov.u32 	%r667, __cudart_i2opi_f;
+	mov.s32 	%r668, %r265;
+	mul.lo.u32 	%r669, %r668, 4;
+	add.u32 	%r670, %r667, %r669;
+	ld.const.u32 	%r671, [%r670+0];
+	mov.s32 	%r273, %r671;
+	mov.s32 	%r672, %r245;
+	mov.s32 	%r275, %r672;
+	mov.s32 	%r673, %r263;
+	mov.s32 	%r277, %r673;
+$LDWbegini___internal_umad32wide_242_40:
+	.loc	19	9187	0
+	mov.s32 	%r674, %r273;
+	mov.u32 	%r675, %r674;
+	mov.s32 	%r676, %r275;
+	mov.u32 	%r677, %r676;
+	mov.s32 	%r678, %r277;
+	mov.u32 	%r679, %r678;
+	{
+	.reg .u64 tmp;
+	mul.wide.u32 tmp, %r675, %r677;
+	mov.b64         {%r680,%r681}, tmp;
+	add.cc.u32      %r680, %r680, %r679;
+	addc.u32        %r681, %r681, 0;
+	}
+	st.local.u32 	[__cuda_res_552+0], %r680;
+	st.local.u32 	[__cuda_res_552+4], %r681;
+	.loc	19	9201	0
+	ld.local.u32 	%r682, [__cuda_res_552+0];
+	st.local.u32 	[__cuda_rr_560+0], %r682;
+	ld.local.u32 	%r683, [__cuda_res_552+4];
+	st.local.u32 	[__cuda_rr_560+4], %r683;
+$LDWendi___internal_umad32wide_242_39:
+	.loc	19	9228	0
+	ld.local.u32 	%r684, [__cuda_rr_560+0];
+	st.local.u32 	[__cuda__temp__Mreturn___internal_umad32wide13_568+0], %r684;
+	ld.local.u32 	%r685, [__cuda_rr_560+4];
+	st.local.u32 	[__cuda__temp__Mreturn___internal_umad32wide13_568+4], %r685;
+	ld.local.u32 	%r686, [__cuda__temp__Mreturn___internal_umad32wide13_568+0];
+	st.local.u32 	[__cuda_p_576+0], %r686;
+	ld.local.u32 	%r687, [__cuda__temp__Mreturn___internal_umad32wide13_568+4];
+	st.local.u32 	[__cuda_p_576+4], %r687;
+	.loc	19	9229	0
+	ld.local.u32 	%r688, [__cuda_p_576+0];
+	mov.s32 	%r293, %r688;
+	.loc	19	9230	0
+	ld.local.u32 	%r689, [__cuda_p_576+4];
+	mov.s32 	%r263, %r689;
+	.loc	19	9231	0
+	mov.s32 	%r690, %r293;
+	mov.u32 	%r691, __cuda___cuda_result_58844;
+	mov.s32 	%r692, %r265;
+	mul.lo.u32 	%r693, %r692, 4;
+	add.u32 	%r694, %r691, %r693;
+	st.local.u32 	[%r694+0], %r690;
+	.loc	19	9227	0
+	mov.s32 	%r695, %r265;
+	add.s32 	%r696, %r695, 1;
+	mov.s32 	%r265, %r696;
+$Lt_0_8706:
+	mov.s32 	%r697, %r265;
+	mov.u32 	%r698, 5;
+	setp.le.s32 	%p46, %r697, %r698;
+	@%p46 bra 	$L_0_88578;
+$L_0_88834:
+	.loc	19	9233	0
+	mov.s32 	%r699, %r263;
+	mov.u32 	%r700, __cuda___cuda_result_58844;
+	mov.s32 	%r701, %r265;
+	mul.lo.u32 	%r702, %r701, 4;
+	add.u32 	%r703, %r700, %r702;
+	st.local.u32 	[%r703+0], %r699;
+	.loc	19	9234	0
+	mov.s32 	%r704, %r253;
+	and.b32 	%r705, %r704, 31;
+	mov.s32 	%r253, %r705;
+	.loc	19	9238	0
+	mov.u32 	%r706, __cuda___cuda_result_58844;
+	mov.s32 	%r707, %r261;
+	add.s32 	%r708, %r707, 2;
+	mul.lo.u32 	%r709, %r708, 4;
+	add.u32 	%r710, %r706, %r709;
+	ld.local.u32 	%r711, [%r710+0];
+	mov.s32 	%r263, %r711;
+	.loc	19	9239	0
+	mov.u32 	%r712, __cuda___cuda_result_58844;
+	mov.s32 	%r713, %r261;
+	add.s32 	%r714, %r713, 1;
+	mul.lo.u32 	%r715, %r714, 4;
+	add.u32 	%r716, %r712, %r715;
+	ld.local.u32 	%r717, [%r716+0];
+	mov.s32 	%r293, %r717;
+	.loc	19	9240	0
+	mov.s32 	%r718, %r253;
+	mov.u32 	%r719, 0;
+	setp.eq.u32 	%p47, %r718, %r719;
+	@%p47 bra 	$L_0_89090;
+	.loc	19	9241	0
+	mov.s32 	%r720, %r253;
+	mov.u32 	%r721, 32;
+	sub.u32 	%r722, %r721, %r720;
+	mov.s32 	%r265, %r722;
+	.loc	19	9242	0
+	mov.s32 	%r723, %r293;
+	mov.s32 	%r724, %r265;
+	shr.u32 	%r725, %r723, %r724;
+	mov.s32 	%r726, %r263;
+	mov.s32 	%r727, %r253;
+	shl.b32 	%r728, %r726, %r727;
+	add.u32 	%r729, %r725, %r728;
+	mov.s32 	%r263, %r729;
+	.loc	19	9243	0
+	mov.u32 	%r730, __cuda___cuda_result_58844;
+	mov.s32 	%r731, %r261;
+	mul.lo.u32 	%r732, %r731, 4;
+	add.u32 	%r733, %r730, %r732;
+	ld.local.u32 	%r734, [%r733+0];
+	mov.s32 	%r735, %r265;
+	shr.u32 	%r736, %r734, %r735;
+	mov.s32 	%r737, %r293;
+	mov.s32 	%r738, %r253;
+	shl.b32 	%r739, %r737, %r738;
+	add.u32 	%r740, %r736, %r739;
+	mov.s32 	%r293, %r740;
+$L_0_89090:
+	.loc	19	9245	0
+	mov.s32 	%r741, %r263;
+	shr.u32 	%r742, %r741, 30;
+	mov.s32 	%r265, %r742;
+	.loc	19	9247	0
+	mov.s32 	%r743, %r293;
+	shr.u32 	%r744, %r743, 30;
+	mov.s32 	%r745, %r263;
+	shl.b32 	%r746, %r745, 2;
+	add.u32 	%r747, %r744, %r746;
+	mov.s32 	%r263, %r747;
+	.loc	19	9248	0
+	mov.s32 	%r748, %r293;
+	shl.b32 	%r749, %r748, 2;
+	mov.s32 	%r293, %r749;
+	.loc	19	9249	0
+	mov.s32 	%r750, %r263;
+	shr.u32 	%r751, %r750, 31;
+	mov.s32 	%r253, %r751;
+	.loc	19	9250	0
+	mov.s32 	%r752, %r253;
+	mov.s32 	%r753, %r265;
+	add.u32 	%r754, %r752, %r753;
+	mov.s32 	%r265, %r754;
+	.loc	19	9251	0
+	mov.s32 	%r755, %r248;
+	mov.u32 	%r756, 0;
+	setp.eq.u32 	%p48, %r755, %r756;
+	@%p48 bra 	$L_0_89346;
+	mov.s32 	%r757, %r265;
+	neg.s32 	%r758, %r757;
+	mov.s32 	%r265, %r758;
+$L_0_89346:
+	.loc	19	9252	0
+	mov.s32 	%r759, %r265;
+	mov.s32 	%r760, %r243;
+	st.local.s32 	[%r760+0], %r759;
+	.loc	19	9253	0
+	mov.s32 	%r761, %r253;
+	mov.u32 	%r762, 0;
+	setp.eq.u32 	%p49, %r761, %r762;
+	@%p49 bra 	$L_0_89602;
+$LDWbeginblock_242_35:
+	.loc	19	9255	0
+	mov.s32 	%r763, %r263;
+	not.b32 	%r764, %r763;
+	mov.s32 	%r263, %r764;
+	.loc	19	9256	0
+	mov.s32 	%r765, %r293;
+	neg.s32 	%r766, %r765;
+	mov.s32 	%r293, %r766;
+	.loc	19	9257	0
+	mov.s32 	%r767, %r293;
+	mov.u32 	%r768, 0;
+	set.eq.u32.u32 	%r769, %r767, %r768;
+	neg.s32 	%r770, %r769;
+	mov.s32 	%r376, %r770;
+	.loc	19	9258	0
+	mov.s32 	%r771, %r263;
+	mov.s32 	%r772, %r376;
+	add.u32 	%r773, %r771, %r772;
+	mov.s32 	%r263, %r773;
+	.loc	19	9259	0
+	mov.s32 	%r774, %r248;
+	xor.b32 	%r775, %r774, -2147483648;
+	mov.s32 	%r248, %r775;
+$LDWendblock_242_35:
+$L_0_89602:
+	.loc	19	9262	0
+	mov.s32 	%r776, %r263;
+	mov.s32 	%r383, %r776;
+$LDWbegini___clz_242_38:
+	.loc	21	6283	0
+	mov.s32 	%r777, %r383;
+	mov.u32 	%r778, 0;
+	setp.eq.s32 	%p50, %r777, %r778;
+	@%p50 bra 	$L_0_90114;
+	mov.s32 	%r779, %r383;
+	cvt.rz.f32.u32 	%f724, %r779;
+	mov.b32 	%r780, %f724;
+	shr.s32 	%r781, %r780, 23;
+	mov.s32 	%r782, 158;
+	sub.s32 	%r783, %r782, %r781;
+	bra.uni 	$L_0_89858;
+$L_0_90114:
+	.loc	21	6283	0
+	mov.s32 	%r783, 32;
+$L_0_89858:
+	.loc	21	6283	0
+	mov.s32 	%r391, %r783;
+$LDWendi___clz_242_37:
+	.loc	19	9262	0
+	mov.s32 	%r253, %r391;
+	.loc	19	9263	0
+	mov.s32 	%r784, %r253;
+	mov.u32 	%r785, 0;
+	setp.eq.u32 	%p51, %r784, %r785;
+	@%p51 bra 	$L_0_90370;
+	.loc	19	9264	0
+	mov.s32 	%r786, %r293;
+	mov.s32 	%r787, %r253;
+	mov.u32 	%r788, 32;
+	sub.u32 	%r789, %r788, %r787;
+	shr.u32 	%r790, %r786, %r789;
+	mov.s32 	%r791, %r263;
+	mov.s32 	%r792, %r253;
+	shl.b32 	%r793, %r791, %r792;
+	add.u32 	%r794, %r790, %r793;
+	mov.s32 	%r263, %r794;
+$L_0_90370:
+	.loc	19	9266	0
+	mov.s32 	%r795, %r263;
+	mul.lo.u32 	%r796, %r795, -921707870;
+	mov.s32 	%r293, %r796;
+	.loc	19	9267	0
+	mov.s32 	%r797, %r263;
+	mov.u32 	%r798, -921707870;
+	mul.hi.u32 	%r799, %r797, %r798;
+	mov.s32 	%r263, %r799;
+	.loc	19	9268	0
+	mov.s32 	%r800, %r263;
+	mov.u32 	%r801, 0;
+	setp.le.s32 	%p52, %r800, %r801;
+	@%p52 bra 	$L_0_90626;
+	.loc	19	9269	0
+	mov.s32 	%r802, %r293;
+	shr.u32 	%r803, %r802, 31;
+	mov.s32 	%r804, %r263;
+	shl.b32 	%r805, %r804, 1;
+	add.u32 	%r806, %r803, %r805;
+	mov.s32 	%r263, %r806;
+	.loc	19	9270	0
+	mov.s32 	%r807, %r253;
+	add.u32 	%r808, %r807, 1;
+	mov.s32 	%r253, %r808;
+$L_0_90626:
+	.loc	19	9272	0
+	mov.s32 	%r809, %r248;
+	mov.s32 	%r810, %r263;
+	add.u32 	%r811, %r810, 1;
+	shr.u32 	%r812, %r811, 7;
+	add.u32 	%r813, %r812, 1;
+	shr.u32 	%r814, %r813, 1;
+	mov.s32 	%r815, %r253;
+	mov.u32 	%r816, 126;
+	sub.u32 	%r817, %r816, %r815;
+	shl.b32 	%r818, %r817, 23;
+	add.u32 	%r819, %r814, %r818;
+	or.b32 	%r820, %r809, %r819;
+	mov.s32 	%r245, %r820;
+	.loc	19	9273	0
+	mov.s32 	%r821, %r245;
+	mov.b32 	%f345, %r821;
+$LDWendi___internal_trig_reduction_slowpath_242_33:
+	.loc	19	9295	0
+	mov.f32 	%f292, %f345;
+$L_0_88322:
+	.loc	19	9297	0
+	ld.local.s32 	%r822, [__cuda___cuda_q_44468];
+	mov.s32 	%r823, %r239;
+	st.local.s32 	[%r823+0], %r822;
+	.loc	19	9298	0
+	mov.f32 	%f346, %f292;
+$LDWendi___internal_trig_reduction_kernel_242_32:
+	.loc	19	9514	0
+	mov.f32 	%f260, %f346;
+	.loc	19	9515	0
+	mov.f32 	%f725, %f260;
+	mov.f32 	%f348, %f725;
+$LDWbegini___internal_cos_kernel_242_31:
+	.loc	19	9458	0
+	mov.f32 	%f726, %f348;
+	mov.f32 	%f727, %f348;
+	mul.f32 	%f728, %f726, %f727;
+	mov.f32 	%f352, %f728;
+	.loc	19	9459	0
+	mov.f32 	%f729, 0f37ccf5ce;   	// 2.44332e-005
+	mov.f32 	%f354, %f729;
+	.loc	19	9460	0
+	mov.f32 	%f730, %f354;
+	mov.f32 	%f356, %f730;
+	mov.f32 	%f731, %f352;
+	mov.f32 	%f358, %f731;
+	mov.f32 	%f732, 0fbab6061a;   	// -0.00138873
+	mov.f32 	%f360, %f732;
+$LDWbegini___internal_fmad_242_30:
+	.loc	19	8936	0
+	mov.f32 	%f733, %f356;
+	mov.f32 	%f734, %f733;
+	mov.f32 	%f735, %f358;
+	mov.f32 	%f736, %f735;
+	mov.f32 	%f737, %f360;
+	mov.f32 	%f738, %f737;
+	mad.f32 %f739, %f734, %f736, %f738;
+	mov.f32 	%f368, %f739;
+	.loc	19	8937	0
+	mov.f32 	%f369, %f368;
+$LDWendi___internal_fmad_242_29:
+	.loc	19	9460	0
+	mov.f32 	%f354, %f369;
+	.loc	19	9461	0
+	mov.f32 	%f740, %f354;
+	mov.f32 	%f371, %f740;
+	mov.f32 	%f741, %f352;
+	mov.f32 	%f373, %f741;
+	mov.f32 	%f742, 0f3d2aaaa5;   	// 0.0416666
+	mov.f32 	%f375, %f742;
+$LDWbegini___internal_fmad_242_28:
+	.loc	19	8936	0
+	mov.f32 	%f743, %f371;
+	mov.f32 	%f744, %f743;
+	mov.f32 	%f745, %f373;
+	mov.f32 	%f746, %f745;
+	mov.f32 	%f747, %f375;
+	mov.f32 	%f748, %f747;
+	mad.f32 %f749, %f744, %f746, %f748;
+	mov.f32 	%f368, %f749;
+	.loc	19	8937	0
+	mov.f32 	%f383, %f368;
+$LDWendi___internal_fmad_242_27:
+	.loc	19	9461	0
+	mov.f32 	%f354, %f383;
+	.loc	19	9462	0
+	mov.f32 	%f750, %f354;
+	mov.f32 	%f385, %f750;
+	mov.f32 	%f751, %f352;
+	mov.f32 	%f387, %f751;
+	mov.f32 	%f752, 0fbf000000;   	// -0.5
+	mov.f32 	%f389, %f752;
+$LDWbegini___internal_fmad_242_26:
+	.loc	19	8936	0
+	mov.f32 	%f753, %f385;
+	mov.f32 	%f754, %f753;
+	mov.f32 	%f755, %f387;
+	mov.f32 	%f756, %f755;
+	mov.f32 	%f757, %f389;
+	mov.f32 	%f758, %f757;
+	mad.f32 %f759, %f754, %f756, %f758;
+	mov.f32 	%f368, %f759;
+	.loc	19	8937	0
+	mov.f32 	%f397, %f368;
+$LDWendi___internal_fmad_242_25:
+	.loc	19	9462	0
+	mov.f32 	%f354, %f397;
+	.loc	19	9463	0
+	mov.f32 	%f760, %f354;
+	mov.f32 	%f399, %f760;
+	mov.f32 	%f761, %f352;
+	mov.f32 	%f401, %f761;
+	mov.f32 	%f762, 0f3f800000;   	// 1
+	mov.f32 	%f403, %f762;
+$LDWbegini___internal_fmad_242_24:
+	.loc	19	8936	0
+	mov.f32 	%f763, %f399;
+	mov.f32 	%f764, %f763;
+	mov.f32 	%f765, %f401;
+	mov.f32 	%f766, %f765;
+	mov.f32 	%f767, %f403;
+	mov.f32 	%f768, %f767;
+	mad.f32 %f769, %f764, %f766, %f768;
+	mov.f32 	%f368, %f769;
+	.loc	19	8937	0
+	mov.f32 	%f411, %f368;
+$LDWendi___internal_fmad_242_23:
+	.loc	19	9463	0
+	mov.f32 	%f354, %f411;
+	.loc	19	9464	0
+	mov.f32 	%f412, %f354;
+$LDWendi___internal_cos_kernel_242_22:
+	.loc	19	9515	0
+	mov.f32 	%f413, %f412;
+	.loc	19	9516	0
+	mov.f32 	%f770, %f260;
+	mov.f32 	%f415, %f770;
+$LDWbegini___internal_sin_kernel_242_21:
+	.loc	19	9440	0
+	mov.f32 	%f771, %f415;
+	mov.f32 	%f772, %f415;
+	mul.f32 	%f773, %f771, %f772;
+	mov.f32 	%f419, %f773;
+	.loc	19	9441	0
+	mov.f32 	%f774, 0fb94ca1f9;   	// -0.000195153
+	mov.f32 	%f421, %f774;
+	.loc	19	9442	0
+	mov.f32 	%f775, %f421;
+	mov.f32 	%f423, %f775;
+	mov.f32 	%f776, %f419;
+	mov.f32 	%f425, %f776;
+	mov.f32 	%f777, 0f3c08839e;   	// 0.00833216
+	mov.f32 	%f427, %f777;
+$LDWbegini___internal_fmad_242_20:
+	.loc	19	8936	0
+	mov.f32 	%f778, %f423;
+	mov.f32 	%f779, %f778;
+	mov.f32 	%f780, %f425;
+	mov.f32 	%f781, %f780;
+	mov.f32 	%f782, %f427;
+	mov.f32 	%f783, %f782;
+	mad.f32 %f784, %f779, %f781, %f783;
+	mov.f32 	%f435, %f784;
+	.loc	19	8937	0
+	mov.f32 	%f436, %f435;
+$LDWendi___internal_fmad_242_19:
+	.loc	19	9442	0
+	mov.f32 	%f421, %f436;
+	.loc	19	9443	0
+	mov.f32 	%f785, %f421;
+	mov.f32 	%f438, %f785;
+	mov.f32 	%f786, %f419;
+	mov.f32 	%f440, %f786;
+	mov.f32 	%f787, 0fbe2aaaa3;   	// -0.166667
+	mov.f32 	%f442, %f787;
+$LDWbegini___internal_fmad_242_18:
+	.loc	19	8936	0
+	mov.f32 	%f788, %f438;
+	mov.f32 	%f789, %f788;
+	mov.f32 	%f790, %f440;
+	mov.f32 	%f791, %f790;
+	mov.f32 	%f792, %f442;
+	mov.f32 	%f793, %f792;
+	mad.f32 %f794, %f789, %f791, %f793;
+	mov.f32 	%f435, %f794;
+	.loc	19	8937	0
+	mov.f32 	%f450, %f435;
+$LDWendi___internal_fmad_242_17:
+	.loc	19	9443	0
+	mov.f32 	%f421, %f450;
+	.loc	19	9447	0
+	mov.f32 	%f795, %f419;
+	mov.f32 	%f796, %f421;
+	mul.f32 	%f797, %f795, %f796;
+	mov.f32 	%f421, %f797;
+	.loc	19	9449	0
+	mov.f32 	%f798, %f421;
+	mov.f32 	%f455, %f798;
+	mov.f32 	%f799, %f415;
+	mov.f32 	%f457, %f799;
+	mov.f32 	%f800, %f415;
+	mov.f32 	%f459, %f800;
+$LDWbegini___internal_fmad_242_16:
+	.loc	19	8936	0
+	mov.f32 	%f801, %f455;
+	mov.f32 	%f802, %f801;
+	mov.f32 	%f803, %f457;
+	mov.f32 	%f804, %f803;
+	mov.f32 	%f805, %f459;
+	mov.f32 	%f806, %f805;
+	mad.f32 %f807, %f802, %f804, %f806;
+	mov.f32 	%f435, %f807;
+	.loc	19	8937	0
+	mov.f32 	%f467, %f435;
+$LDWendi___internal_fmad_242_15:
+	.loc	19	9449	0
+	mov.f32 	%f421, %f467;
+	.loc	19	9450	0
+	mov.f32 	%f468, %f421;
+$LDWendi___internal_sin_kernel_242_14:
+	.loc	19	9516	0
+	mov.f32 	%f469, %f468;
+	.loc	19	9517	0
+	mov.f32 	%f808, %f469;
+	mov.f32 	%f471, %f808;
+	.loc	19	9518	0
+	ld.local.s32 	%r824, [__cuda___cuda_quadrant_44064];
+	and.b32 	%r825, %r824, 1;
+	mov.u32 	%r826, 0;
+	setp.eq.s32 	%p53, %r825, %r826;
+	@%p53 bra 	$L_0_90882;
+	.loc	19	9519	0
+	mov.f32 	%f809, %f413;
+	mov.f32 	%f469, %f809;
+	.loc	19	9520	0
+	mov.f32 	%f810, %f471;
+	mov.f32 	%f413, %f810;
+$L_0_90882:
+	.loc	19	9522	0
+	ld.local.s32 	%r827, [__cuda___cuda_quadrant_44064];
+	and.b32 	%r828, %r827, 2;
+	mov.u32 	%r829, 0;
+	setp.eq.s32 	%p54, %r828, %r829;
+	@%p54 bra 	$L_0_91138;
+	.loc	19	9523	0
+	mov.f32 	%f811, %f469;
+	neg.f32 	%f812, %f811;
+	mov.f32 	%f469, %f812;
+$L_0_91138:
+	.loc	19	9525	0
+	ld.local.s32 	%r830, [__cuda___cuda_quadrant_44064];
+	add.s32 	%r831, %r830, 1;
+	st.local.s32 	[__cuda___cuda_quadrant_44064], %r831;
+	.loc	19	9526	0
+	ld.local.s32 	%r832, [__cuda___cuda_quadrant_44064];
+	and.b32 	%r833, %r832, 2;
+	mov.u32 	%r834, 0;
+	setp.eq.s32 	%p55, %r833, %r834;
+	@%p55 bra 	$L_0_91394;
+	.loc	19	9527	0
+	mov.f32 	%f813, %f413;
+	neg.f32 	%f814, %f813;
+	mov.f32 	%f413, %f814;
+$L_0_91394:
+	.loc	19	9530	0
+	mov.f32 	%f815, %f260;
+	mov.f32 	%f816, 0f00000000;   	// 0
+	setp.eq.f32 	%p56, %f815, %f816;
+	@!%p56 bra 	$L_0_91650;
+	.loc	19	9531	0
+	mov.f32 	%f817, %f260;
+	mov.f32 	%f818, 0f00000000;   	// 0
+	mul.rn.f32 	%f819, %f817, %f818;
+	mov.f32 	%f469, %f819;
+$L_0_91650:
+	.loc	19	9534	0
+	mov.f32 	%f820, %f469;
+	mov.s32 	%r835, %r232;
+	st.local.f32 	[%r835+0], %f820;
+	.loc	19	9535	0
+	mov.f32 	%f821, %f413;
+	mov.s32 	%r836, %r234;
+	st.local.f32 	[%r836+0], %f821;
+$LDWendi___internal_accurate_sincosf_242_13:
+	.loc	19	9543	0
+	ld.local.f32 	%f485, [__cuda___cuda_s_41656];
+$LDWendi___internal_accurate_sinf_242_12:
+	.loc	19	9602	0
+	mov.f32 	%f822, %f485;
+$LDWendi_sinf_242_11:
+	.loc	17	37	0
+	mov.f32 	%f823, %f16;
+	mul.f32 	%f824, %f823, %f658;
+	mov.f32 	%f825, %f8;
+	mad.f32 	%f826, %f825, %f822, %f824;
+	mov.f32 	%f827, 0f3f000000;   	// 0.5
+	add.f32 	%f828, %f826, %f827;
+	mov.f32 	%f829, %f828;
+	.loc	17	40	0
+	mov.s32 	%r837, %r838;
+	mov.f32 	%f830, %f494;
+	mov.f32 	%f831, %f830;
+	mov.f32 	%f832, %f829;
+	mov.f32 	%f833, %f832;
+$LDWbegini__ZN72_INTERNAL_55_tmpxft_00001734_00000000_5_simpleTexture_kernel_cpp1_ii_tex5tex2DE7textureIfLi2EL19cudaTextureReadMode0EEff_242_10:
+$LDWbeginblock_242_4:
+	.loc	16	1265	0
+	mov.f32 	%f834, %f831;
+	mov.f32 	%f835, %f834;
+	mov.f32 	%f836, %f833;
+	mov.f32 	%f837, %f836;
+	mov.f32 	%f838, 0f00000000;   	// 0
+	mov.f32 	%f839, %f838;
+	mov.f32 	%f840, 0f00000000;   	// 0
+	mov.f32 	%f841, %f840;
+$LDWbegini__ZN72_INTERNAL_55_tmpxft_00001734_00000000_5_simpleTexture_kernel_cpp1_ii_tex11make_float4Effff_242_9:
+$LDWbeginblock_242_7:
+	.loc	15	246	0
+	mov.f32 	%f842, %f835;
+	st.local.f32 	[__cuda_local_var_41588_10_non_const_t_800+0], %f842;
+	mov.f32 	%f843, %f837;
+	st.local.f32 	[__cuda_local_var_41588_10_non_const_t_800+4], %f843;
+	mov.f32 	%f844, %f839;
+	st.local.f32 	[__cuda_local_var_41588_10_non_const_t_800+8], %f844;
+	mov.f32 	%f845, %f841;
+	st.local.f32 	[__cuda_local_var_41588_10_non_const_t_800+12], %f845;
+	ld.local.f32 	%f846, [__cuda_local_var_41588_10_non_const_t_800+0];
+	st.local.f32 	[__cuda_rr_816+0], %f846;
+	ld.local.f32 	%f847, [__cuda_local_var_41588_10_non_const_t_800+4];
+	st.local.f32 	[__cuda_rr_816+4], %f847;
+	ld.local.f32 	%f848, [__cuda_local_var_41588_10_non_const_t_800+8];
+	st.local.f32 	[__cuda_rr_816+8], %f848;
+	ld.local.f32 	%f849, [__cuda_local_var_41588_10_non_const_t_800+12];
+	st.local.f32 	[__cuda_rr_816+12], %f849;
+	bra.uni 	$LDWendi__ZN72_INTERNAL_55_tmpxft_00001734_00000000_5_simpleTexture_kernel_cpp1_ii_tex11make_float4Effff_242_6;
+$LDWendblock_242_7:
+$LDWendi__ZN72_INTERNAL_55_tmpxft_00001734_00000000_5_simpleTexture_kernel_cpp1_ii_tex11make_float4Effff_242_6:
+	.loc	16	1265	0
+	ld.local.f32 	%f850, [__cuda_rr_816+0];
+	st.local.f32 	[__cuda__temp__Mreturn__ZN72_INTERNAL_55_tmpxft_00001734_00000000_5_simpleTexture_kernel_cpp1_ii_tex11make_float4Effff26_832+0], %f850;
+	ld.local.f32 	%f851, [__cuda_rr_816+4];
+	st.local.f32 	[__cuda__temp__Mreturn__ZN72_INTERNAL_55_tmpxft_00001734_00000000_5_simpleTexture_kernel_cpp1_ii_tex11make_float4Effff26_832+4], %f851;
+	ld.local.f32 	%f852, [__cuda_rr_816+8];
+	st.local.f32 	[__cuda__temp__Mreturn__ZN72_INTERNAL_55_tmpxft_00001734_00000000_5_simpleTexture_kernel_cpp1_ii_tex11make_float4Effff26_832+8], %f852;
+	ld.local.f32 	%f853, [__cuda_rr_816+12];
+	st.local.f32 	[__cuda__temp__Mreturn__ZN72_INTERNAL_55_tmpxft_00001734_00000000_5_simpleTexture_kernel_cpp1_ii_tex11make_float4Effff26_832+12], %f853;
+	ld.local.f32 	%f854, [__cuda__temp__Mreturn__ZN72_INTERNAL_55_tmpxft_00001734_00000000_5_simpleTexture_kernel_cpp1_ii_tex11make_float4Effff26_832+0];
+	st.local.f32 	[__cuda__temp_coord_arg27_848+0], %f854;
+	ld.local.f32 	%f855, [__cuda__temp__Mreturn__ZN72_INTERNAL_55_tmpxft_00001734_00000000_5_simpleTexture_kernel_cpp1_ii_tex11make_float4Effff26_832+4];
+	st.local.f32 	[__cuda__temp_coord_arg27_848+4], %f855;
+	ld.local.f32 	%f856, [__cuda__temp__Mreturn__ZN72_INTERNAL_55_tmpxft_00001734_00000000_5_simpleTexture_kernel_cpp1_ii_tex11make_float4Effff26_832+8];
+	st.local.f32 	[__cuda__temp_coord_arg27_848+8], %f856;
+	ld.local.f32 	%f857, [__cuda__temp__Mreturn__ZN72_INTERNAL_55_tmpxft_00001734_00000000_5_simpleTexture_kernel_cpp1_ii_tex11make_float4Effff26_832+12];
+	st.local.f32 	[__cuda__temp_coord_arg27_848+12], %f857;
+	ld.local.f32 	%f858, [__cuda__temp_coord_arg27_848+0];
+	mov.f32 	%f859, %f858;
+	ld.local.f32 	%f860, [__cuda__temp_coord_arg27_848+4];
+	mov.f32 	%f861, %f860;
+	ld.local.f32 	%f862, [__cuda__temp_coord_arg27_848+8];
+	mov.f32 	%f863, %f862;
+	ld.local.f32 	%f864, [__cuda__temp_coord_arg27_848+12];
+	mov.f32 	%f865, %f864;
+	tex.2d.v4.f32.f32 {%f866,%f867,%f868,%f869},[tex,{%f859,%f861,%f863,%f865}];
+	st.local.f32 	[__cuda_local_var_116048_10_non_const_v_864+0], %f866;
+	st.local.f32 	[__cuda_local_var_116048_10_non_const_v_864+4], %f867;
+	st.local.f32 	[__cuda_local_var_116048_10_non_const_v_864+8], %f868;
+	st.local.f32 	[__cuda_local_var_116048_10_non_const_v_864+12], %f869;
+	.loc	16	1267	0
+	ld.local.f32 	%f870, [__cuda_local_var_116048_10_non_const_v_864+0];
+	bra.uni 	$LDWendi__ZN72_INTERNAL_55_tmpxft_00001734_00000000_5_simpleTexture_kernel_cpp1_ii_tex5tex2DE7textureIfLi2EL19cudaTextureReadMode0EEff_242_3;
+$LDWendblock_242_4:
+$LDWendi__ZN72_INTERNAL_55_tmpxft_00001734_00000000_5_simpleTexture_kernel_cpp1_ii_tex5tex2DE7textureIfLi2EL19cudaTextureReadMode0EEff_242_3:
+	.loc	17	40	0
+	ld.param.u32 	%r839, [__cudaparm_transformKernel_g_odata];
+	mov.s32 	%r840, %r6;
+	ld.param.u32 	%r841, [__cudaparm_transformKernel_width];
+	mov.s32 	%r842, %r12;
+	mul.lo.u32 	%r843, %r841, %r842;
+	add.u32 	%r844, %r840, %r843;
+	mul.lo.u32 	%r845, %r844, 4;
+	add.u32 	%r846, %r839, %r845;
+	st.global.f32 	[%r846+0], %f870;
+$LDWendblock_242_1:
+	.loc	17	41	0
+	exit;
+$LDWend_transformKernel:
+	} // transformKernel
+
+ 	@@DWARF .section .debug_info, "",@progbits
+	@@DWARF .byte	0x23, 0x4b, 0x00, 0x00, 0x02, 0x00
+	@@DWARF .4byte	.debug_abbrev
+	@@DWARF .4byte	0x3a430104, 0x6573552f, 0x732f7372, 0x6e6f7274
+	@@DWARF .4byte	0x2f7a6a67, 0x44707041, 0x2f617461, 0x61636f4c
+	@@DWARF .4byte	0x65542f6c, 0x742f706d, 0x6678706d, 0x30305f74
+	@@DWARF .4byte	0x37313030, 0x305f3433, 0x30303030, 0x2d303030
+	@@DWARF .4byte	0x735f3231, 0x6c706d69, 0x78655465, 0x65727574
+	@@DWARF .4byte	0x72656b5f, 0x2e6c656e, 0x33707063, 0x4300692e
+	@@DWARF .4byte	0x72505c3a, 0x6172676f, 0x7461446d, 0x564e5c61
+	@@DWARF .4byte	0x41494449, 0x726f4320, 0x61726f70, 0x6e6f6974
+	@@DWARF .4byte	0x4455435c, 0x61532041, 0x656c706d, 0x35765c73
+	@@DWARF .4byte	0x305c352e, 0x6d69535f, 0x5c656c70, 0x706d6973
+	@@DWARF .4byte	0x6554656c, 0x72757478, 0x76724465, 0x65706f00
+	@@DWARF .byte	0x6e, 0x63, 0x63, 0x20, 0x34, 0x2e, 0x31, 0x00
+	@@DWARF .byte	0x04, 0x00
+	@@DWARF .4byte	.debug_line
+	@@DWARF .4byte	0x736e7502, 0x656e6769, 0x6e692064, 0x04070074
+	@@DWARF .4byte	0x75bd0b03, 0x33746e69, 0x010e0c00, 0x0b040000
+	@@DWARF .4byte	0xc80078be, 0x02000000, 0x04010023, 0x0079be0b
+	@@DWARF .4byte	0x000000c8, 0x01042302, 0x7abe0b04, 0x0000c800
+	@@DWARF .4byte	0x08230200, 0x0b050001, 0x6975017d, 0x0033746e
+	@@DWARF .4byte	0x000000d8, 0x00010e06, 0xa00b0700, 0x6d696401
+	@@DWARF .4byte	0x5a0c0033, 0x08000001, 0x7801a10b, 0x0000c800
+	@@DWARF .4byte	0x00230200, 0xa10b0801, 0xc8007901, 0x02000000
+	@@DWARF .4byte	0x08010423, 0x7a01a10b, 0x0000c800, 0x08230200
+	@@DWARF .4byte	0x0b050001, 0x696401a9, 0x2100336d, 0x06000001
+	@@DWARF .4byte	0x0000015a, 0x746e6902, 0x06040500, 0x0000016c
+	@@DWARF .4byte	0x01780a09, 0x05040000, 0x5f2f030b, 0x7865745f
+	@@DWARF .4byte	0x65727574, 0x7079745f, 0x005f5f65, 0x00000179
+	@@DWARF .byte	0x0c, 0x11, 0x10, 0x74, 0x65, 0x78, 0x00, 0x80
+	@@DWARF .byte	0x01, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	tex
+	@@DWARF .4byte	0x6c66020a, 0x0074616f, 0xaa0a0404, 0x04000001
+	@@DWARF .4byte	0x6f640205, 0x656c6275, 0x02080400, 0x676e6f6c
+	@@DWARF .4byte	0x6e6f6c20, 0x6e752067, 0x6e676973, 0x69206465
+	@@DWARF .4byte	0x0700746e, 0x6f6c0208, 0x6c20676e, 0x20676e6f
+	@@DWARF .4byte	0x00746e69, 0x6c020805, 0x20676e6f, 0x00746e69
+	@@DWARF .4byte	0x63020405, 0x00726168, 0xfb060106, 0x0a000001
+	@@DWARF .4byte	0x00000203, 0x0b070504, 0x6c660110, 0x3274616f
+	@@DWARF .4byte	0x023c0800, 0x0b080000, 0x00780110, 0x000001aa
+	@@DWARF .4byte	0x01002302, 0x01100b08, 0x01aa0079, 0x23020000
+	@@DWARF .4byte	0x05000104, 0x6601890b, 0x74616f6c, 0x020f0032
+	@@DWARF .4byte	0xc80d0000, 0x01000000, 0x00000258, 0x0f00050e
+	@@DWARF .4byte	0x5f23d513, 0x6475635f, 0x5f747261, 0x706f3269
+	@@DWARF .byte	0x69, 0x5f, 0x66, 0x00, 0x4b, 0x02, 0x00, 0x00
+	@@DWARF .byte	0x05, 0x03
+	@@DWARF .4byte	__cudart_i2opi_f
+	@@DWARF .4byte	0xb50b0304, 0x746e6975, 0xa1080032, 0x04000002
+	@@DWARF .4byte	0x0078b50b, 0x000000c8, 0x01002302, 0x79b50b04
+	@@DWARF .4byte	0x0000c800, 0x04230200, 0x0b050001, 0x6975017b
+	@@DWARF .4byte	0x0032746e, 0x00000278, 0x00016c0a, 0x0d050400
+	@@DWARF .4byte	0x000000c8, 0x0002c301, 0x00060e00, 0x0001aa10
+	@@DWARF .4byte	0x01aa0600, 0xba0a0000, 0x04000001, 0x1b0b0705
+	@@DWARF .4byte	0x6f6c6601, 0x00347461, 0x00031d10, 0x1c0b0800
+	@@DWARF .4byte	0xaa007801, 0x02000001, 0x08010023, 0x79011c0b
+	@@DWARF .4byte	0x0001aa00, 0x04230200, 0x1c0b0801, 0xaa007a01
+	@@DWARF .4byte	0x02000001, 0x08010823, 0x77011c0b, 0x0001aa00
+	@@DWARF .4byte	0x0c230200, 0x0b050001, 0x6c66018b, 0x3474616f
+	@@DWARF .4byte	0x0002d400, 0x18111100, 0x6e617274, 0x726f6673
+	@@DWARF .byte	0x6d, 0x4b, 0x65, 0x72, 0x6e, 0x65, 0x6c, 0x00
+	@@DWARF .byte	0x01, 0x01, 0x01, 0x00
+	@@DWARF .4byte	$LDWbegin_transformKernel
+	@@DWARF .4byte	$LDWend_transformKernel
+	@@DWARF .4byte	0x00002890, 0x67181112, 0x61646f5f, 0xb3006174
+	@@DWARF .byte	0x01, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cudaparm_transformKernel_g_odata
+	@@DWARF .4byte	0x18111207, 0x74646977, 0x016c0068, 0x03050000
+	@@DWARF .4byte	__cudaparm_transformKernel_width
+	@@DWARF .4byte	0x18111207, 0x67696568, 0x6c007468, 0x05000001
+	@@DWARF .byte	0x03
+	@@DWARF .4byte	__cudaparm_transformKernel_height
+	@@DWARF .4byte	0x18111207, 0x74656874, 0x01aa0061, 0x03050000
+	@@DWARF .4byte	__cudaparm_transformKernel_theta
+	@@DWARF .byte	0x07, 0x13
+	@@DWARF .4byte	$LDWbeginblock_242_1
+	@@DWARF .4byte	$LDWendblock_242_1
+	@@DWARF .4byte	0x781b110c, 0x0000c800, 0xb6900500, 0x020195e4
+	@@DWARF .4byte	0x791c110c, 0x0000c800, 0xb2900600, 0x02abc8e2
+	@@DWARF .4byte	0x1e110c02, 0x01aa0075, 0x90050000, 0x0195ccb8
+	@@DWARF .4byte	0x1f110c02, 0x01aa0076, 0x90060000, 0xab98e2b6
+	@@DWARF .4byte	0x110c0202, 0x00757424, 0x000001aa, 0xf2b49007
+	@@DWARF .4byte	0x04d6b1d0, 0x25110c02, 0xaa007674, 0x07000001
+	@@DWARF .byte	0x90, 0xb9, 0xe4, 0xe0, 0xb1, 0xd6, 0x04, 0x02
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini__ZN72_INTERNAL_55_tmpxft_00001734_00000000_5_simpleTexture_kernel_cpp1_ii_tex5tex2DE7textureIfLi2EL19cudaTextureReadMode0EEff_242_10
+	@@DWARF .4byte	$LDWendi__ZN72_INTERNAL_55_tmpxft_00001734_00000000_5_simpleTexture_kernel_cpp1_ii_tex5tex2DE7textureIfLi2EL19cudaTextureReadMode0EEff_242_3
+	@@DWARF .4byte	0x00004a28, 0x04ef1015, 0x01800074, 0x90070000
+	@@DWARF .4byte	0x91e0e6b7, 0xb10204d7, 0x1500004a, 0x7804ef10
+	@@DWARF .4byte	0x0001aa00, 0xb1900700, 0xd6b1e0e6, 0x4abb0204
+	@@DWARF .4byte	0x10150000, 0x007904ef, 0x000001aa, 0xe6b39007
+	@@DWARF .byte	0xe0, 0xb1, 0xd6, 0x04, 0x02, 0xc5, 0x4a, 0x00
+	@@DWARF .byte	0x00, 0x13
+	@@DWARF .4byte	$LDWbeginblock_242_4
+	@@DWARF .4byte	$LDWendblock_242_4
+	@@DWARF .byte	0x16, 0x10, 0xf1, 0x04, 0x76, 0x00, 0xd4, 0x02
+	@@DWARF .byte	0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda_local_var_116048_10_non_const_v_864
+	@@DWARF .byte	0x06, 0xd0, 0x4a, 0x00, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini__ZN72_INTERNAL_55_tmpxft_00001734_00000000_5_simpleTexture_kernel_cpp1_ii_tex11make_float4Effff_242_9
+	@@DWARF .4byte	$LDWendi__ZN72_INTERNAL_55_tmpxft_00001734_00000000_5_simpleTexture_kernel_cpp1_ii_tex11make_float4Effff_242_6
+	@@DWARF .4byte	0x0000498a, 0x78f40f17, 0x0001aa00, 0xb5900700
+	@@DWARF .4byte	0xd6b1e0e6, 0x49f80204, 0x0f170000, 0xaa0079f4
+	@@DWARF .4byte	0x07000001, 0xe0e6b790, 0x0204d6b1, 0x00004a01
+	@@DWARF .4byte	0x7af40f17, 0x0001aa00, 0xb9900700, 0xd6b1e0e6
+	@@DWARF .4byte	0x4a0a0204, 0x0f170000, 0xaa0077f4, 0x07000001
+	@@DWARF .byte	0x90, 0xb1, 0xe8, 0xe0, 0xb1, 0xd6, 0x04, 0x02
+	@@DWARF .byte	0x13, 0x4a, 0x00, 0x00, 0x13
+	@@DWARF .4byte	$LDWbeginblock_242_7
+	@@DWARF .4byte	$LDWendblock_242_7
+	@@DWARF .byte	0x18, 0x0f, 0xf6, 0x74, 0x00, 0xd4, 0x02, 0x00
+	@@DWARF .byte	0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda_local_var_41588_10_non_const_t_800
+	@@DWARF .byte	0x06, 0x1d, 0x4a, 0x00, 0x00, 0x00, 0x00, 0x00
+	@@DWARF .byte	0x14
+	@@DWARF .4byte	$LDWbegini_sinf_242_55
+	@@DWARF .4byte	$LDWendi_sinf_242_11
+	@@DWARF .4byte	0x00003ef2, 0x257e1315, 0x01aa0061, 0x90070000
+	@@DWARF .byte	0xb0, 0xec, 0xd8, 0xb1, 0xd6, 0x04, 0x02, 0x06
+	@@DWARF .byte	0x3f, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_accurate_sinf_242_54
+	@@DWARF .4byte	$LDWendi___internal_accurate_sinf_242_12
+	@@DWARF .4byte	0x0000346a, 0x25431315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c8eab8, 0x920204d6, 0x16000034, 0x73254513
+	@@DWARF .byte	0x00, 0xaa, 0x01, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda___cuda_s_41656
+	@@DWARF .4byte	0x00349c06, 0x45131600, 0xaa006325, 0x05000001
+	@@DWARF .byte	0x03
+	@@DWARF .4byte	__cuda___cuda_c_42460
+	@@DWARF .byte	0x06, 0xa6, 0x34, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_accurate_sincosf_242_53
+	@@DWARF .4byte	$LDWendi___internal_accurate_sincosf_242_13
+	@@DWARF .4byte	0x00002f5d, 0x251f1315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c8ecb0, 0x840204d6, 0x1500002f, 0x73251f13
+	@@DWARF .4byte	0x00727470, 0x000001b3, 0xe6b29007, 0x04d791c8
+	@@DWARF .4byte	0x002f8e02, 0x1f131500, 0x74706325, 0x01b30072
+	@@DWARF .4byte	0x90070000, 0x91c8e6b4, 0x9b0204d7, 0x1600002f
+	@@DWARF .4byte	0x73252313, 0x002fa800, 0xb9900700, 0xd6b1d0ec
+	@@DWARF .4byte	0x2fad0204, 0x13160000, 0x00632523, 0x00002fb7
+	@@DWARF .4byte	0xe2b39007, 0x04d6b1d0, 0x002fbc02, 0x24131600
+	@@DWARF .4byte	0xaa007425, 0x07000001, 0xd0eeb190, 0x0204d6b1
+	@@DWARF .4byte	0x00002fc6, 0x25251316, 0x64617571, 0x746e6172
+	@@DWARF .byte	0x00, 0x6c, 0x01, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda___cuda_quadrant_44064
+	@@DWARF .byte	0x06, 0xd0, 0x2f, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_sin_kernel_242_21
+	@@DWARF .4byte	$LDWendi___internal_sin_kernel_242_14
+	@@DWARF .4byte	0x00002d21, 0x24dd1315, 0x01aa0078, 0x90070000
+	@@DWARF .4byte	0xb1d0e2b5, 0x460204d6, 0x1600002d, 0x7824de13
+	@@DWARF .4byte	0x01aa0032, 0x90070000, 0xb1d0e2b9, 0x500204d6
+	@@DWARF .4byte	0x1600002d, 0x7a24de13, 0x0001aa00, 0xb1900700
+	@@DWARF .byte	0xe4, 0xd0, 0xb1, 0xd6, 0x04, 0x02, 0x5b, 0x2d
+	@@DWARF .byte	0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_16
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_15
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1d0e6b8, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb0900700, 0xd6b1d0e8, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xe8b29007
+	@@DWARF .4byte	0x04d6b1d0, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xd0e6b590, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_18
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_17
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1d0e4b3, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb5900700, 0xd6b1d0e4, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xe4b79007
+	@@DWARF .4byte	0x04d6b1d0, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xd0e6b590, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_20
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_19
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1d0e4b3, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb5900700, 0xd6b1d0e4, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xe4b79007
+	@@DWARF .4byte	0x04d6b1d0, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xd0e6b590, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_cos_kernel_242_31
+	@@DWARF .4byte	$LDWendi___internal_cos_kernel_242_22
+	@@DWARF .4byte	0x00002e20, 0x24ef1315, 0x01aa0078, 0x90070000
+	@@DWARF .4byte	0xb1cce8b8, 0x450204d6, 0x1600002e, 0x7824f013
+	@@DWARF .4byte	0x01aa0032, 0x90070000, 0xb1cceab2, 0x4f0204d6
+	@@DWARF .4byte	0x1600002e, 0x7a24f013, 0x0001aa00, 0xb4900700
+	@@DWARF .byte	0xea, 0xcc, 0xb1, 0xd6, 0x04, 0x02, 0x5a, 0x2e
+	@@DWARF .byte	0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_24
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_23
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1ccf0b5, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb7900700, 0xd6b1ccf0, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xf0b99007
+	@@DWARF .4byte	0x04d6b1cc, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xccecb890, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_26
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_25
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1cceeb1, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb3900700, 0xd6b1ccee, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xeeb59007
+	@@DWARF .4byte	0x04d6b1cc, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xccecb890, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_28
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_27
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1cceab6, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb8900700, 0xd6b1ccea, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xecb09007
+	@@DWARF .4byte	0x04d6b1cc, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xccecb890, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_30
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_29
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1cceab6, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb8900700, 0xd6b1ccea, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xecb09007
+	@@DWARF .4byte	0x04d6b1cc, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xccecb890, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_trig_reduction_kernel_242_50
+	@@DWARF .4byte	$LDWendi___internal_trig_reduction_kernel_242_32
+	@@DWARF .4byte	0x00002aaa, 0x243e1315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c8eeb0, 0xda0204d6, 0x1500002a, 0x71243e13
+	@@DWARF .4byte	0x72646175, 0x00746e61, 0x000002af, 0xe6b99007
+	@@DWARF .4byte	0x04d791c8, 0x002ae402, 0x3f131600, 0xaa006a24
+	@@DWARF .4byte	0x07000001, 0xc8eeb590, 0x0204d6b1, 0x00002af5
+	@@DWARF .4byte	0x243f1316, 0x01aa0074, 0x90070000, 0xb1c8f2b2
+	@@DWARF .4byte	0xff0204d6, 0x1600002a, 0x71244013, 0x00016c00
+	@@DWARF .byte	0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda___cuda_q_44468
+	@@DWARF .byte	0x06, 0x09, 0x2b, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_trig_reduction_slowpath_242_41
+	@@DWARF .4byte	$LDWendi___internal_trig_reduction_slowpath_242_33
+	@@DWARF .4byte	0x00002998, 0x23fc1315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1cce8b2, 0xca0204d6, 0x15000029, 0x7123fc13
+	@@DWARF .4byte	0x72646175, 0x00746e61, 0x000002af, 0xe8b39007
+	@@DWARF .4byte	0x04d791c8, 0x0029d402, 0xfd131600, 0xa1007023
+	@@DWARF .byte	0x02, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda_p_576
+	@@DWARF .4byte	0x0029e506, 0xfe131600, 0x00616923, 0x000000c8
+	@@DWARF .4byte	0xe8b59007, 0x04d791c8, 0x0029ef02, 0xff131600
+	@@DWARF .4byte	0xc8007323, 0x07000000, 0xc8e8b890, 0x0204d791
+	@@DWARF .4byte	0x000029fa, 0x24001316, 0x75736572, 0xb600746c
+	@@DWARF .byte	0x02, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda___cuda_result_58844
+	@@DWARF .4byte	0x002a0406, 0x01131600, 0x00696824, 0x000000c8
+	@@DWARF .4byte	0xecb39007, 0x04d791c8, 0x002a1302, 0x01131600
+	@@DWARF .4byte	0x006f6c24, 0x000000c8, 0xf2b39007, 0x04d791c8
+	@@DWARF .4byte	0x002a1e02, 0x02131600, 0xc8006524, 0x07000000
+	@@DWARF .4byte	0xc8eab390, 0x0204d791, 0x00002a29, 0x24031316
+	@@DWARF .4byte	0x00786469, 0x0000016c, 0xecb19007, 0x04d791c8
+	@@DWARF .4byte	0x002a3302, 0x04131600, 0x6c007124, 0x07000001
+	@@DWARF .byte	0x90, 0xb5, 0xec, 0xc8, 0x91, 0xd7, 0x04, 0x02
+	@@DWARF .byte	0x3f, 0x2a, 0x00, 0x00, 0x13
+	@@DWARF .4byte	$LDWbeginblock_242_35
+	@@DWARF .4byte	$LDWendblock_242_35
+	@@DWARF .4byte	0x24261316, 0x00c80074, 0x90070000, 0x91cceeb6
+	@@DWARF .byte	0xd7, 0x04, 0x02, 0x4a, 0x2a, 0x00, 0x00, 0x00
+	@@DWARF .byte	0x14
+	@@DWARF .4byte	$LDWbegini___clz_242_38
+	@@DWARF .4byte	$LDWendi___clz_242_37
+	@@DWARF .4byte	0x000028bd, 0x188a1515, 0x016c0061, 0x90070000
+	@@DWARF .byte	0xb3, 0xf0, 0xcc, 0x91, 0xd7, 0x04, 0x02, 0xd2
+	@@DWARF .byte	0x28, 0x00, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_umad32wide_242_40
+	@@DWARF .4byte	$LDWendi___internal_umad32wide_242_39
+	@@DWARF .4byte	0x00002948, 0x23e11315, 0x00c80061, 0x90070000
+	@@DWARF .4byte	0x91c8eeb3, 0x6d0204d7, 0x15000029, 0x6223e113
+	@@DWARF .4byte	0x0000c800, 0xb5900700, 0xd791c8ee, 0x29770204
+	@@DWARF .4byte	0x13150000, 0x006323e1, 0x000000c8, 0xeeb79007
+	@@DWARF .4byte	0x04d791c8, 0x00298102, 0xe2131600, 0x73657223
+	@@DWARF .byte	0x00, 0xa1, 0x02, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda_res_552
+	@@DWARF .byte	0x06, 0x8b, 0x29, 0x00, 0x00, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_43
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_42
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1cce2b0, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb2900700, 0xd6b1cce2, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xe2b49007
+	@@DWARF .4byte	0x04d6b1cc, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc8f2b090, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_45
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_44
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c8f2b5, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb7900700, 0xd6b1c8f2, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xf2b99007
+	@@DWARF .4byte	0x04d6b1c8, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc8f2b090, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_47
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_46
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c8eeb8, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb0900700, 0xd6b1c8f0, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xf0b29007
+	@@DWARF .4byte	0x04d6b1c8, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc8f2b090, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_49
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_48
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c8eeb8, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb0900700, 0xd6b1c8f0, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xf0b29007
+	@@DWARF .4byte	0x04d6b1c8, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc8f2b090, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___isinff_242_52
+	@@DWARF .4byte	$LDWendi___isinff_242_51
+	@@DWARF .4byte	0x000028dd, 0x22651315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c8ecb2, 0xf50204d6, 0x00000028, 0x14000000
+	@@DWARF .4byte	$LDWbegini_cosf_242_100
+	@@DWARF .4byte	$LDWendi_cosf_242_56
+	@@DWARF .4byte	0x0000443e, 0x25871315, 0x01aa0061, 0x90070000
+	@@DWARF .byte	0xb6, 0xf2, 0xd0, 0xb1, 0xd6, 0x04, 0x02, 0x52
+	@@DWARF .byte	0x44, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_accurate_cosf_242_99
+	@@DWARF .4byte	$LDWendi___internal_accurate_cosf_242_57
+	@@DWARF .4byte	0x000039ae, 0x25561315, 0x01aa0061, 0x90060000
+	@@DWARF .4byte	0xab98e4b6, 0x39d60202, 0x13160000, 0x00732558
+	@@DWARF .byte	0xaa, 0x01, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda_s_64
+	@@DWARF .4byte	0x0039e006, 0x58131600, 0xaa006325, 0x05000001
+	@@DWARF .byte	0x03
+	@@DWARF .4byte	__cuda___cuda_c_728
+	@@DWARF .byte	0x06, 0xea, 0x39, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_accurate_sincosf_242_98
+	@@DWARF .4byte	$LDWendi___internal_accurate_sincosf_242_58
+	@@DWARF .4byte	0x00002f5d, 0x251f1315, 0x01aa0061, 0x90060000
+	@@DWARF .4byte	0xab98e4b8, 0x2f840202, 0x13150000, 0x7073251f
+	@@DWARF .4byte	0xb3007274, 0x06000001, 0xc8e2b890, 0x8e0202ab
+	@@DWARF .4byte	0x1500002f, 0x63251f13, 0x00727470, 0x000001b3
+	@@DWARF .4byte	0xe4b09006, 0x0202abc8, 0x00002f9b, 0x25231316
+	@@DWARF .4byte	0x2fa80073, 0x90070000, 0xb1c8e6b7, 0xad0204d6
+	@@DWARF .4byte	0x1600002f, 0x63252313, 0x002fb700, 0xb1900700
+	@@DWARF .4byte	0xd6b1c4f0, 0x2fbc0204, 0x13160000, 0x00742524
+	@@DWARF .4byte	0x000001aa, 0xe6b99007, 0x04d6b1c8, 0x002fc602
+	@@DWARF .4byte	0x25131600, 0x61757125, 0x6e617264, 0x016c0074
+	@@DWARF .byte	0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda___cuda_quadrant_8812
+	@@DWARF .byte	0x06, 0xd0, 0x2f, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_sin_kernel_242_66
+	@@DWARF .4byte	$LDWendi___internal_sin_kernel_242_59
+	@@DWARF .4byte	0x00002d21, 0x24dd1315, 0x01aa0078, 0x90070000
+	@@DWARF .4byte	0xb1c4f0b3, 0x460204d6, 0x1600002d, 0x7824de13
+	@@DWARF .4byte	0x01aa0032, 0x90070000, 0xb1c4f0b7, 0x500204d6
+	@@DWARF .4byte	0x1600002d, 0x7a24de13, 0x0001aa00, 0xb9900700
+	@@DWARF .byte	0xf0, 0xc4, 0xb1, 0xd6, 0x04, 0x02, 0x5b, 0x2d
+	@@DWARF .byte	0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_61
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_60
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c8e0b6, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb8900700, 0xd6b1c8e0, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xe2b09007
+	@@DWARF .4byte	0x04d6b1c8, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc8e0b390, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_63
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_62
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c4f2b1, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb3900700, 0xd6b1c4f2, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xf2b59007
+	@@DWARF .4byte	0x04d6b1c4, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc8e0b390, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_65
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_64
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c4f2b1, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb3900700, 0xd6b1c4f2, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xf2b59007
+	@@DWARF .4byte	0x04d6b1c4, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc8e0b390, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_cos_kernel_242_76
+	@@DWARF .4byte	$LDWendi___internal_cos_kernel_242_67
+	@@DWARF .4byte	0x00002e20, 0x24ef1315, 0x01aa0078, 0x90070000
+	@@DWARF .4byte	0xb1c4e2b6, 0x450204d6, 0x1600002e, 0x7824f013
+	@@DWARF .4byte	0x01aa0032, 0x90070000, 0xb1c4e4b0, 0x4f0204d6
+	@@DWARF .4byte	0x1600002e, 0x7a24f013, 0x0001aa00, 0xb2900700
+	@@DWARF .byte	0xe4, 0xc4, 0xb1, 0xd6, 0x04, 0x02, 0x5a, 0x2e
+	@@DWARF .byte	0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_69
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_68
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c4eab3, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb5900700, 0xd6b1c4ea, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xeab79007
+	@@DWARF .4byte	0x04d6b1c4, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc4e6b690, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_71
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_70
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c4e6b9, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb1900700, 0xd6b1c4e8, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xe8b39007
+	@@DWARF .4byte	0x04d6b1c4, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc4e6b690, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_73
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_72
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c4e4b4, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb6900700, 0xd6b1c4e4, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xe4b89007
+	@@DWARF .4byte	0x04d6b1c4, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc4e6b690, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_75
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_74
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c4e4b4, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb6900700, 0xd6b1c4e4, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xe4b89007
+	@@DWARF .4byte	0x04d6b1c4, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc4e6b690, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_trig_reduction_kernel_242_95
+	@@DWARF .4byte	$LDWendi___internal_trig_reduction_kernel_242_77
+	@@DWARF .4byte	0x00002aaa, 0x243e1315, 0x01aa0061, 0x90060000
+	@@DWARF .4byte	0xab98e6b8, 0x2ada0202, 0x13150000, 0x7571243e
+	@@DWARF .4byte	0x61726461, 0xaf00746e, 0x06000002, 0xc8e4b590
+	@@DWARF .4byte	0xe40202ab, 0x1600002a, 0x6a243f13, 0x0001aa00
+	@@DWARF .4byte	0xb3900600, 0x02ab98e8, 0x002af502, 0x3f131600
+	@@DWARF .4byte	0xaa007424, 0x06000001, 0x98ecb090, 0xff0202ab
+	@@DWARF .byte	0x2a, 0x00, 0x00, 0x16, 0x13, 0x40, 0x24, 0x71
+	@@DWARF .byte	0x00, 0x6c, 0x01, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda___cuda_q_9216
+	@@DWARF .byte	0x06, 0x09, 0x2b, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_trig_reduction_slowpath_242_86
+	@@DWARF .4byte	$LDWendi___internal_trig_reduction_slowpath_242_78
+	@@DWARF .4byte	0x00002998, 0x23fc1315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c4e2b0, 0xca0204d6, 0x15000029, 0x7123fc13
+	@@DWARF .4byte	0x72646175, 0x00746e61, 0x000002af, 0xe4b99006
+	@@DWARF .4byte	0x0202abc8, 0x000029d4, 0x23fd1316, 0x02a10070
+	@@DWARF .byte	0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda_p_224
+	@@DWARF .4byte	0x0029e506, 0xfe131600, 0x00616923, 0x000000c8
+	@@DWARF .4byte	0xe6b19006, 0x0202abc8, 0x000029ef, 0x23ff1316
+	@@DWARF .4byte	0x00c80073, 0x90060000, 0xabc8e6b4, 0x29fa0202
+	@@DWARF .4byte	0x13160000, 0x65722400, 0x746c7573, 0x0002b600
+	@@DWARF .byte	0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda___cuda_result_23616
+	@@DWARF .4byte	0x002a0406, 0x01131600, 0x00696824, 0x000000c8
+	@@DWARF .4byte	0xe8b99006, 0x0202abc8, 0x00002a13, 0x24011316
+	@@DWARF .4byte	0xc8006f6c, 0x06000000, 0xc8eeb990, 0x1e0202ab
+	@@DWARF .4byte	0x1600002a, 0x65240213, 0x0000c800, 0xb9900600
+	@@DWARF .4byte	0x02abc8e6, 0x002a2902, 0x03131600, 0x78646924
+	@@DWARF .4byte	0x00016c00, 0xb7900600, 0x02abc8e8, 0x002a3302
+	@@DWARF .4byte	0x04131600, 0x6c007124, 0x06000001, 0xc8eab190
+	@@DWARF .byte	0xab, 0x02, 0x02, 0x3f, 0x2a, 0x00, 0x00, 0x13
+	@@DWARF .4byte	$LDWbeginblock_242_80
+	@@DWARF .4byte	$LDWendblock_242_80
+	@@DWARF .4byte	0x24261316, 0x00c80074, 0x90070000, 0x91c4ecb2
+	@@DWARF .byte	0xd7, 0x04, 0x02, 0x4a, 0x2a, 0x00, 0x00, 0x00
+	@@DWARF .byte	0x14
+	@@DWARF .4byte	$LDWbegini___clz_242_83
+	@@DWARF .4byte	$LDWendi___clz_242_82
+	@@DWARF .4byte	0x000028bd, 0x188a1515, 0x016c0061, 0x90070000
+	@@DWARF .byte	0xb9, 0xec, 0xc4, 0x91, 0xd7, 0x04, 0x02, 0xd2
+	@@DWARF .byte	0x28, 0x00, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_umad32wide_242_85
+	@@DWARF .4byte	$LDWendi___internal_umad32wide_242_84
+	@@DWARF .4byte	0x00002948, 0x23e11315, 0x00c80061, 0x90060000
+	@@DWARF .4byte	0xabc8eab9, 0x296d0202, 0x13150000, 0x006223e1
+	@@DWARF .4byte	0x000000c8, 0xecb19006, 0x0202abc8, 0x00002977
+	@@DWARF .4byte	0x23e11315, 0x00c80063, 0x90060000, 0xabc8ecb3
+	@@DWARF .4byte	0x29810202, 0x13160000, 0x657223e2, 0x02a10073
+	@@DWARF .byte	0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda_res_200
+	@@DWARF .byte	0x06, 0x8b, 0x29, 0x00, 0x00, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_88
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_87
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90060000
+	@@DWARF .4byte	0xab98eeb8, 0x291f0202, 0x13150000, 0x006222e3
+	@@DWARF .4byte	0x000001aa, 0xf0b09006, 0x0202ab98, 0x00002929
+	@@DWARF .4byte	0x22e31315, 0x01aa0063, 0x90060000, 0xab98f0b2
+	@@DWARF .4byte	0x29330202, 0x13160000, 0x007222e7, 0x000001aa
+	@@DWARF .byte	0x06, 0x90, 0xb8, 0xea, 0x98, 0xab, 0x02, 0x02
+	@@DWARF .byte	0x3d, 0x29, 0x00, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_90
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_89
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90060000
+	@@DWARF .4byte	0xab98ecb3, 0x291f0202, 0x13150000, 0x006222e3
+	@@DWARF .4byte	0x000001aa, 0xecb59006, 0x0202ab98, 0x00002929
+	@@DWARF .4byte	0x22e31315, 0x01aa0063, 0x90060000, 0xab98ecb7
+	@@DWARF .4byte	0x29330202, 0x13160000, 0x007222e7, 0x000001aa
+	@@DWARF .byte	0x06, 0x90, 0xb8, 0xea, 0x98, 0xab, 0x02, 0x02
+	@@DWARF .byte	0x3d, 0x29, 0x00, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_92
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_91
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90060000
+	@@DWARF .4byte	0xab98e8b6, 0x291f0202, 0x13150000, 0x006222e3
+	@@DWARF .4byte	0x000001aa, 0xe8b89006, 0x0202ab98, 0x00002929
+	@@DWARF .4byte	0x22e31315, 0x01aa0063, 0x90060000, 0xab98eab0
+	@@DWARF .4byte	0x29330202, 0x13160000, 0x007222e7, 0x000001aa
+	@@DWARF .byte	0x06, 0x90, 0xb8, 0xea, 0x98, 0xab, 0x02, 0x02
+	@@DWARF .byte	0x3d, 0x29, 0x00, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_94
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_93
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90060000
+	@@DWARF .4byte	0xab98e8b6, 0x291f0202, 0x13150000, 0x006222e3
+	@@DWARF .4byte	0x000001aa, 0xe8b89006, 0x0202ab98, 0x00002929
+	@@DWARF .4byte	0x22e31315, 0x01aa0063, 0x90060000, 0xab98eab0
+	@@DWARF .4byte	0x29330202, 0x13160000, 0x007222e7, 0x000001aa
+	@@DWARF .byte	0x06, 0x90, 0xb8, 0xea, 0x98, 0xab, 0x02, 0x02
+	@@DWARF .byte	0x3d, 0x29, 0x00, 0x00, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___isinff_242_97
+	@@DWARF .4byte	$LDWendi___isinff_242_96
+	@@DWARF .4byte	0x000028dd, 0x22651315, 0x01aa0061, 0x90060000
+	@@DWARF .byte	0xb0, 0xe6, 0x98, 0xab, 0x02, 0x02, 0xf5, 0x28
+	@@DWARF .byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini_sinf_242_145
+	@@DWARF .4byte	$LDWendi_sinf_242_101
+	@@DWARF .4byte	0x00003ef2, 0x257e1315, 0x01aa0061, 0x90070000
+	@@DWARF .byte	0xb6, 0xea, 0xc8, 0xb1, 0xd6, 0x04, 0x02, 0x06
+	@@DWARF .byte	0x3f, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_accurate_sinf_242_144
+	@@DWARF .4byte	$LDWendi___internal_accurate_sinf_242_102
+	@@DWARF .4byte	0x0000346a, 0x25431315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c8eab8, 0x920204d6, 0x16000034, 0x73254513
+	@@DWARF .byte	0x00, 0xaa, 0x01, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda___cuda_s_41656
+	@@DWARF .4byte	0x00349c06, 0x45131600, 0xaa006325, 0x05000001
+	@@DWARF .byte	0x03
+	@@DWARF .4byte	__cuda___cuda_c_42460
+	@@DWARF .byte	0x06, 0xa6, 0x34, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_accurate_sincosf_242_143
+	@@DWARF .4byte	$LDWendi___internal_accurate_sincosf_242_103
+	@@DWARF .4byte	0x00002f5d, 0x251f1315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c8ecb0, 0x840204d6, 0x1500002f, 0x73251f13
+	@@DWARF .4byte	0x00727470, 0x000001b3, 0xe6b29007, 0x04d791c8
+	@@DWARF .4byte	0x002f8e02, 0x1f131500, 0x74706325, 0x01b30072
+	@@DWARF .4byte	0x90070000, 0x91c8e6b4, 0x9b0204d7, 0x1600002f
+	@@DWARF .4byte	0x73252313, 0x002fa800, 0xb9900700, 0xd6b1d0ec
+	@@DWARF .4byte	0x2fad0204, 0x13160000, 0x00632523, 0x00002fb7
+	@@DWARF .4byte	0xe2b39007, 0x04d6b1d0, 0x002fbc02, 0x24131600
+	@@DWARF .4byte	0xaa007425, 0x07000001, 0xd0eeb190, 0x0204d6b1
+	@@DWARF .4byte	0x00002fc6, 0x25251316, 0x64617571, 0x746e6172
+	@@DWARF .byte	0x00, 0x6c, 0x01, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda___cuda_quadrant_44064
+	@@DWARF .byte	0x06, 0xd0, 0x2f, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_sin_kernel_242_111
+	@@DWARF .4byte	$LDWendi___internal_sin_kernel_242_104
+	@@DWARF .4byte	0x00002d21, 0x24dd1315, 0x01aa0078, 0x90070000
+	@@DWARF .4byte	0xb1d0e2b5, 0x460204d6, 0x1600002d, 0x7824de13
+	@@DWARF .4byte	0x01aa0032, 0x90070000, 0xb1d0e2b9, 0x500204d6
+	@@DWARF .4byte	0x1600002d, 0x7a24de13, 0x0001aa00, 0xb1900700
+	@@DWARF .byte	0xe4, 0xd0, 0xb1, 0xd6, 0x04, 0x02, 0x5b, 0x2d
+	@@DWARF .byte	0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_106
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_105
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1d0e6b8, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb0900700, 0xd6b1d0e8, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xe8b29007
+	@@DWARF .4byte	0x04d6b1d0, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xd0e6b590, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_108
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_107
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1d0e4b3, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb5900700, 0xd6b1d0e4, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xe4b79007
+	@@DWARF .4byte	0x04d6b1d0, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xd0e6b590, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_110
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_109
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1d0e4b3, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb5900700, 0xd6b1d0e4, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xe4b79007
+	@@DWARF .4byte	0x04d6b1d0, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xd0e6b590, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_cos_kernel_242_121
+	@@DWARF .4byte	$LDWendi___internal_cos_kernel_242_112
+	@@DWARF .4byte	0x00002e20, 0x24ef1315, 0x01aa0078, 0x90070000
+	@@DWARF .4byte	0xb1cce8b8, 0x450204d6, 0x1600002e, 0x7824f013
+	@@DWARF .4byte	0x01aa0032, 0x90070000, 0xb1cceab2, 0x4f0204d6
+	@@DWARF .4byte	0x1600002e, 0x7a24f013, 0x0001aa00, 0xb4900700
+	@@DWARF .byte	0xea, 0xcc, 0xb1, 0xd6, 0x04, 0x02, 0x5a, 0x2e
+	@@DWARF .byte	0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_114
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_113
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1ccf0b5, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb7900700, 0xd6b1ccf0, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xf0b99007
+	@@DWARF .4byte	0x04d6b1cc, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xccecb890, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_116
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_115
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1cceeb1, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb3900700, 0xd6b1ccee, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xeeb59007
+	@@DWARF .4byte	0x04d6b1cc, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xccecb890, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_118
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_117
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1cceab6, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb8900700, 0xd6b1ccea, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xecb09007
+	@@DWARF .4byte	0x04d6b1cc, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xccecb890, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_120
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_119
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1cceab6, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb8900700, 0xd6b1ccea, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xecb09007
+	@@DWARF .4byte	0x04d6b1cc, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xccecb890, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_trig_reduction_kernel_242_140
+	@@DWARF .4byte	$LDWendi___internal_trig_reduction_kernel_242_122
+	@@DWARF .4byte	0x00002aaa, 0x243e1315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c8eeb0, 0xda0204d6, 0x1500002a, 0x71243e13
+	@@DWARF .4byte	0x72646175, 0x00746e61, 0x000002af, 0xe6b99007
+	@@DWARF .4byte	0x04d791c8, 0x002ae402, 0x3f131600, 0xaa006a24
+	@@DWARF .4byte	0x07000001, 0xc8eeb590, 0x0204d6b1, 0x00002af5
+	@@DWARF .4byte	0x243f1316, 0x01aa0074, 0x90070000, 0xb1c8f2b2
+	@@DWARF .4byte	0xff0204d6, 0x1600002a, 0x71244013, 0x00016c00
+	@@DWARF .byte	0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda___cuda_q_44468
+	@@DWARF .byte	0x06, 0x09, 0x2b, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_trig_reduction_slowpath_242_131
+	@@DWARF .4byte	$LDWendi___internal_trig_reduction_slowpath_242_123
+	@@DWARF .4byte	0x00002998, 0x23fc1315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1cce8b2, 0xca0204d6, 0x15000029, 0x7123fc13
+	@@DWARF .4byte	0x72646175, 0x00746e61, 0x000002af, 0xe8b39007
+	@@DWARF .4byte	0x04d791c8, 0x0029d402, 0xfd131600, 0xa1007023
+	@@DWARF .byte	0x02, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda_p_576
+	@@DWARF .4byte	0x0029e506, 0xfe131600, 0x00616923, 0x000000c8
+	@@DWARF .4byte	0xe8b59007, 0x04d791c8, 0x0029ef02, 0xff131600
+	@@DWARF .4byte	0xc8007323, 0x07000000, 0xc8e8b890, 0x0204d791
+	@@DWARF .4byte	0x000029fa, 0x24001316, 0x75736572, 0xb600746c
+	@@DWARF .byte	0x02, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda___cuda_result_58844
+	@@DWARF .4byte	0x002a0406, 0x01131600, 0x00696824, 0x000000c8
+	@@DWARF .4byte	0xecb39007, 0x04d791c8, 0x002a1302, 0x01131600
+	@@DWARF .4byte	0x006f6c24, 0x000000c8, 0xf2b39007, 0x04d791c8
+	@@DWARF .4byte	0x002a1e02, 0x02131600, 0xc8006524, 0x07000000
+	@@DWARF .4byte	0xc8eab390, 0x0204d791, 0x00002a29, 0x24031316
+	@@DWARF .4byte	0x00786469, 0x0000016c, 0xecb19007, 0x04d791c8
+	@@DWARF .4byte	0x002a3302, 0x04131600, 0x6c007124, 0x07000001
+	@@DWARF .byte	0x90, 0xb5, 0xec, 0xc8, 0x91, 0xd7, 0x04, 0x02
+	@@DWARF .byte	0x3f, 0x2a, 0x00, 0x00, 0x13
+	@@DWARF .4byte	$LDWbeginblock_242_125
+	@@DWARF .4byte	$LDWendblock_242_125
+	@@DWARF .4byte	0x24261316, 0x00c80074, 0x90070000, 0x91cceeb6
+	@@DWARF .byte	0xd7, 0x04, 0x02, 0x4a, 0x2a, 0x00, 0x00, 0x00
+	@@DWARF .byte	0x14
+	@@DWARF .4byte	$LDWbegini___clz_242_128
+	@@DWARF .4byte	$LDWendi___clz_242_127
+	@@DWARF .4byte	0x000028bd, 0x188a1515, 0x016c0061, 0x90070000
+	@@DWARF .byte	0xb3, 0xf0, 0xcc, 0x91, 0xd7, 0x04, 0x02, 0xd2
+	@@DWARF .byte	0x28, 0x00, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_umad32wide_242_130
+	@@DWARF .4byte	$LDWendi___internal_umad32wide_242_129
+	@@DWARF .4byte	0x00002948, 0x23e11315, 0x00c80061, 0x90070000
+	@@DWARF .4byte	0x91c8eeb3, 0x6d0204d7, 0x15000029, 0x6223e113
+	@@DWARF .4byte	0x0000c800, 0xb5900700, 0xd791c8ee, 0x29770204
+	@@DWARF .4byte	0x13150000, 0x006323e1, 0x000000c8, 0xeeb79007
+	@@DWARF .4byte	0x04d791c8, 0x00298102, 0xe2131600, 0x73657223
+	@@DWARF .byte	0x00, 0xa1, 0x02, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda_res_552
+	@@DWARF .byte	0x06, 0x8b, 0x29, 0x00, 0x00, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_133
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_132
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1cce2b0, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb2900700, 0xd6b1cce2, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xe2b49007
+	@@DWARF .4byte	0x04d6b1cc, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc8f2b090, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_135
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_134
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c8f2b5, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb7900700, 0xd6b1c8f2, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xf2b99007
+	@@DWARF .4byte	0x04d6b1c8, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc8f2b090, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_137
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_136
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c8eeb8, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb0900700, 0xd6b1c8f0, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xf0b29007
+	@@DWARF .4byte	0x04d6b1c8, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc8f2b090, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_139
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_138
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c8eeb8, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb0900700, 0xd6b1c8f0, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xf0b29007
+	@@DWARF .4byte	0x04d6b1c8, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc8f2b090, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___isinff_242_142
+	@@DWARF .4byte	$LDWendi___isinff_242_141
+	@@DWARF .4byte	0x000028dd, 0x22651315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c8ecb2, 0xf50204d6, 0x00000028, 0x14000000
+	@@DWARF .4byte	$LDWbegini_cosf_242_190
+	@@DWARF .4byte	$LDWendi_cosf_242_146
+	@@DWARF .4byte	0x0000443e, 0x25871315, 0x01aa0061, 0x90060000
+	@@DWARF .byte	0xb4, 0xe4, 0x98, 0xab, 0x02, 0x02, 0x52, 0x44
+	@@DWARF .byte	0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_accurate_cosf_242_189
+	@@DWARF .4byte	$LDWendi___internal_accurate_cosf_242_147
+	@@DWARF .4byte	0x000039ae, 0x25561315, 0x01aa0061, 0x90060000
+	@@DWARF .4byte	0xab98e4b6, 0x39d60202, 0x13160000, 0x00732558
+	@@DWARF .byte	0xaa, 0x01, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda_s_64
+	@@DWARF .4byte	0x0039e006, 0x58131600, 0xaa006325, 0x05000001
+	@@DWARF .byte	0x03
+	@@DWARF .4byte	__cuda___cuda_c_728
+	@@DWARF .byte	0x06, 0xea, 0x39, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_accurate_sincosf_242_188
+	@@DWARF .4byte	$LDWendi___internal_accurate_sincosf_242_148
+	@@DWARF .4byte	0x00002f5d, 0x251f1315, 0x01aa0061, 0x90060000
+	@@DWARF .4byte	0xab98e4b8, 0x2f840202, 0x13150000, 0x7073251f
+	@@DWARF .4byte	0xb3007274, 0x06000001, 0xc8e2b890, 0x8e0202ab
+	@@DWARF .4byte	0x1500002f, 0x63251f13, 0x00727470, 0x000001b3
+	@@DWARF .4byte	0xe4b09006, 0x0202abc8, 0x00002f9b, 0x25231316
+	@@DWARF .4byte	0x2fa80073, 0x90070000, 0xb1c8e6b7, 0xad0204d6
+	@@DWARF .4byte	0x1600002f, 0x63252313, 0x002fb700, 0xb1900700
+	@@DWARF .4byte	0xd6b1c4f0, 0x2fbc0204, 0x13160000, 0x00742524
+	@@DWARF .4byte	0x000001aa, 0xe6b99007, 0x04d6b1c8, 0x002fc602
+	@@DWARF .4byte	0x25131600, 0x61757125, 0x6e617264, 0x016c0074
+	@@DWARF .byte	0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda___cuda_quadrant_8812
+	@@DWARF .byte	0x06, 0xd0, 0x2f, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_sin_kernel_242_156
+	@@DWARF .4byte	$LDWendi___internal_sin_kernel_242_149
+	@@DWARF .4byte	0x00002d21, 0x24dd1315, 0x01aa0078, 0x90070000
+	@@DWARF .4byte	0xb1c4f0b3, 0x460204d6, 0x1600002d, 0x7824de13
+	@@DWARF .4byte	0x01aa0032, 0x90070000, 0xb1c4f0b7, 0x500204d6
+	@@DWARF .4byte	0x1600002d, 0x7a24de13, 0x0001aa00, 0xb9900700
+	@@DWARF .byte	0xf0, 0xc4, 0xb1, 0xd6, 0x04, 0x02, 0x5b, 0x2d
+	@@DWARF .byte	0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_151
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_150
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c8e0b6, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb8900700, 0xd6b1c8e0, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xe2b09007
+	@@DWARF .4byte	0x04d6b1c8, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc8e0b390, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_153
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_152
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c4f2b1, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb3900700, 0xd6b1c4f2, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xf2b59007
+	@@DWARF .4byte	0x04d6b1c4, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc8e0b390, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_155
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_154
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c4f2b1, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb3900700, 0xd6b1c4f2, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xf2b59007
+	@@DWARF .4byte	0x04d6b1c4, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc8e0b390, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_cos_kernel_242_166
+	@@DWARF .4byte	$LDWendi___internal_cos_kernel_242_157
+	@@DWARF .4byte	0x00002e20, 0x24ef1315, 0x01aa0078, 0x90070000
+	@@DWARF .4byte	0xb1c4e2b6, 0x450204d6, 0x1600002e, 0x7824f013
+	@@DWARF .4byte	0x01aa0032, 0x90070000, 0xb1c4e4b0, 0x4f0204d6
+	@@DWARF .4byte	0x1600002e, 0x7a24f013, 0x0001aa00, 0xb2900700
+	@@DWARF .byte	0xe4, 0xc4, 0xb1, 0xd6, 0x04, 0x02, 0x5a, 0x2e
+	@@DWARF .byte	0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_159
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_158
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c4eab3, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb5900700, 0xd6b1c4ea, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xeab79007
+	@@DWARF .4byte	0x04d6b1c4, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc4e6b690, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_161
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_160
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c4e6b9, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb1900700, 0xd6b1c4e8, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xe8b39007
+	@@DWARF .4byte	0x04d6b1c4, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc4e6b690, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_163
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_162
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c4e4b4, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb6900700, 0xd6b1c4e4, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xe4b89007
+	@@DWARF .4byte	0x04d6b1c4, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc4e6b690, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_165
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_164
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c4e4b4, 0x1f0204d6, 0x15000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0xb6900700, 0xd6b1c4e4, 0x29290204
+	@@DWARF .4byte	0x13150000, 0x006322e3, 0x000001aa, 0xe4b89007
+	@@DWARF .4byte	0x04d6b1c4, 0x00293302, 0xe7131600, 0xaa007222
+	@@DWARF .4byte	0x07000001, 0xc4e6b690, 0x0204d6b1, 0x0000293d
+	@@DWARF .byte	0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_trig_reduction_kernel_242_185
+	@@DWARF .4byte	$LDWendi___internal_trig_reduction_kernel_242_167
+	@@DWARF .4byte	0x00002aaa, 0x243e1315, 0x01aa0061, 0x90060000
+	@@DWARF .4byte	0xab98e6b8, 0x2ada0202, 0x13150000, 0x7571243e
+	@@DWARF .4byte	0x61726461, 0xaf00746e, 0x06000002, 0xc8e4b590
+	@@DWARF .4byte	0xe40202ab, 0x1600002a, 0x6a243f13, 0x0001aa00
+	@@DWARF .4byte	0xb3900600, 0x02ab98e8, 0x002af502, 0x3f131600
+	@@DWARF .4byte	0xaa007424, 0x06000001, 0x98ecb090, 0xff0202ab
+	@@DWARF .byte	0x2a, 0x00, 0x00, 0x16, 0x13, 0x40, 0x24, 0x71
+	@@DWARF .byte	0x00, 0x6c, 0x01, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda___cuda_q_9216
+	@@DWARF .byte	0x06, 0x09, 0x2b, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_trig_reduction_slowpath_242_176
+	@@DWARF .4byte	$LDWendi___internal_trig_reduction_slowpath_242_168
+	@@DWARF .4byte	0x00002998, 0x23fc1315, 0x01aa0061, 0x90070000
+	@@DWARF .4byte	0xb1c4e2b0, 0xca0204d6, 0x15000029, 0x7123fc13
+	@@DWARF .4byte	0x72646175, 0x00746e61, 0x000002af, 0xe4b99006
+	@@DWARF .4byte	0x0202abc8, 0x000029d4, 0x23fd1316, 0x02a10070
+	@@DWARF .byte	0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda_p_224
+	@@DWARF .4byte	0x0029e506, 0xfe131600, 0x00616923, 0x000000c8
+	@@DWARF .4byte	0xe6b19006, 0x0202abc8, 0x000029ef, 0x23ff1316
+	@@DWARF .4byte	0x00c80073, 0x90060000, 0xabc8e6b4, 0x29fa0202
+	@@DWARF .4byte	0x13160000, 0x65722400, 0x746c7573, 0x0002b600
+	@@DWARF .byte	0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda___cuda_result_23616
+	@@DWARF .4byte	0x002a0406, 0x01131600, 0x00696824, 0x000000c8
+	@@DWARF .4byte	0xe8b99006, 0x0202abc8, 0x00002a13, 0x24011316
+	@@DWARF .4byte	0xc8006f6c, 0x06000000, 0xc8eeb990, 0x1e0202ab
+	@@DWARF .4byte	0x1600002a, 0x65240213, 0x0000c800, 0xb9900600
+	@@DWARF .4byte	0x02abc8e6, 0x002a2902, 0x03131600, 0x78646924
+	@@DWARF .4byte	0x00016c00, 0xb7900600, 0x02abc8e8, 0x002a3302
+	@@DWARF .4byte	0x04131600, 0x6c007124, 0x06000001, 0xc8eab190
+	@@DWARF .byte	0xab, 0x02, 0x02, 0x3f, 0x2a, 0x00, 0x00, 0x13
+	@@DWARF .4byte	$LDWbeginblock_242_170
+	@@DWARF .4byte	$LDWendblock_242_170
+	@@DWARF .4byte	0x24261316, 0x00c80074, 0x90070000, 0x91c4ecb2
+	@@DWARF .byte	0xd7, 0x04, 0x02, 0x4a, 0x2a, 0x00, 0x00, 0x00
+	@@DWARF .byte	0x14
+	@@DWARF .4byte	$LDWbegini___clz_242_173
+	@@DWARF .4byte	$LDWendi___clz_242_172
+	@@DWARF .4byte	0x000028bd, 0x188a1515, 0x016c0061, 0x90070000
+	@@DWARF .byte	0xb9, 0xec, 0xc4, 0x91, 0xd7, 0x04, 0x02, 0xd2
+	@@DWARF .byte	0x28, 0x00, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_umad32wide_242_175
+	@@DWARF .4byte	$LDWendi___internal_umad32wide_242_174
+	@@DWARF .4byte	0x00002948, 0x23e11315, 0x00c80061, 0x90060000
+	@@DWARF .4byte	0xabc8eab9, 0x296d0202, 0x13150000, 0x006223e1
+	@@DWARF .4byte	0x000000c8, 0xecb19006, 0x0202abc8, 0x00002977
+	@@DWARF .4byte	0x23e11315, 0x00c80063, 0x90060000, 0xabc8ecb3
+	@@DWARF .4byte	0x29810202, 0x13160000, 0x657223e2, 0x02a10073
+	@@DWARF .byte	0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda_res_200
+	@@DWARF .byte	0x06, 0x8b, 0x29, 0x00, 0x00, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_178
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_177
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90060000
+	@@DWARF .4byte	0xab98eeb8, 0x291f0202, 0x13150000, 0x006222e3
+	@@DWARF .4byte	0x000001aa, 0xf0b09006, 0x0202ab98, 0x00002929
+	@@DWARF .4byte	0x22e31315, 0x01aa0063, 0x90060000, 0xab98f0b2
+	@@DWARF .4byte	0x29330202, 0x13160000, 0x007222e7, 0x000001aa
+	@@DWARF .byte	0x06, 0x90, 0xb8, 0xea, 0x98, 0xab, 0x02, 0x02
+	@@DWARF .byte	0x3d, 0x29, 0x00, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_180
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_179
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90060000
+	@@DWARF .4byte	0xab98ecb3, 0x291f0202, 0x13150000, 0x006222e3
+	@@DWARF .4byte	0x000001aa, 0xecb59006, 0x0202ab98, 0x00002929
+	@@DWARF .4byte	0x22e31315, 0x01aa0063, 0x90060000, 0xab98ecb7
+	@@DWARF .4byte	0x29330202, 0x13160000, 0x007222e7, 0x000001aa
+	@@DWARF .byte	0x06, 0x90, 0xb8, 0xea, 0x98, 0xab, 0x02, 0x02
+	@@DWARF .byte	0x3d, 0x29, 0x00, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_182
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_181
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90060000
+	@@DWARF .4byte	0xab98e8b6, 0x291f0202, 0x13150000, 0x006222e3
+	@@DWARF .4byte	0x000001aa, 0xe8b89006, 0x0202ab98, 0x00002929
+	@@DWARF .4byte	0x22e31315, 0x01aa0063, 0x90060000, 0xab98eab0
+	@@DWARF .4byte	0x29330202, 0x13160000, 0x007222e7, 0x000001aa
+	@@DWARF .byte	0x06, 0x90, 0xb8, 0xea, 0x98, 0xab, 0x02, 0x02
+	@@DWARF .byte	0x3d, 0x29, 0x00, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___internal_fmad_242_184
+	@@DWARF .4byte	$LDWendi___internal_fmad_242_183
+	@@DWARF .4byte	0x00002900, 0x22e31315, 0x01aa0061, 0x90060000
+	@@DWARF .4byte	0xab98e8b6, 0x291f0202, 0x13150000, 0x006222e3
+	@@DWARF .4byte	0x000001aa, 0xe8b89006, 0x0202ab98, 0x00002929
+	@@DWARF .4byte	0x22e31315, 0x01aa0063, 0x90060000, 0xab98eab0
+	@@DWARF .4byte	0x29330202, 0x13160000, 0x007222e7, 0x000001aa
+	@@DWARF .byte	0x06, 0x90, 0xb8, 0xea, 0x98, 0xab, 0x02, 0x02
+	@@DWARF .byte	0x3d, 0x29, 0x00, 0x00, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini___isinff_242_187
+	@@DWARF .4byte	$LDWendi___isinff_242_186
+	@@DWARF .4byte	0x000028dd, 0x22651315, 0x01aa0061, 0x90060000
+	@@DWARF .byte	0xb0, 0xe6, 0x98, 0xab, 0x02, 0x02, 0xf5, 0x28
+	@@DWARF .byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x14
+	@@DWARF .4byte	$LDWbegini_fdividef_242_192
+	@@DWARF .4byte	$LDWendi_fdividef_242_191
+	@@DWARF .4byte	0x00002890, 0x0f8d1515, 0x01aa0061, 0x90060000
+	@@DWARF .4byte	0xab98e2b0, 0x28a80202, 0x15150000, 0x00620f8d
+	@@DWARF .4byte	0x000001aa, 0xe2b29006, 0x0202ab98, 0x000028b2
+	@@DWARF .byte	0x00, 0x14
+	@@DWARF .4byte	$LDWbegini_fdividef_242_194
+	@@DWARF .4byte	$LDWendi_fdividef_242_193
+	@@DWARF .4byte	0x00002890, 0x0f8d1515, 0x01aa0061, 0x90050000
+	@@DWARF .4byte	0x0195ccb2, 0x0028a802, 0x8d151500, 0xaa00620f
+	@@DWARF .4byte	0x05000001, 0x95ccb490, 0x28b20201, 0x00000000
+	@@DWARF .4byte	0x0f8d1519, 0x76696466, 0x66656469, 0x0001aa00
+	@@DWARF .4byte	0x01010100, 0x000028bd, 0x0f8d151a, 0x01aa0061
+	@@DWARF .4byte	0x151a0000, 0x00620f8d, 0x000001aa, 0x8a151900
+	@@DWARF .4byte	0x635f5f18, 0x6c007a6c, 0x01000001, 0x28dd0101
+	@@DWARF .4byte	0x151a0000, 0x0061188a, 0x0000016c, 0x65131900
+	@@DWARF .4byte	0x695f5f22, 0x666e6973, 0x016c0066, 0x01010000
+	@@DWARF .4byte	0x00290001, 0x65131a00, 0xaa006122, 0x00000001
+	@@DWARF .4byte	0x22e31319, 0x6e695f5f, 0x6e726574, 0x665f6c61
+	@@DWARF .4byte	0x0064616d, 0x000001aa, 0x48010101, 0x1a000029
+	@@DWARF .4byte	0x6122e313, 0x0001aa00, 0xe3131a00, 0xaa006222
+	@@DWARF .4byte	0x1a000001, 0x6322e313, 0x0001aa00, 0xe7131b00
+	@@DWARF .4byte	0xaa007222, 0x00000001, 0x23e11319, 0x6e695f5f
+	@@DWARF .4byte	0x6e726574, 0x755f6c61, 0x3364616d, 0x64697732
+	@@DWARF .4byte	0x02a10065, 0x01010000, 0x00299801, 0xe1131a00
+	@@DWARF .4byte	0xc8006123, 0x1a000000, 0x6223e113, 0x0000c800
+	@@DWARF .4byte	0xe1131a00, 0xc8006323, 0x1b000000, 0x7223e213
+	@@DWARF .4byte	0xa1007365, 0x00000002, 0x23fc1319, 0x6e695f5f
+	@@DWARF .4byte	0x6e726574, 0x745f6c61, 0x5f676972, 0x75646572
+	@@DWARF .4byte	0x6f697463, 0x6c735f6e, 0x6170776f, 0xaa006874
+	@@DWARF .4byte	0x01000001, 0x2aaa0101, 0x131a0000, 0x006123fc
+	@@DWARF .4byte	0x000001aa, 0x23fc131a, 0x64617571, 0x746e6172
+	@@DWARF .4byte	0x0002af00, 0xfd131b00, 0xa1007023, 0x1b000002
+	@@DWARF .4byte	0x6923fe13, 0x00c80061, 0x131b0000, 0x007323ff
+	@@DWARF .4byte	0x000000c8, 0x2400131b, 0x75736572, 0xb600746c
+	@@DWARF .4byte	0x1b000002, 0x68240113, 0x00c80069, 0x131b0000
+	@@DWARF .4byte	0x6f6c2401, 0x0000c800, 0x02131b00, 0xc8006524
+	@@DWARF .4byte	0x1b000000, 0x69240313, 0x6c007864, 0x1b000001
+	@@DWARF .4byte	0x71240413, 0x00016c00, 0x131b1c00, 0x00742426
+	@@DWARF .4byte	0x000000c8, 0x28bd1d00, 0x151e0000, 0x0061188a
+	@@DWARF .4byte	0x0000016c, 0x000028d2, 0x29481d00, 0x131e0000
+	@@DWARF .4byte	0x006123e1, 0x000000c8, 0x0000296d, 0x23e1131e
+	@@DWARF .4byte	0x00c80062, 0x29770000, 0x131e0000, 0x006323e1
+	@@DWARF .4byte	0x000000c8, 0x00002981, 0x23e2131f, 0x00736572
+	@@DWARF .4byte	0x000002a1, 0x0000298b, 0x13190000, 0x5f5f243e
+	@@DWARF .4byte	0x65746e69, 0x6c616e72, 0x6972745f, 0x65725f67
+	@@DWARF .4byte	0x74637564, 0x5f6e6f69, 0x6e72656b, 0xaa006c65
+	@@DWARF .4byte	0x01000001, 0x2d210101, 0x131a0000, 0x0061243e
+	@@DWARF .4byte	0x000001aa, 0x243e131a, 0x64617571, 0x746e6172
+	@@DWARF .4byte	0x0002af00, 0x3f131b00, 0xaa006a24, 0x1b000001
+	@@DWARF .4byte	0x74243f13, 0x0001aa00, 0x40131b00, 0x6c007124
+	@@DWARF .4byte	0x1d000001, 0x00002998, 0x23fc131e, 0x01aa0061
+	@@DWARF .4byte	0x29ca0000, 0x131e0000, 0x757123fc, 0x61726461
+	@@DWARF .4byte	0xaf00746e, 0xd4000002, 0x1f000029, 0x7023fd13
+	@@DWARF .4byte	0x0002a100, 0x0029e500, 0xfe131f00, 0x00616923
+	@@DWARF .4byte	0x000000c8, 0x000029ef, 0x23ff131f, 0x00c80073
+	@@DWARF .4byte	0x29fa0000, 0x131f0000, 0x65722400, 0x746c7573
+	@@DWARF .4byte	0x0002b600, 0x002a0400, 0x01131f00, 0x00696824
+	@@DWARF .4byte	0x000000c8, 0x00002a13, 0x2401131f, 0xc8006f6c
+	@@DWARF .4byte	0x1e000000, 0x1f00002a, 0x65240213, 0x0000c800
+	@@DWARF .4byte	0x002a2900, 0x03131f00, 0x78646924, 0x00016c00
+	@@DWARF .4byte	0x002a3300, 0x04131f00, 0x6c007124, 0x3f000001
+	@@DWARF .4byte	0x1c00002a, 0x2426131f, 0x00c80074, 0x2a4a0000
+	@@DWARF .4byte	0x1d000000, 0x000028bd, 0x188a151e, 0x016c0061
+	@@DWARF .4byte	0x28d20000, 0x1d000000, 0x00002948, 0x23e1131e
+	@@DWARF .4byte	0x00c80061, 0x296d0000, 0x131e0000, 0x006223e1
+	@@DWARF .4byte	0x000000c8, 0x00002977, 0x23e1131e, 0x00c80063
+	@@DWARF .4byte	0x29810000, 0x131f0000, 0x657223e2, 0x02a10073
+	@@DWARF .4byte	0x298b0000, 0x00000000, 0x0029001d, 0xe3131e00
+	@@DWARF .4byte	0xaa006122, 0x1f000001, 0x1e000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0x00292900, 0xe3131e00, 0xaa006322
+	@@DWARF .4byte	0x33000001, 0x1f000029, 0x7222e713, 0x0001aa00
+	@@DWARF .4byte	0x00293d00, 0x001d0000, 0x1e000029, 0x6122e313
+	@@DWARF .4byte	0x0001aa00, 0x00291f00, 0xe3131e00, 0xaa006222
+	@@DWARF .4byte	0x29000001, 0x1e000029, 0x6322e313, 0x0001aa00
+	@@DWARF .4byte	0x00293300, 0xe7131f00, 0xaa007222, 0x3d000001
+	@@DWARF .4byte	0x00000029, 0x0029001d, 0xe3131e00, 0xaa006122
+	@@DWARF .4byte	0x1f000001, 0x1e000029, 0x6222e313, 0x0001aa00
+	@@DWARF .4byte	0x00292900, 0xe3131e00, 0xaa006322, 0x33000001
+	@@DWARF .4byte	0x1f000029, 0x7222e713, 0x0001aa00, 0x00293d00
+	@@DWARF .4byte	0x001d0000, 0x1e000029, 0x6122e313, 0x0001aa00
+	@@DWARF .4byte	0x00291f00, 0xe3131e00, 0xaa006222, 0x29000001
+	@@DWARF .4byte	0x1e000029, 0x6322e313, 0x0001aa00, 0x00293300
+	@@DWARF .4byte	0xe7131f00, 0xaa007222, 0x3d000001, 0x00000029
+	@@DWARF .4byte	0xdd131900, 0x695f5f24, 0x7265746e, 0x5f6c616e
+	@@DWARF .4byte	0x5f6e6973, 0x6e72656b, 0xaa006c65, 0x01000001
+	@@DWARF .4byte	0x2e200101, 0x131a0000, 0x007824dd, 0x000001aa
+	@@DWARF .4byte	0x24de131b, 0xaa003278, 0x1b000001, 0x7a24de13
+	@@DWARF .4byte	0x0001aa00, 0x29001d00, 0x131e0000, 0x006122e3
+	@@DWARF .4byte	0x000001aa, 0x0000291f, 0x22e3131e, 0x01aa0062
+	@@DWARF .4byte	0x29290000, 0x131e0000, 0x006322e3, 0x000001aa
+	@@DWARF .4byte	0x00002933, 0x22e7131f, 0x01aa0072, 0x293d0000
+	@@DWARF .4byte	0x1d000000, 0x00002900, 0x22e3131e, 0x01aa0061
+	@@DWARF .4byte	0x291f0000, 0x131e0000, 0x006222e3, 0x000001aa
+	@@DWARF .4byte	0x00002929, 0x22e3131e, 0x01aa0063, 0x29330000
+	@@DWARF .4byte	0x131f0000, 0x007222e7, 0x000001aa, 0x0000293d
+	@@DWARF .4byte	0x29001d00, 0x131e0000, 0x006122e3, 0x000001aa
+	@@DWARF .4byte	0x0000291f, 0x22e3131e, 0x01aa0062, 0x29290000
+	@@DWARF .4byte	0x131e0000, 0x006322e3, 0x000001aa, 0x00002933
+	@@DWARF .4byte	0x22e7131f, 0x01aa0072, 0x293d0000, 0x00000000
+	@@DWARF .4byte	0x24ef1319, 0x6e695f5f, 0x6e726574, 0x635f6c61
+	@@DWARF .4byte	0x6b5f736f, 0x656e7265, 0x01aa006c, 0x01010000
+	@@DWARF .4byte	0x002f5d01, 0xef131a00, 0xaa007824, 0x1b000001
+	@@DWARF .4byte	0x7824f013, 0x01aa0032, 0x131b0000, 0x007a24f0
+	@@DWARF .4byte	0x000001aa, 0x0029001d, 0xe3131e00, 0xaa006122
+	@@DWARF .4byte	0x1f000001, 0x1e000029, 0x6222e313, 0x0001aa00
+	@@DWARF .4byte	0x00292900, 0xe3131e00, 0xaa006322, 0x33000001
+	@@DWARF .4byte	0x1f000029, 0x7222e713, 0x0001aa00, 0x00293d00
+	@@DWARF .4byte	0x001d0000, 0x1e000029, 0x6122e313, 0x0001aa00
+	@@DWARF .4byte	0x00291f00, 0xe3131e00, 0xaa006222, 0x29000001
+	@@DWARF .4byte	0x1e000029, 0x6322e313, 0x0001aa00, 0x00293300
+	@@DWARF .4byte	0xe7131f00, 0xaa007222, 0x3d000001, 0x00000029
+	@@DWARF .4byte	0x0029001d, 0xe3131e00, 0xaa006122, 0x1f000001
+	@@DWARF .4byte	0x1e000029, 0x6222e313, 0x0001aa00, 0x00292900
+	@@DWARF .4byte	0xe3131e00, 0xaa006322, 0x33000001, 0x1f000029
+	@@DWARF .4byte	0x7222e713, 0x0001aa00, 0x00293d00, 0x001d0000
+	@@DWARF .4byte	0x1e000029, 0x6122e313, 0x0001aa00, 0x00291f00
+	@@DWARF .4byte	0xe3131e00, 0xaa006222, 0x29000001, 0x1e000029
+	@@DWARF .4byte	0x6322e313, 0x0001aa00, 0x00293300, 0xe7131f00
+	@@DWARF .4byte	0xaa007222, 0x3d000001, 0x00000029, 0x1f132000
+	@@DWARF .4byte	0x695f5f25, 0x7265746e, 0x5f6c616e, 0x75636361
+	@@DWARF .4byte	0x65746172, 0x6e69735f, 0x66736f63, 0x01010100
+	@@DWARF .4byte	0x0000346a, 0x251f131a, 0x01aa0061, 0x131a0000
+	@@DWARF .4byte	0x7073251f, 0xb3007274, 0x1a000001, 0x63251f13
+	@@DWARF .4byte	0x00727470, 0x000001b3, 0x0002c310, 0x23131b00
+	@@DWARF .4byte	0xa8007325, 0x1000002f, 0x000002c3, 0x2523131b
+	@@DWARF .4byte	0x2fb70063, 0x131b0000, 0x00742524, 0x000001aa
+	@@DWARF .4byte	0x2525131b, 0x64617571, 0x746e6172, 0x00016c00
+	@@DWARF .4byte	0x2d211d00, 0x131e0000, 0x007824dd, 0x000001aa
+	@@DWARF .4byte	0x00002d46, 0x24de131f, 0xaa003278, 0x50000001
+	@@DWARF .4byte	0x1f00002d, 0x7a24de13, 0x0001aa00, 0x002d5b00
+	@@DWARF .4byte	0x29001d00, 0x131e0000, 0x006122e3, 0x000001aa
+	@@DWARF .4byte	0x0000291f, 0x22e3131e, 0x01aa0062, 0x29290000
+	@@DWARF .4byte	0x131e0000, 0x006322e3, 0x000001aa, 0x00002933
+	@@DWARF .4byte	0x22e7131f, 0x01aa0072, 0x293d0000, 0x1d000000
+	@@DWARF .4byte	0x00002900, 0x22e3131e, 0x01aa0061, 0x291f0000
+	@@DWARF .4byte	0x131e0000, 0x006222e3, 0x000001aa, 0x00002929
+	@@DWARF .4byte	0x22e3131e, 0x01aa0063, 0x29330000, 0x131f0000
+	@@DWARF .4byte	0x007222e7, 0x000001aa, 0x0000293d, 0x29001d00
+	@@DWARF .4byte	0x131e0000, 0x006122e3, 0x000001aa, 0x0000291f
+	@@DWARF .4byte	0x22e3131e, 0x01aa0062, 0x29290000, 0x131e0000
+	@@DWARF .4byte	0x006322e3, 0x000001aa, 0x00002933, 0x22e7131f
+	@@DWARF .4byte	0x01aa0072, 0x293d0000, 0x00000000, 0x002e201d
+	@@DWARF .4byte	0xef131e00, 0xaa007824, 0x45000001, 0x1f00002e
+	@@DWARF .4byte	0x7824f013, 0x01aa0032, 0x2e4f0000, 0x131f0000
+	@@DWARF .4byte	0x007a24f0, 0x000001aa, 0x00002e5a, 0x0029001d
+	@@DWARF .4byte	0xe3131e00, 0xaa006122, 0x1f000001, 0x1e000029
+	@@DWARF .4byte	0x6222e313, 0x0001aa00, 0x00292900, 0xe3131e00
+	@@DWARF .4byte	0xaa006322, 0x33000001, 0x1f000029, 0x7222e713
+	@@DWARF .4byte	0x0001aa00, 0x00293d00, 0x001d0000, 0x1e000029
+	@@DWARF .4byte	0x6122e313, 0x0001aa00, 0x00291f00, 0xe3131e00
+	@@DWARF .4byte	0xaa006222, 0x29000001, 0x1e000029, 0x6322e313
+	@@DWARF .4byte	0x0001aa00, 0x00293300, 0xe7131f00, 0xaa007222
+	@@DWARF .4byte	0x3d000001, 0x00000029, 0x0029001d, 0xe3131e00
+	@@DWARF .4byte	0xaa006122, 0x1f000001, 0x1e000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0x00292900, 0xe3131e00, 0xaa006322
+	@@DWARF .4byte	0x33000001, 0x1f000029, 0x7222e713, 0x0001aa00
+	@@DWARF .4byte	0x00293d00, 0x001d0000, 0x1e000029, 0x6122e313
+	@@DWARF .4byte	0x0001aa00, 0x00291f00, 0xe3131e00, 0xaa006222
+	@@DWARF .4byte	0x29000001, 0x1e000029, 0x6322e313, 0x0001aa00
+	@@DWARF .4byte	0x00293300, 0xe7131f00, 0xaa007222, 0x3d000001
+	@@DWARF .4byte	0x00000029, 0x2aaa1d00, 0x131e0000, 0x0061243e
+	@@DWARF .4byte	0x000001aa, 0x00002ada, 0x243e131e, 0x64617571
+	@@DWARF .4byte	0x746e6172, 0x0002af00, 0x002ae400, 0x3f131f00
+	@@DWARF .4byte	0xaa006a24, 0xf5000001, 0x1f00002a, 0x74243f13
+	@@DWARF .4byte	0x0001aa00, 0x002aff00, 0x40131f00, 0x6c007124
+	@@DWARF .4byte	0x09000001, 0x1d00002b, 0x00002998, 0x23fc131e
+	@@DWARF .4byte	0x01aa0061, 0x29ca0000, 0x131e0000, 0x757123fc
+	@@DWARF .4byte	0x61726461, 0xaf00746e, 0xd4000002, 0x1f000029
+	@@DWARF .4byte	0x7023fd13, 0x0002a100, 0x0029e500, 0xfe131f00
+	@@DWARF .4byte	0x00616923, 0x000000c8, 0x000029ef, 0x23ff131f
+	@@DWARF .4byte	0x00c80073, 0x29fa0000, 0x131f0000, 0x65722400
+	@@DWARF .4byte	0x746c7573, 0x0002b600, 0x002a0400, 0x01131f00
+	@@DWARF .4byte	0x00696824, 0x000000c8, 0x00002a13, 0x2401131f
+	@@DWARF .4byte	0xc8006f6c, 0x1e000000, 0x1f00002a, 0x65240213
+	@@DWARF .4byte	0x0000c800, 0x002a2900, 0x03131f00, 0x78646924
+	@@DWARF .4byte	0x00016c00, 0x002a3300, 0x04131f00, 0x6c007124
+	@@DWARF .4byte	0x3f000001, 0x1c00002a, 0x2426131f, 0x00c80074
+	@@DWARF .4byte	0x2a4a0000, 0x1d000000, 0x000028bd, 0x188a151e
+	@@DWARF .4byte	0x016c0061, 0x28d20000, 0x1d000000, 0x00002948
+	@@DWARF .4byte	0x23e1131e, 0x00c80061, 0x296d0000, 0x131e0000
+	@@DWARF .4byte	0x006223e1, 0x000000c8, 0x00002977, 0x23e1131e
+	@@DWARF .4byte	0x00c80063, 0x29810000, 0x131f0000, 0x657223e2
+	@@DWARF .4byte	0x02a10073, 0x298b0000, 0x00000000, 0x0029001d
+	@@DWARF .4byte	0xe3131e00, 0xaa006122, 0x1f000001, 0x1e000029
+	@@DWARF .4byte	0x6222e313, 0x0001aa00, 0x00292900, 0xe3131e00
+	@@DWARF .4byte	0xaa006322, 0x33000001, 0x1f000029, 0x7222e713
+	@@DWARF .4byte	0x0001aa00, 0x00293d00, 0x001d0000, 0x1e000029
+	@@DWARF .4byte	0x6122e313, 0x0001aa00, 0x00291f00, 0xe3131e00
+	@@DWARF .4byte	0xaa006222, 0x29000001, 0x1e000029, 0x6322e313
+	@@DWARF .4byte	0x0001aa00, 0x00293300, 0xe7131f00, 0xaa007222
+	@@DWARF .4byte	0x3d000001, 0x00000029, 0x0029001d, 0xe3131e00
+	@@DWARF .4byte	0xaa006122, 0x1f000001, 0x1e000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0x00292900, 0xe3131e00, 0xaa006322
+	@@DWARF .4byte	0x33000001, 0x1f000029, 0x7222e713, 0x0001aa00
+	@@DWARF .4byte	0x00293d00, 0x001d0000, 0x1e000029, 0x6122e313
+	@@DWARF .4byte	0x0001aa00, 0x00291f00, 0xe3131e00, 0xaa006222
+	@@DWARF .4byte	0x29000001, 0x1e000029, 0x6322e313, 0x0001aa00
+	@@DWARF .4byte	0x00293300, 0xe7131f00, 0xaa007222, 0x3d000001
+	@@DWARF .4byte	0x00000029, 0x28dd1d00, 0x131e0000, 0x00612265
+	@@DWARF .4byte	0x000001aa, 0x000028f5, 0x13190000, 0x5f5f2543
+	@@DWARF .4byte	0x65746e69, 0x6c616e72, 0x6363615f, 0x74617275
+	@@DWARF .4byte	0x69735f65, 0xaa00666e, 0x01000001, 0x39ae0101
+	@@DWARF .4byte	0x131a0000, 0x00612543, 0x000001aa, 0x2545131b
+	@@DWARF .4byte	0x01aa0073, 0x131b0000, 0x00632545, 0x000001aa
+	@@DWARF .4byte	0x002f5d1d, 0x1f131e00, 0xaa006125, 0x84000001
+	@@DWARF .4byte	0x1e00002f, 0x73251f13, 0x00727470, 0x000001b3
+	@@DWARF .4byte	0x00002f8e, 0x251f131e, 0x72747063, 0x0001b300
+	@@DWARF .4byte	0x002f9b00, 0x23131f00, 0xa8007325, 0xad00002f
+	@@DWARF .4byte	0x1f00002f, 0x63252313, 0x002fb700, 0x002fbc00
+	@@DWARF .4byte	0x24131f00, 0xaa007425, 0xc6000001, 0x1f00002f
+	@@DWARF .4byte	0x71252513, 0x72646175, 0x00746e61, 0x0000016c
+	@@DWARF .4byte	0x00002fd0, 0x002d211d, 0xdd131e00, 0xaa007824
+	@@DWARF .4byte	0x46000001, 0x1f00002d, 0x7824de13, 0x01aa0032
+	@@DWARF .4byte	0x2d500000, 0x131f0000, 0x007a24de, 0x000001aa
+	@@DWARF .4byte	0x00002d5b, 0x0029001d, 0xe3131e00, 0xaa006122
+	@@DWARF .4byte	0x1f000001, 0x1e000029, 0x6222e313, 0x0001aa00
+	@@DWARF .4byte	0x00292900, 0xe3131e00, 0xaa006322, 0x33000001
+	@@DWARF .4byte	0x1f000029, 0x7222e713, 0x0001aa00, 0x00293d00
+	@@DWARF .4byte	0x001d0000, 0x1e000029, 0x6122e313, 0x0001aa00
+	@@DWARF .4byte	0x00291f00, 0xe3131e00, 0xaa006222, 0x29000001
+	@@DWARF .4byte	0x1e000029, 0x6322e313, 0x0001aa00, 0x00293300
+	@@DWARF .4byte	0xe7131f00, 0xaa007222, 0x3d000001, 0x00000029
+	@@DWARF .4byte	0x0029001d, 0xe3131e00, 0xaa006122, 0x1f000001
+	@@DWARF .4byte	0x1e000029, 0x6222e313, 0x0001aa00, 0x00292900
+	@@DWARF .4byte	0xe3131e00, 0xaa006322, 0x33000001, 0x1f000029
+	@@DWARF .4byte	0x7222e713, 0x0001aa00, 0x00293d00, 0x1d000000
+	@@DWARF .4byte	0x00002e20, 0x24ef131e, 0x01aa0078, 0x2e450000
+	@@DWARF .4byte	0x131f0000, 0x327824f0, 0x0001aa00, 0x002e4f00
+	@@DWARF .4byte	0xf0131f00, 0xaa007a24, 0x5a000001, 0x1d00002e
+	@@DWARF .4byte	0x00002900, 0x22e3131e, 0x01aa0061, 0x291f0000
+	@@DWARF .4byte	0x131e0000, 0x006222e3, 0x000001aa, 0x00002929
+	@@DWARF .4byte	0x22e3131e, 0x01aa0063, 0x29330000, 0x131f0000
+	@@DWARF .4byte	0x007222e7, 0x000001aa, 0x0000293d, 0x29001d00
+	@@DWARF .4byte	0x131e0000, 0x006122e3, 0x000001aa, 0x0000291f
+	@@DWARF .4byte	0x22e3131e, 0x01aa0062, 0x29290000, 0x131e0000
+	@@DWARF .4byte	0x006322e3, 0x000001aa, 0x00002933, 0x22e7131f
+	@@DWARF .4byte	0x01aa0072, 0x293d0000, 0x1d000000, 0x00002900
+	@@DWARF .4byte	0x22e3131e, 0x01aa0061, 0x291f0000, 0x131e0000
+	@@DWARF .4byte	0x006222e3, 0x000001aa, 0x00002929, 0x22e3131e
+	@@DWARF .4byte	0x01aa0063, 0x29330000, 0x131f0000, 0x007222e7
+	@@DWARF .4byte	0x000001aa, 0x0000293d, 0x29001d00, 0x131e0000
+	@@DWARF .4byte	0x006122e3, 0x000001aa, 0x0000291f, 0x22e3131e
+	@@DWARF .4byte	0x01aa0062, 0x29290000, 0x131e0000, 0x006322e3
+	@@DWARF .4byte	0x000001aa, 0x00002933, 0x22e7131f, 0x01aa0072
+	@@DWARF .4byte	0x293d0000, 0x00000000, 0x002aaa1d, 0x3e131e00
+	@@DWARF .4byte	0xaa006124, 0xda000001, 0x1e00002a, 0x71243e13
+	@@DWARF .4byte	0x72646175, 0x00746e61, 0x000002af, 0x00002ae4
+	@@DWARF .4byte	0x243f131f, 0x01aa006a, 0x2af50000, 0x131f0000
+	@@DWARF .4byte	0x0074243f, 0x000001aa, 0x00002aff, 0x2440131f
+	@@DWARF .4byte	0x016c0071, 0x2b090000, 0x981d0000, 0x1e000029
+	@@DWARF .4byte	0x6123fc13, 0x0001aa00, 0x0029ca00, 0xfc131e00
+	@@DWARF .4byte	0x61757123, 0x6e617264, 0x02af0074, 0x29d40000
+	@@DWARF .4byte	0x131f0000, 0x007023fd, 0x000002a1, 0x000029e5
+	@@DWARF .4byte	0x23fe131f, 0xc8006169, 0xef000000, 0x1f000029
+	@@DWARF .4byte	0x7323ff13, 0x0000c800, 0x0029fa00, 0x00131f00
+	@@DWARF .4byte	0x73657224, 0x00746c75, 0x000002b6, 0x00002a04
+	@@DWARF .4byte	0x2401131f, 0xc8006968, 0x13000000, 0x1f00002a
+	@@DWARF .4byte	0x6c240113, 0x00c8006f, 0x2a1e0000, 0x131f0000
+	@@DWARF .4byte	0x00652402, 0x000000c8, 0x00002a29, 0x2403131f
+	@@DWARF .4byte	0x00786469, 0x0000016c, 0x00002a33, 0x2404131f
+	@@DWARF .4byte	0x016c0071, 0x2a3f0000, 0x1f1c0000, 0x74242613
+	@@DWARF .4byte	0x0000c800, 0x002a4a00, 0xbd1d0000, 0x1e000028
+	@@DWARF .4byte	0x61188a15, 0x00016c00, 0x0028d200, 0x481d0000
+	@@DWARF .4byte	0x1e000029, 0x6123e113, 0x0000c800, 0x00296d00
+	@@DWARF .4byte	0xe1131e00, 0xc8006223, 0x77000000, 0x1e000029
+	@@DWARF .4byte	0x6323e113, 0x0000c800, 0x00298100, 0xe2131f00
+	@@DWARF .4byte	0x73657223, 0x0002a100, 0x00298b00, 0x1d000000
+	@@DWARF .4byte	0x00002900, 0x22e3131e, 0x01aa0061, 0x291f0000
+	@@DWARF .4byte	0x131e0000, 0x006222e3, 0x000001aa, 0x00002929
+	@@DWARF .4byte	0x22e3131e, 0x01aa0063, 0x29330000, 0x131f0000
+	@@DWARF .4byte	0x007222e7, 0x000001aa, 0x0000293d, 0x29001d00
+	@@DWARF .4byte	0x131e0000, 0x006122e3, 0x000001aa, 0x0000291f
+	@@DWARF .4byte	0x22e3131e, 0x01aa0062, 0x29290000, 0x131e0000
+	@@DWARF .4byte	0x006322e3, 0x000001aa, 0x00002933, 0x22e7131f
+	@@DWARF .4byte	0x01aa0072, 0x293d0000, 0x1d000000, 0x00002900
+	@@DWARF .4byte	0x22e3131e, 0x01aa0061, 0x291f0000, 0x131e0000
+	@@DWARF .4byte	0x006222e3, 0x000001aa, 0x00002929, 0x22e3131e
+	@@DWARF .4byte	0x01aa0063, 0x29330000, 0x131f0000, 0x007222e7
+	@@DWARF .4byte	0x000001aa, 0x0000293d, 0x29001d00, 0x131e0000
+	@@DWARF .4byte	0x006122e3, 0x000001aa, 0x0000291f, 0x22e3131e
+	@@DWARF .4byte	0x01aa0062, 0x29290000, 0x131e0000, 0x006322e3
+	@@DWARF .4byte	0x000001aa, 0x00002933, 0x22e7131f, 0x01aa0072
+	@@DWARF .4byte	0x293d0000, 0x00000000, 0x0028dd1d, 0x65131e00
+	@@DWARF .4byte	0xaa006122, 0xf5000001, 0x00000028, 0x13190000
+	@@DWARF .4byte	0x5f5f2556, 0x65746e69, 0x6c616e72, 0x6363615f
+	@@DWARF .4byte	0x74617275, 0x6f635f65, 0xaa006673, 0x01000001
+	@@DWARF .4byte	0x3ef20101, 0x131a0000, 0x00612556, 0x000001aa
+	@@DWARF .4byte	0x2558131b, 0x01aa0073, 0x131b0000, 0x00632558
+	@@DWARF .4byte	0x000001aa, 0x002f5d1d, 0x1f131e00, 0xaa006125
+	@@DWARF .4byte	0x84000001, 0x1e00002f, 0x73251f13, 0x00727470
+	@@DWARF .4byte	0x000001b3, 0x00002f8e, 0x251f131e, 0x72747063
+	@@DWARF .4byte	0x0001b300, 0x002f9b00, 0x23131f00, 0xa8007325
+	@@DWARF .4byte	0xad00002f, 0x1f00002f, 0x63252313, 0x002fb700
+	@@DWARF .4byte	0x002fbc00, 0x24131f00, 0xaa007425, 0xc6000001
+	@@DWARF .4byte	0x1f00002f, 0x71252513, 0x72646175, 0x00746e61
+	@@DWARF .4byte	0x0000016c, 0x00002fd0, 0x002d211d, 0xdd131e00
+	@@DWARF .4byte	0xaa007824, 0x46000001, 0x1f00002d, 0x7824de13
+	@@DWARF .4byte	0x01aa0032, 0x2d500000, 0x131f0000, 0x007a24de
+	@@DWARF .4byte	0x000001aa, 0x00002d5b, 0x0029001d, 0xe3131e00
+	@@DWARF .4byte	0xaa006122, 0x1f000001, 0x1e000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0x00292900, 0xe3131e00, 0xaa006322
+	@@DWARF .4byte	0x33000001, 0x1f000029, 0x7222e713, 0x0001aa00
+	@@DWARF .4byte	0x00293d00, 0x001d0000, 0x1e000029, 0x6122e313
+	@@DWARF .4byte	0x0001aa00, 0x00291f00, 0xe3131e00, 0xaa006222
+	@@DWARF .4byte	0x29000001, 0x1e000029, 0x6322e313, 0x0001aa00
+	@@DWARF .4byte	0x00293300, 0xe7131f00, 0xaa007222, 0x3d000001
+	@@DWARF .4byte	0x00000029, 0x0029001d, 0xe3131e00, 0xaa006122
+	@@DWARF .4byte	0x1f000001, 0x1e000029, 0x6222e313, 0x0001aa00
+	@@DWARF .4byte	0x00292900, 0xe3131e00, 0xaa006322, 0x33000001
+	@@DWARF .4byte	0x1f000029, 0x7222e713, 0x0001aa00, 0x00293d00
+	@@DWARF .4byte	0x1d000000, 0x00002e20, 0x24ef131e, 0x01aa0078
+	@@DWARF .4byte	0x2e450000, 0x131f0000, 0x327824f0, 0x0001aa00
+	@@DWARF .4byte	0x002e4f00, 0xf0131f00, 0xaa007a24, 0x5a000001
+	@@DWARF .4byte	0x1d00002e, 0x00002900, 0x22e3131e, 0x01aa0061
+	@@DWARF .4byte	0x291f0000, 0x131e0000, 0x006222e3, 0x000001aa
+	@@DWARF .4byte	0x00002929, 0x22e3131e, 0x01aa0063, 0x29330000
+	@@DWARF .4byte	0x131f0000, 0x007222e7, 0x000001aa, 0x0000293d
+	@@DWARF .4byte	0x29001d00, 0x131e0000, 0x006122e3, 0x000001aa
+	@@DWARF .4byte	0x0000291f, 0x22e3131e, 0x01aa0062, 0x29290000
+	@@DWARF .4byte	0x131e0000, 0x006322e3, 0x000001aa, 0x00002933
+	@@DWARF .4byte	0x22e7131f, 0x01aa0072, 0x293d0000, 0x1d000000
+	@@DWARF .4byte	0x00002900, 0x22e3131e, 0x01aa0061, 0x291f0000
+	@@DWARF .4byte	0x131e0000, 0x006222e3, 0x000001aa, 0x00002929
+	@@DWARF .4byte	0x22e3131e, 0x01aa0063, 0x29330000, 0x131f0000
+	@@DWARF .4byte	0x007222e7, 0x000001aa, 0x0000293d, 0x29001d00
+	@@DWARF .4byte	0x131e0000, 0x006122e3, 0x000001aa, 0x0000291f
+	@@DWARF .4byte	0x22e3131e, 0x01aa0062, 0x29290000, 0x131e0000
+	@@DWARF .4byte	0x006322e3, 0x000001aa, 0x00002933, 0x22e7131f
+	@@DWARF .4byte	0x01aa0072, 0x293d0000, 0x00000000, 0x002aaa1d
+	@@DWARF .4byte	0x3e131e00, 0xaa006124, 0xda000001, 0x1e00002a
+	@@DWARF .4byte	0x71243e13, 0x72646175, 0x00746e61, 0x000002af
+	@@DWARF .4byte	0x00002ae4, 0x243f131f, 0x01aa006a, 0x2af50000
+	@@DWARF .4byte	0x131f0000, 0x0074243f, 0x000001aa, 0x00002aff
+	@@DWARF .4byte	0x2440131f, 0x016c0071, 0x2b090000, 0x981d0000
+	@@DWARF .4byte	0x1e000029, 0x6123fc13, 0x0001aa00, 0x0029ca00
+	@@DWARF .4byte	0xfc131e00, 0x61757123, 0x6e617264, 0x02af0074
+	@@DWARF .4byte	0x29d40000, 0x131f0000, 0x007023fd, 0x000002a1
+	@@DWARF .4byte	0x000029e5, 0x23fe131f, 0xc8006169, 0xef000000
+	@@DWARF .4byte	0x1f000029, 0x7323ff13, 0x0000c800, 0x0029fa00
+	@@DWARF .4byte	0x00131f00, 0x73657224, 0x00746c75, 0x000002b6
+	@@DWARF .4byte	0x00002a04, 0x2401131f, 0xc8006968, 0x13000000
+	@@DWARF .4byte	0x1f00002a, 0x6c240113, 0x00c8006f, 0x2a1e0000
+	@@DWARF .4byte	0x131f0000, 0x00652402, 0x000000c8, 0x00002a29
+	@@DWARF .4byte	0x2403131f, 0x00786469, 0x0000016c, 0x00002a33
+	@@DWARF .4byte	0x2404131f, 0x016c0071, 0x2a3f0000, 0x1f1c0000
+	@@DWARF .4byte	0x74242613, 0x0000c800, 0x002a4a00, 0xbd1d0000
+	@@DWARF .4byte	0x1e000028, 0x61188a15, 0x00016c00, 0x0028d200
+	@@DWARF .4byte	0x481d0000, 0x1e000029, 0x6123e113, 0x0000c800
+	@@DWARF .4byte	0x00296d00, 0xe1131e00, 0xc8006223, 0x77000000
+	@@DWARF .4byte	0x1e000029, 0x6323e113, 0x0000c800, 0x00298100
+	@@DWARF .4byte	0xe2131f00, 0x73657223, 0x0002a100, 0x00298b00
+	@@DWARF .4byte	0x1d000000, 0x00002900, 0x22e3131e, 0x01aa0061
+	@@DWARF .4byte	0x291f0000, 0x131e0000, 0x006222e3, 0x000001aa
+	@@DWARF .4byte	0x00002929, 0x22e3131e, 0x01aa0063, 0x29330000
+	@@DWARF .4byte	0x131f0000, 0x007222e7, 0x000001aa, 0x0000293d
+	@@DWARF .4byte	0x29001d00, 0x131e0000, 0x006122e3, 0x000001aa
+	@@DWARF .4byte	0x0000291f, 0x22e3131e, 0x01aa0062, 0x29290000
+	@@DWARF .4byte	0x131e0000, 0x006322e3, 0x000001aa, 0x00002933
+	@@DWARF .4byte	0x22e7131f, 0x01aa0072, 0x293d0000, 0x1d000000
+	@@DWARF .4byte	0x00002900, 0x22e3131e, 0x01aa0061, 0x291f0000
+	@@DWARF .4byte	0x131e0000, 0x006222e3, 0x000001aa, 0x00002929
+	@@DWARF .4byte	0x22e3131e, 0x01aa0063, 0x29330000, 0x131f0000
+	@@DWARF .4byte	0x007222e7, 0x000001aa, 0x0000293d, 0x29001d00
+	@@DWARF .4byte	0x131e0000, 0x006122e3, 0x000001aa, 0x0000291f
+	@@DWARF .4byte	0x22e3131e, 0x01aa0062, 0x29290000, 0x131e0000
+	@@DWARF .4byte	0x006322e3, 0x000001aa, 0x00002933, 0x22e7131f
+	@@DWARF .4byte	0x01aa0072, 0x293d0000, 0x00000000, 0x0028dd1d
+	@@DWARF .4byte	0x65131e00, 0xaa006122, 0xf5000001, 0x00000028
+	@@DWARF .4byte	0x13190000, 0x6973257e, 0xaa00666e, 0x01000001
+	@@DWARF .4byte	0x443e0101, 0x131a0000, 0x0061257e, 0x000001aa
+	@@DWARF .4byte	0x00346a1d, 0x43131e00, 0xaa006125, 0x92000001
+	@@DWARF .4byte	0x1f000034, 0x73254513, 0x0001aa00, 0x00349c00
+	@@DWARF .4byte	0x45131f00, 0xaa006325, 0xa6000001, 0x1d000034
+	@@DWARF .4byte	0x00002f5d, 0x251f131e, 0x01aa0061, 0x2f840000
+	@@DWARF .4byte	0x131e0000, 0x7073251f, 0xb3007274, 0x8e000001
+	@@DWARF .4byte	0x1e00002f, 0x63251f13, 0x00727470, 0x000001b3
+	@@DWARF .4byte	0x00002f9b, 0x2523131f, 0x2fa80073, 0x2fad0000
+	@@DWARF .4byte	0x131f0000, 0x00632523, 0x00002fb7, 0x00002fbc
+	@@DWARF .4byte	0x2524131f, 0x01aa0074, 0x2fc60000, 0x131f0000
+	@@DWARF .4byte	0x75712525, 0x61726461, 0x6c00746e, 0xd0000001
+	@@DWARF .4byte	0x1d00002f, 0x00002d21, 0x24dd131e, 0x01aa0078
+	@@DWARF .4byte	0x2d460000, 0x131f0000, 0x327824de, 0x0001aa00
+	@@DWARF .4byte	0x002d5000, 0xde131f00, 0xaa007a24, 0x5b000001
+	@@DWARF .4byte	0x1d00002d, 0x00002900, 0x22e3131e, 0x01aa0061
+	@@DWARF .4byte	0x291f0000, 0x131e0000, 0x006222e3, 0x000001aa
+	@@DWARF .4byte	0x00002929, 0x22e3131e, 0x01aa0063, 0x29330000
+	@@DWARF .4byte	0x131f0000, 0x007222e7, 0x000001aa, 0x0000293d
+	@@DWARF .4byte	0x29001d00, 0x131e0000, 0x006122e3, 0x000001aa
+	@@DWARF .4byte	0x0000291f, 0x22e3131e, 0x01aa0062, 0x29290000
+	@@DWARF .4byte	0x131e0000, 0x006322e3, 0x000001aa, 0x00002933
+	@@DWARF .4byte	0x22e7131f, 0x01aa0072, 0x293d0000, 0x1d000000
+	@@DWARF .4byte	0x00002900, 0x22e3131e, 0x01aa0061, 0x291f0000
+	@@DWARF .4byte	0x131e0000, 0x006222e3, 0x000001aa, 0x00002929
+	@@DWARF .4byte	0x22e3131e, 0x01aa0063, 0x29330000, 0x131f0000
+	@@DWARF .4byte	0x007222e7, 0x000001aa, 0x0000293d, 0x201d0000
+	@@DWARF .4byte	0x1e00002e, 0x7824ef13, 0x0001aa00, 0x002e4500
+	@@DWARF .4byte	0xf0131f00, 0x00327824, 0x000001aa, 0x00002e4f
+	@@DWARF .4byte	0x24f0131f, 0x01aa007a, 0x2e5a0000, 0x001d0000
+	@@DWARF .4byte	0x1e000029, 0x6122e313, 0x0001aa00, 0x00291f00
+	@@DWARF .4byte	0xe3131e00, 0xaa006222, 0x29000001, 0x1e000029
+	@@DWARF .4byte	0x6322e313, 0x0001aa00, 0x00293300, 0xe7131f00
+	@@DWARF .4byte	0xaa007222, 0x3d000001, 0x00000029, 0x0029001d
+	@@DWARF .4byte	0xe3131e00, 0xaa006122, 0x1f000001, 0x1e000029
+	@@DWARF .4byte	0x6222e313, 0x0001aa00, 0x00292900, 0xe3131e00
+	@@DWARF .4byte	0xaa006322, 0x33000001, 0x1f000029, 0x7222e713
+	@@DWARF .4byte	0x0001aa00, 0x00293d00, 0x001d0000, 0x1e000029
+	@@DWARF .4byte	0x6122e313, 0x0001aa00, 0x00291f00, 0xe3131e00
+	@@DWARF .4byte	0xaa006222, 0x29000001, 0x1e000029, 0x6322e313
+	@@DWARF .4byte	0x0001aa00, 0x00293300, 0xe7131f00, 0xaa007222
+	@@DWARF .4byte	0x3d000001, 0x00000029, 0x0029001d, 0xe3131e00
+	@@DWARF .4byte	0xaa006122, 0x1f000001, 0x1e000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0x00292900, 0xe3131e00, 0xaa006322
+	@@DWARF .4byte	0x33000001, 0x1f000029, 0x7222e713, 0x0001aa00
+	@@DWARF .4byte	0x00293d00, 0x1d000000, 0x00002aaa, 0x243e131e
+	@@DWARF .4byte	0x01aa0061, 0x2ada0000, 0x131e0000, 0x7571243e
+	@@DWARF .4byte	0x61726461, 0xaf00746e, 0xe4000002, 0x1f00002a
+	@@DWARF .4byte	0x6a243f13, 0x0001aa00, 0x002af500, 0x3f131f00
+	@@DWARF .4byte	0xaa007424, 0xff000001, 0x1f00002a, 0x71244013
+	@@DWARF .4byte	0x00016c00, 0x002b0900, 0x29981d00, 0x131e0000
+	@@DWARF .4byte	0x006123fc, 0x000001aa, 0x000029ca, 0x23fc131e
+	@@DWARF .4byte	0x64617571, 0x746e6172, 0x0002af00, 0x0029d400
+	@@DWARF .4byte	0xfd131f00, 0xa1007023, 0xe5000002, 0x1f000029
+	@@DWARF .4byte	0x6923fe13, 0x00c80061, 0x29ef0000, 0x131f0000
+	@@DWARF .4byte	0x007323ff, 0x000000c8, 0x000029fa, 0x2400131f
+	@@DWARF .4byte	0x75736572, 0xb600746c, 0x04000002, 0x1f00002a
+	@@DWARF .4byte	0x68240113, 0x00c80069, 0x2a130000, 0x131f0000
+	@@DWARF .4byte	0x6f6c2401, 0x0000c800, 0x002a1e00, 0x02131f00
+	@@DWARF .4byte	0xc8006524, 0x29000000, 0x1f00002a, 0x69240313
+	@@DWARF .4byte	0x6c007864, 0x33000001, 0x1f00002a, 0x71240413
+	@@DWARF .4byte	0x00016c00, 0x002a3f00, 0x131f1c00, 0x00742426
+	@@DWARF .4byte	0x000000c8, 0x00002a4a, 0x28bd1d00, 0x151e0000
+	@@DWARF .4byte	0x0061188a, 0x0000016c, 0x000028d2, 0x29481d00
+	@@DWARF .4byte	0x131e0000, 0x006123e1, 0x000000c8, 0x0000296d
+	@@DWARF .4byte	0x23e1131e, 0x00c80062, 0x29770000, 0x131e0000
+	@@DWARF .4byte	0x006323e1, 0x000000c8, 0x00002981, 0x23e2131f
+	@@DWARF .4byte	0x00736572, 0x000002a1, 0x0000298b, 0x001d0000
+	@@DWARF .4byte	0x1e000029, 0x6122e313, 0x0001aa00, 0x00291f00
+	@@DWARF .4byte	0xe3131e00, 0xaa006222, 0x29000001, 0x1e000029
+	@@DWARF .4byte	0x6322e313, 0x0001aa00, 0x00293300, 0xe7131f00
+	@@DWARF .4byte	0xaa007222, 0x3d000001, 0x00000029, 0x0029001d
+	@@DWARF .4byte	0xe3131e00, 0xaa006122, 0x1f000001, 0x1e000029
+	@@DWARF .4byte	0x6222e313, 0x0001aa00, 0x00292900, 0xe3131e00
+	@@DWARF .4byte	0xaa006322, 0x33000001, 0x1f000029, 0x7222e713
+	@@DWARF .4byte	0x0001aa00, 0x00293d00, 0x001d0000, 0x1e000029
+	@@DWARF .4byte	0x6122e313, 0x0001aa00, 0x00291f00, 0xe3131e00
+	@@DWARF .4byte	0xaa006222, 0x29000001, 0x1e000029, 0x6322e313
+	@@DWARF .4byte	0x0001aa00, 0x00293300, 0xe7131f00, 0xaa007222
+	@@DWARF .4byte	0x3d000001, 0x00000029, 0x0029001d, 0xe3131e00
+	@@DWARF .4byte	0xaa006122, 0x1f000001, 0x1e000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0x00292900, 0xe3131e00, 0xaa006322
+	@@DWARF .4byte	0x33000001, 0x1f000029, 0x7222e713, 0x0001aa00
+	@@DWARF .4byte	0x00293d00, 0x1d000000, 0x000028dd, 0x2265131e
+	@@DWARF .4byte	0x01aa0061, 0x28f50000, 0x00000000, 0x13190000
+	@@DWARF .4byte	0x6f632587, 0xaa006673, 0x01000001, 0x498a0101
+	@@DWARF .4byte	0x131a0000, 0x00612587, 0x000001aa, 0x0039ae1d
+	@@DWARF .4byte	0x56131e00, 0xaa006125, 0xd6000001, 0x1f000039
+	@@DWARF .4byte	0x73255813, 0x0001aa00, 0x0039e000, 0x58131f00
+	@@DWARF .4byte	0xaa006325, 0xea000001, 0x1d000039, 0x00002f5d
+	@@DWARF .4byte	0x251f131e, 0x01aa0061, 0x2f840000, 0x131e0000
+	@@DWARF .4byte	0x7073251f, 0xb3007274, 0x8e000001, 0x1e00002f
+	@@DWARF .4byte	0x63251f13, 0x00727470, 0x000001b3, 0x00002f9b
+	@@DWARF .4byte	0x2523131f, 0x2fa80073, 0x2fad0000, 0x131f0000
+	@@DWARF .4byte	0x00632523, 0x00002fb7, 0x00002fbc, 0x2524131f
+	@@DWARF .4byte	0x01aa0074, 0x2fc60000, 0x131f0000, 0x75712525
+	@@DWARF .4byte	0x61726461, 0x6c00746e, 0xd0000001, 0x1d00002f
+	@@DWARF .4byte	0x00002d21, 0x24dd131e, 0x01aa0078, 0x2d460000
+	@@DWARF .4byte	0x131f0000, 0x327824de, 0x0001aa00, 0x002d5000
+	@@DWARF .4byte	0xde131f00, 0xaa007a24, 0x5b000001, 0x1d00002d
+	@@DWARF .4byte	0x00002900, 0x22e3131e, 0x01aa0061, 0x291f0000
+	@@DWARF .4byte	0x131e0000, 0x006222e3, 0x000001aa, 0x00002929
+	@@DWARF .4byte	0x22e3131e, 0x01aa0063, 0x29330000, 0x131f0000
+	@@DWARF .4byte	0x007222e7, 0x000001aa, 0x0000293d, 0x29001d00
+	@@DWARF .4byte	0x131e0000, 0x006122e3, 0x000001aa, 0x0000291f
+	@@DWARF .4byte	0x22e3131e, 0x01aa0062, 0x29290000, 0x131e0000
+	@@DWARF .4byte	0x006322e3, 0x000001aa, 0x00002933, 0x22e7131f
+	@@DWARF .4byte	0x01aa0072, 0x293d0000, 0x1d000000, 0x00002900
+	@@DWARF .4byte	0x22e3131e, 0x01aa0061, 0x291f0000, 0x131e0000
+	@@DWARF .4byte	0x006222e3, 0x000001aa, 0x00002929, 0x22e3131e
+	@@DWARF .4byte	0x01aa0063, 0x29330000, 0x131f0000, 0x007222e7
+	@@DWARF .4byte	0x000001aa, 0x0000293d, 0x201d0000, 0x1e00002e
+	@@DWARF .4byte	0x7824ef13, 0x0001aa00, 0x002e4500, 0xf0131f00
+	@@DWARF .4byte	0x00327824, 0x000001aa, 0x00002e4f, 0x24f0131f
+	@@DWARF .4byte	0x01aa007a, 0x2e5a0000, 0x001d0000, 0x1e000029
+	@@DWARF .4byte	0x6122e313, 0x0001aa00, 0x00291f00, 0xe3131e00
+	@@DWARF .4byte	0xaa006222, 0x29000001, 0x1e000029, 0x6322e313
+	@@DWARF .4byte	0x0001aa00, 0x00293300, 0xe7131f00, 0xaa007222
+	@@DWARF .4byte	0x3d000001, 0x00000029, 0x0029001d, 0xe3131e00
+	@@DWARF .4byte	0xaa006122, 0x1f000001, 0x1e000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0x00292900, 0xe3131e00, 0xaa006322
+	@@DWARF .4byte	0x33000001, 0x1f000029, 0x7222e713, 0x0001aa00
+	@@DWARF .4byte	0x00293d00, 0x001d0000, 0x1e000029, 0x6122e313
+	@@DWARF .4byte	0x0001aa00, 0x00291f00, 0xe3131e00, 0xaa006222
+	@@DWARF .4byte	0x29000001, 0x1e000029, 0x6322e313, 0x0001aa00
+	@@DWARF .4byte	0x00293300, 0xe7131f00, 0xaa007222, 0x3d000001
+	@@DWARF .4byte	0x00000029, 0x0029001d, 0xe3131e00, 0xaa006122
+	@@DWARF .4byte	0x1f000001, 0x1e000029, 0x6222e313, 0x0001aa00
+	@@DWARF .4byte	0x00292900, 0xe3131e00, 0xaa006322, 0x33000001
+	@@DWARF .4byte	0x1f000029, 0x7222e713, 0x0001aa00, 0x00293d00
+	@@DWARF .4byte	0x1d000000, 0x00002aaa, 0x243e131e, 0x01aa0061
+	@@DWARF .4byte	0x2ada0000, 0x131e0000, 0x7571243e, 0x61726461
+	@@DWARF .4byte	0xaf00746e, 0xe4000002, 0x1f00002a, 0x6a243f13
+	@@DWARF .4byte	0x0001aa00, 0x002af500, 0x3f131f00, 0xaa007424
+	@@DWARF .4byte	0xff000001, 0x1f00002a, 0x71244013, 0x00016c00
+	@@DWARF .4byte	0x002b0900, 0x29981d00, 0x131e0000, 0x006123fc
+	@@DWARF .4byte	0x000001aa, 0x000029ca, 0x23fc131e, 0x64617571
+	@@DWARF .4byte	0x746e6172, 0x0002af00, 0x0029d400, 0xfd131f00
+	@@DWARF .4byte	0xa1007023, 0xe5000002, 0x1f000029, 0x6923fe13
+	@@DWARF .4byte	0x00c80061, 0x29ef0000, 0x131f0000, 0x007323ff
+	@@DWARF .4byte	0x000000c8, 0x000029fa, 0x2400131f, 0x75736572
+	@@DWARF .4byte	0xb600746c, 0x04000002, 0x1f00002a, 0x68240113
+	@@DWARF .4byte	0x00c80069, 0x2a130000, 0x131f0000, 0x6f6c2401
+	@@DWARF .4byte	0x0000c800, 0x002a1e00, 0x02131f00, 0xc8006524
+	@@DWARF .4byte	0x29000000, 0x1f00002a, 0x69240313, 0x6c007864
+	@@DWARF .4byte	0x33000001, 0x1f00002a, 0x71240413, 0x00016c00
+	@@DWARF .4byte	0x002a3f00, 0x131f1c00, 0x00742426, 0x000000c8
+	@@DWARF .4byte	0x00002a4a, 0x28bd1d00, 0x151e0000, 0x0061188a
+	@@DWARF .4byte	0x0000016c, 0x000028d2, 0x29481d00, 0x131e0000
+	@@DWARF .4byte	0x006123e1, 0x000000c8, 0x0000296d, 0x23e1131e
+	@@DWARF .4byte	0x00c80062, 0x29770000, 0x131e0000, 0x006323e1
+	@@DWARF .4byte	0x000000c8, 0x00002981, 0x23e2131f, 0x00736572
+	@@DWARF .4byte	0x000002a1, 0x0000298b, 0x001d0000, 0x1e000029
+	@@DWARF .4byte	0x6122e313, 0x0001aa00, 0x00291f00, 0xe3131e00
+	@@DWARF .4byte	0xaa006222, 0x29000001, 0x1e000029, 0x6322e313
+	@@DWARF .4byte	0x0001aa00, 0x00293300, 0xe7131f00, 0xaa007222
+	@@DWARF .4byte	0x3d000001, 0x00000029, 0x0029001d, 0xe3131e00
+	@@DWARF .4byte	0xaa006122, 0x1f000001, 0x1e000029, 0x6222e313
+	@@DWARF .4byte	0x0001aa00, 0x00292900, 0xe3131e00, 0xaa006322
+	@@DWARF .4byte	0x33000001, 0x1f000029, 0x7222e713, 0x0001aa00
+	@@DWARF .4byte	0x00293d00, 0x001d0000, 0x1e000029, 0x6122e313
+	@@DWARF .4byte	0x0001aa00, 0x00291f00, 0xe3131e00, 0xaa006222
+	@@DWARF .4byte	0x29000001, 0x1e000029, 0x6322e313, 0x0001aa00
+	@@DWARF .4byte	0x00293300, 0xe7131f00, 0xaa007222, 0x3d000001
+	@@DWARF .4byte	0x00000029, 0x0029001d, 0xe3131e00, 0xaa006122
+	@@DWARF .4byte	0x1f000001, 0x1e000029, 0x6222e313, 0x0001aa00
+	@@DWARF .4byte	0x00292900, 0xe3131e00, 0xaa006322, 0x33000001
+	@@DWARF .4byte	0x1f000029, 0x7222e713, 0x0001aa00, 0x00293d00
+	@@DWARF .4byte	0x1d000000, 0x000028dd, 0x2265131e, 0x01aa0061
+	@@DWARF .4byte	0x28f50000, 0x00000000, 0x0f210000, 0x4e5a5ff4
+	@@DWARF .4byte	0x495f3237, 0x5245544e, 0x5f4c414e, 0x745f3535
+	@@DWARF .4byte	0x6678706d, 0x30305f74, 0x37313030, 0x305f3433
+	@@DWARF .4byte	0x30303030, 0x5f303030, 0x69735f35, 0x656c706d
+	@@DWARF .4byte	0x74786554, 0x5f657275, 0x6e72656b, 0x635f6c65
+	@@DWARF .4byte	0x5f317070, 0x745f6969, 0x31317865, 0x656b616d
+	@@DWARF .4byte	0x6f6c665f, 0x45347461, 0x66666666, 0x0002d400
+	@@DWARF .4byte	0x01010100, 0x00004a28, 0x78f40f22, 0x0001aa00
+	@@DWARF .4byte	0xf40f2200, 0x01aa0079, 0x0f220000, 0xaa007af4
+	@@DWARF .4byte	0x22000001, 0x0077f40f, 0x000001aa, 0xf60f231c
+	@@DWARF .4byte	0x02d40074, 0x00000000, 0x04ef1024, 0x374e5a5f
+	@@DWARF .4byte	0x4e495f32, 0x4e524554, 0x355f4c41, 0x6d745f35
+	@@DWARF .4byte	0x74667870, 0x3030305f, 0x33373130, 0x30305f34
+	@@DWARF .4byte	0x30303030, 0x355f3030, 0x6d69735f, 0x54656c70
+	@@DWARF .4byte	0x75747865, 0x6b5f6572, 0x656e7265, 0x70635f6c
+	@@DWARF .4byte	0x695f3170, 0x65745f69, 0x65743578, 0x45443278
+	@@DWARF .4byte	0x78657437, 0x65727574, 0x694c6649, 0x314c4532
+	@@DWARF .4byte	0x64756339, 0x78655461, 0x65727574, 0x64616552
+	@@DWARF .4byte	0x65646f4d, 0x66454530, 0x01aa0066, 0x01010000
+	@@DWARF .4byte	0xef101a01, 0x80007404, 0x1a000001, 0x7804ef10
+	@@DWARF .4byte	0x0001aa00, 0xef101a00, 0xaa007904, 0x1c000001
+	@@DWARF .4byte	0x04f1101b, 0x02d40076, 0x1d000000, 0x0000498a
+	@@DWARF .4byte	0x78f40f25, 0x0001aa00, 0x0049f800, 0xf40f2500
+	@@DWARF .4byte	0x01aa0079, 0x4a010000, 0x0f250000, 0xaa007af4
+	@@DWARF .4byte	0x0a000001, 0x2500004a, 0x0077f40f, 0x000001aa
+	@@DWARF .4byte	0x00004a13, 0xf60f261c, 0x02d40074, 0x4a1d0000
+	@@DWARF .byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+
+ 	@@DWARF .section .debug_pubnames, "",@progbits
+	@@DWARF .byte	0x22, 0x00, 0x00, 0x00, 0x02, 0x00
+	@@DWARF .4byte	.debug_info
+	@@DWARF .4byte	0x00004b27, 0x0000032c, 0x6e617274, 0x726f6673
+	@@DWARF .byte	0x6d, 0x4b, 0x65, 0x72, 0x6e, 0x65, 0x6c, 0x00
+	@@DWARF .byte	0x00, 0x00, 0x00, 0x00
+
+ 	@@DWARF .section .debug_line, "",@progbits
+	@@DWARF .4byte	0x00000019, 0x00100002, 0x00040000, 0x000a04ff
+	@@DWARF .byte	0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00, 0x01
+	@@DWARF .byte	0x00, 0x00, 0x00, 0x01, 0x01
+
+ 	@@DWARF .section .debug_abbrev, "",@progbits
+	@@DWARF .4byte	0x03011101, 0x25081b08, 0x420b1308, 0x0006100b
+	@@DWARF .4byte	0x00240200, 0x0b3e0803, 0x00000b0b, 0x3a011303
+	@@DWARF .4byte	0x030b3b0b, 0x010b0b08, 0x04000013, 0x0b3a000d
+	@@DWARF .4byte	0x08030b3b, 0x0a381349, 0x00000b32, 0x3a001605
+	@@DWARF .4byte	0x03053b0b, 0x00134908, 0x00260600, 0x00001349
+	@@DWARF .4byte	0x3a011307, 0x03053b0b, 0x010b0b08, 0x08000013
+	@@DWARF .4byte	0x0b3a000d, 0x0803053b, 0x0a381349, 0x00000b32
+	@@DWARF .4byte	0x00002609, 0x000f0a00, 0x0b0b1349, 0x00000b33
+	@@DWARF .4byte	0x3a00160b, 0x030b3b0b, 0x00134908, 0x00340c00
+	@@DWARF .4byte	0x0b3b0b3a, 0x13490803, 0x0b330a02, 0x010d0000
+	@@DWARF .4byte	0x3c134901, 0x0013010c, 0x00210e00, 0x00000b2f
+	@@DWARF .4byte	0x3a00340f, 0x03053b0b, 0x02134908, 0x000b330a
+	@@DWARF .4byte	0x00351000, 0x00001349, 0x3a012e11, 0x030b3b0b
+	@@DWARF .4byte	0x270c3f08, 0x0c408b0c, 0x01110a40, 0x13010112
+	@@DWARF .4byte	0x05120000, 0x3b0b3a00, 0x4908030b, 0x330a0213
+	@@DWARF .4byte	0x1300000b, 0x0111010b, 0x00000112, 0x11011d14
+	@@DWARF .4byte	0x31011201, 0x15000013, 0x0b3a0005, 0x0803053b
+	@@DWARF .4byte	0x0a021349, 0x13310b33, 0x34160000, 0x3b0b3a00
+	@@DWARF .4byte	0x49080305, 0x330a0213, 0x0013310b, 0x00051700
+	@@DWARF .4byte	0x0b3b0b3a, 0x13490803, 0x0b330a02, 0x00001331
+	@@DWARF .4byte	0x3a003418, 0x030b3b0b, 0x02134908, 0x310b330a
+	@@DWARF .4byte	0x19000013, 0x0b3a012e, 0x0803053b, 0x0c271349
+	@@DWARF .4byte	0x408b0b20, 0x0013010c, 0x00051a00, 0x053b0b3a
+	@@DWARF .4byte	0x13490803, 0x341b0000, 0x3b0b3a00, 0x49080305
+	@@DWARF .4byte	0x1c000013, 0x0000010b, 0x31011d1d, 0x1e000013
+	@@DWARF .4byte	0x0b3a0005, 0x0803053b, 0x13311349, 0x341f0000
+	@@DWARF .4byte	0x3b0b3a00, 0x49080305, 0x00133113, 0x012e2000
+	@@DWARF .4byte	0x053b0b3a, 0x0c270803, 0x408b0b20, 0x0013010c
+	@@DWARF .4byte	0x012e2100, 0x0b3b0b3a, 0x13490803, 0x0b200c27
+	@@DWARF .4byte	0x010c408b, 0x22000013, 0x0b3a0005, 0x08030b3b
+	@@DWARF .4byte	0x00001349, 0x3a003423, 0x030b3b0b, 0x00134908
+	@@DWARF .4byte	0x012e2400, 0x053b0b3a, 0x13490803, 0x0b200c27
+	@@DWARF .4byte	0x000c408b, 0x00052500, 0x0b3b0b3a, 0x13490803
+	@@DWARF .4byte	0x00001331, 0x3a003426, 0x030b3b0b, 0x31134908
+	@@DWARF .byte	0x13, 0x00, 0x00, 0x00, 0x00
+

@@ -1,0 +1,1533 @@
+	.version 1.4
+	.target sm_11, map_f64_to_f32
+	// compiled with C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.5\bin/../open64/lib//be.exe
+	// nvopencc 4.1 built on 2013-07-10
+
+	//-----------------------------------------------------------
+	// Compiling C:/Users/strongjz/AppData/Local/Temp/tmpxft_000023c8_00000000-12_NV12ToARGB_drvapi.cpp3.i (C:/Users/strongjz/AppData/Local/Temp/ccBI#.a05192)
+	//-----------------------------------------------------------
+
+	//-----------------------------------------------------------
+	// Options:
+	//-----------------------------------------------------------
+	//  Target:ptx, ISA:sm_11, Endian:little, Pointer Size:32
+	//  -O0	(Optimization level)
+	//  -g2	(Debug level)
+	//  -m2	(Report advisories)
+	//-----------------------------------------------------------
+
+	.file	1	"C:/Users/strongjz/AppData/Local/Temp/tmpxft_000023c8_00000000-11_NV12ToARGB_drvapi.cudafe2.gpu"
+	.file	2	"E:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\crtdefs.h"
+	.file	3	"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v5.5/include\crt/device_runtime.h"
+	.file	4	"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v5.5/include\host_defines.h"
+	.file	5	"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v5.5/include\builtin_types.h"
+	.file	6	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\device_types.h"
+	.file	7	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\host_defines.h"
+	.file	8	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\driver_types.h"
+	.file	9	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\surface_types.h"
+	.file	10	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\texture_types.h"
+	.file	11	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\vector_types.h"
+	.file	12	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\builtin_types.h"
+	.file	13	"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v5.5/include\device_launch_parameters.h"
+	.file	14	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\crt\storage_class.h"
+	.file	15	"c:\programdata\nvidia corporation\cuda samples\v5.5\3_imaging\cudadecodegl\cudaProcessFrame.h"
+	.file	16	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\math_functions.h"
+	.file	17	"C:/ProgramData/NVIDIA Corporation/CUDA Samples/v5.5/3_Imaging/cudaDecodeGL/NV12ToARGB_drvapi.cu"
+	.file	18	"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v5.5/include\common_functions.h"
+	.file	19	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\math_constants.h"
+	.file	20	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\device_functions.h"
+	.file	21	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\sm_11_atomic_functions.h"
+	.file	22	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\sm_12_atomic_functions.h"
+	.file	23	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\sm_13_double_functions.h"
+	.file	24	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\sm_20_atomic_functions.h"
+	.file	25	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\sm_32_atomic_functions.h"
+	.file	26	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\sm_35_atomic_functions.h"
+	.file	27	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\sm_20_intrinsics.h"
+	.file	28	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\sm_30_intrinsics.h"
+	.file	29	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\sm_32_intrinsics.h"
+	.file	30	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\sm_35_intrinsics.h"
+	.file	31	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\surface_functions.h"
+	.file	32	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\texture_fetch_functions.h"
+	.file	33	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\texture_indirect_functions.h"
+	.file	34	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\surface_indirect_functions.h"
+	.file	35	"c:\program files\nvidia gpu computing toolkit\cuda\v5.5\include\math_functions_dbl_ptx1.h"
+
+	.const .u32 constAlpha;
+
+	.entry Passthru_drvapi (
+		.param .u32 __cudaparm_Passthru_drvapi_srcImage,
+		.param .u32 __cudaparm_Passthru_drvapi_nSourcePitch,
+		.param .u32 __cudaparm_Passthru_drvapi_dstImage,
+		.param .u32 __cudaparm_Passthru_drvapi_nDestPitch,
+		.param .u32 __cudaparm_Passthru_drvapi_width,
+		.param .u32 __cudaparm_Passthru_drvapi_height)
+	{
+	.reg .u32 %r<93>;
+	.reg .f32 %f<82>;
+	.reg .pred %p<4>;
+	.local .align 4 .b8 __cuda_local_var_156005_12_non_const_yuv101010Pel_36[8];
+	.local .align 4 .b8 __cuda_local_var_156028_11_non_const_luma_44[8];
+	.loc	17	92	0
+$LDWbegin_Passthru_drvapi:
+$LDWbeginblock_245_1:
+	.loc	17	96	0
+	ld.param.u32 	%r1, [__cudaparm_Passthru_drvapi_width];
+	add.u32 	%r2, %r1, 63;
+	and.b32 	%r3, %r2, -64;
+	mov.s32 	%r4, %r3;
+	.loc	17	97	0
+	ld.param.u32 	%r5, [__cudaparm_Passthru_drvapi_nDestPitch];
+	shr.u32 	%r6, %r5, 2;
+	mov.s32 	%r7, %r6;
+	.loc	17	98	0
+	ld.param.u32 	%r8, [__cudaparm_Passthru_drvapi_srcImage];
+	mov.s32 	%r9, %r8;
+	.loc	17	100	0
+	ld.param.u32 	%r10, [__cudaparm_Passthru_drvapi_nSourcePitch];
+	mov.s32 	%r4, %r10;
+	.loc	17	103	0
+	cvt.u32.u16 	%r11, %ctaid.x;
+	cvt.u32.u16 	%r12, %ntid.x;
+	shl.b32 	%r13, %r12, 1;
+	mul.lo.u32 	%r14, %r11, %r13;
+	cvt.u32.u16 	%r15, %tid.x;
+	shl.b32 	%r16, %r15, 1;
+	add.u32 	%r17, %r14, %r16;
+	mov.s32 	%r18, %r17;
+	.loc	17	104	0
+	cvt.u32.u16 	%r19, %tid.y;
+	cvt.u32.u16 	%r20, %ctaid.y;
+	cvt.u32.u16 	%r21, %ntid.y;
+	mul.lo.u32 	%r22, %r20, %r21;
+	add.u32 	%r23, %r19, %r22;
+	mov.s32 	%r24, %r23;
+	.loc	17	106	0
+	ld.param.u32 	%r25, [__cudaparm_Passthru_drvapi_width];
+	mov.s32 	%r26, %r18;
+	setp.gt.u32 	%p1, %r25, %r26;
+	@%p1 bra 	$L_0_9986;
+	bra.uni 	$LBB36_Passthru_drvapi;
+$L_0_9986:
+	.loc	17	109	0
+	ld.param.u32 	%r27, [__cudaparm_Passthru_drvapi_height];
+	mov.s32 	%r28, %r24;
+	setp.gt.u32 	%p2, %r27, %r28;
+	@%p2 bra 	$L_0_10242;
+	bra.uni 	$LBB36_Passthru_drvapi;
+$L_0_10242:
+	.loc	17	114	0
+	mov.s32 	%r29, %r9;
+	mov.s32 	%r30, %r18;
+	mov.s32 	%r31, %r24;
+	mov.s32 	%r32, %r4;
+	mul.lo.u32 	%r33, %r31, %r32;
+	add.u32 	%r34, %r30, %r33;
+	add.u32 	%r35, %r29, %r34;
+	ld.global.u8 	%r36, [%r35+0];
+	st.local.u32 	[__cuda_local_var_156005_12_non_const_yuv101010Pel_36+0], %r36;
+	.loc	17	115	0
+	mov.s32 	%r37, %r9;
+	mov.s32 	%r38, %r18;
+	mov.s32 	%r39, %r24;
+	mov.s32 	%r40, %r4;
+	mul.lo.u32 	%r41, %r39, %r40;
+	add.u32 	%r42, %r38, %r41;
+	add.u32 	%r43, %r37, %r42;
+	ld.global.u8 	%r44, [%r43+1];
+	st.local.u32 	[__cuda_local_var_156005_12_non_const_yuv101010Pel_36+4], %r44;
+	.loc	17	120	0
+	ld.local.u32 	%r45, [__cuda_local_var_156005_12_non_const_yuv101010Pel_36+0];
+	and.b32 	%r46, %r45, 255;
+	cvt.rn.f32.u32 	%f1, %r46;
+	st.local.f32 	[__cuda_local_var_156028_11_non_const_luma_44+0], %f1;
+	.loc	17	121	0
+	ld.local.u32 	%r47, [__cuda_local_var_156005_12_non_const_yuv101010Pel_36+4];
+	and.b32 	%r48, %r47, 255;
+	cvt.rn.f32.u32 	%f2, %r48;
+	st.local.f32 	[__cuda_local_var_156028_11_non_const_luma_44+4], %f2;
+	.loc	17	124	0
+	ld.local.f32 	%f3, [__cuda_local_var_156028_11_non_const_luma_44+0];
+	mov.f32 	%f4, %f3;
+	ld.local.f32 	%f5, [__cuda_local_var_156028_11_non_const_luma_44+0];
+	mov.f32 	%f6, %f5;
+	ld.local.f32 	%f7, [__cuda_local_var_156028_11_non_const_luma_44+0];
+	mov.f32 	%f8, %f7;
+	ld.const.u32 	%r49, [constAlpha];
+	mov.s32 	%r50, %r49;
+$LDWbegini__Z13RGBAPACK_8bitfffj_245_34:
+$LDWbeginblock_245_20:
+	.loc	17	55	0
+	mov.u32 	%r51, 0;
+	mov.s32 	%r52, %r51;
+	.loc	17	58	0
+	mov.f32 	%f9, %f4;
+	mov.f32 	%f10, %f9;
+	mov.f32 	%f11, 0f00000000;    	// 0
+	mov.f32 	%f12, %f11;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_31:
+	.loc	16	8217	0
+	mov.f32 	%f13, %f10;
+	mov.f32 	%f14, %f12;
+	max.f32 	%f15, %f13, %f14;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_30:
+	.loc	17	58	0
+	mov.f32 	%f16, %f15;
+	mov.f32 	%f17, 0f437f0000;    	// 255
+	mov.f32 	%f18, %f17;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_33:
+	.loc	16	8162	0
+	mov.f32 	%f19, %f16;
+	mov.f32 	%f20, %f18;
+	min.f32 	%f21, %f19, %f20;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_32:
+	.loc	17	58	0
+	mov.f32 	%f4, %f21;
+	.loc	17	59	0
+	mov.f32 	%f22, %f6;
+	mov.f32 	%f23, %f22;
+	mov.f32 	%f24, 0f00000000;    	// 0
+	mov.f32 	%f25, %f24;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_27:
+	.loc	16	8217	0
+	mov.f32 	%f26, %f23;
+	mov.f32 	%f27, %f25;
+	max.f32 	%f28, %f26, %f27;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_26:
+	.loc	17	59	0
+	mov.f32 	%f29, %f28;
+	mov.f32 	%f30, 0f437f0000;    	// 255
+	mov.f32 	%f31, %f30;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_29:
+	.loc	16	8162	0
+	mov.f32 	%f32, %f29;
+	mov.f32 	%f33, %f31;
+	min.f32 	%f34, %f32, %f33;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_28:
+	.loc	17	59	0
+	mov.f32 	%f6, %f34;
+	.loc	17	60	0
+	mov.f32 	%f35, %f8;
+	mov.f32 	%f36, %f35;
+	mov.f32 	%f37, 0f00000000;    	// 0
+	mov.f32 	%f38, %f37;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_23:
+	.loc	16	8217	0
+	mov.f32 	%f39, %f36;
+	mov.f32 	%f40, %f38;
+	max.f32 	%f41, %f39, %f40;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_22:
+	.loc	17	60	0
+	mov.f32 	%f42, %f41;
+	mov.f32 	%f43, 0f437f0000;    	// 255
+	mov.f32 	%f44, %f43;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_25:
+	.loc	16	8162	0
+	mov.f32 	%f45, %f42;
+	mov.f32 	%f46, %f44;
+	min.f32 	%f47, %f45, %f46;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_24:
+	.loc	17	60	0
+	mov.f32 	%f8, %f47;
+	.loc	17	63	0
+	mov.s32 	%r53, %r50;
+	mov.f32 	%f48, %f8;
+	cvt.rzi.u32.f32 	%r54, %f48;
+	mov.f32 	%f49, %f6;
+	cvt.rzi.u32.f32 	%r55, %f49;
+	shl.b32 	%r56, %r55, 8;
+	or.b32 	%r57, %r54, %r56;
+	mov.f32 	%f50, %f4;
+	cvt.rzi.u32.f32 	%r58, %f50;
+	shl.b32 	%r59, %r58, 16;
+	or.b32 	%r60, %r57, %r59;
+	or.b32 	%r61, %r53, %r60;
+	mov.s32 	%r52, %r61;
+	.loc	17	67	0
+	mov.s32 	%r62, %r52;
+	bra.uni 	$LDWendi__Z13RGBAPACK_8bitfffj_245_19;
+$LDWendblock_245_20:
+$LDWendi__Z13RGBAPACK_8bitfffj_245_19:
+	.loc	17	124	0
+	ld.param.u32 	%r63, [__cudaparm_Passthru_drvapi_dstImage];
+	mov.s32 	%r64, %r18;
+	mov.s32 	%r65, %r24;
+	mov.s32 	%r66, %r7;
+	mul.lo.u32 	%r67, %r65, %r66;
+	add.u32 	%r68, %r64, %r67;
+	mul.lo.u32 	%r69, %r68, 4;
+	add.u32 	%r70, %r63, %r69;
+	st.global.u32 	[%r70+0], %r62;
+	.loc	17	125	0
+	ld.local.f32 	%f51, [__cuda_local_var_156028_11_non_const_luma_44+4];
+	mov.f32 	%f52, %f51;
+	ld.local.f32 	%f53, [__cuda_local_var_156028_11_non_const_luma_44+4];
+	mov.f32 	%f54, %f53;
+	ld.local.f32 	%f55, [__cuda_local_var_156028_11_non_const_luma_44+4];
+	mov.f32 	%f56, %f55;
+	ld.const.u32 	%r71, [constAlpha];
+	mov.s32 	%r72, %r71;
+$LDWbegini__Z13RGBAPACK_8bitfffj_245_18:
+$LDWbeginblock_245_4:
+	.loc	17	55	0
+	mov.u32 	%r73, 0;
+	mov.s32 	%r52, %r73;
+	.loc	17	58	0
+	mov.f32 	%f57, %f52;
+	mov.f32 	%f10, %f57;
+	mov.f32 	%f58, 0f00000000;    	// 0
+	mov.f32 	%f12, %f58;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_15:
+	.loc	16	8217	0
+	mov.f32 	%f59, %f10;
+	mov.f32 	%f60, %f12;
+	max.f32 	%f15, %f59, %f60;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_14:
+	.loc	17	58	0
+	mov.f32 	%f16, %f15;
+	mov.f32 	%f61, 0f437f0000;    	// 255
+	mov.f32 	%f18, %f61;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_17:
+	.loc	16	8162	0
+	mov.f32 	%f62, %f16;
+	mov.f32 	%f63, %f18;
+	min.f32 	%f21, %f62, %f63;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_16:
+	.loc	17	58	0
+	mov.f32 	%f52, %f21;
+	.loc	17	59	0
+	mov.f32 	%f64, %f54;
+	mov.f32 	%f23, %f64;
+	mov.f32 	%f65, 0f00000000;    	// 0
+	mov.f32 	%f25, %f65;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_11:
+	.loc	16	8217	0
+	mov.f32 	%f66, %f23;
+	mov.f32 	%f67, %f25;
+	max.f32 	%f28, %f66, %f67;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_10:
+	.loc	17	59	0
+	mov.f32 	%f29, %f28;
+	mov.f32 	%f68, 0f437f0000;    	// 255
+	mov.f32 	%f31, %f68;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_13:
+	.loc	16	8162	0
+	mov.f32 	%f69, %f29;
+	mov.f32 	%f70, %f31;
+	min.f32 	%f34, %f69, %f70;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_12:
+	.loc	17	59	0
+	mov.f32 	%f54, %f34;
+	.loc	17	60	0
+	mov.f32 	%f71, %f56;
+	mov.f32 	%f36, %f71;
+	mov.f32 	%f72, 0f00000000;    	// 0
+	mov.f32 	%f38, %f72;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_7:
+	.loc	16	8217	0
+	mov.f32 	%f73, %f36;
+	mov.f32 	%f74, %f38;
+	max.f32 	%f41, %f73, %f74;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_6:
+	.loc	17	60	0
+	mov.f32 	%f42, %f41;
+	mov.f32 	%f75, 0f437f0000;    	// 255
+	mov.f32 	%f44, %f75;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_9:
+	.loc	16	8162	0
+	mov.f32 	%f76, %f42;
+	mov.f32 	%f77, %f44;
+	min.f32 	%f47, %f76, %f77;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_8:
+	.loc	17	60	0
+	mov.f32 	%f56, %f47;
+	.loc	17	63	0
+	mov.s32 	%r74, %r72;
+	mov.f32 	%f78, %f56;
+	cvt.rzi.u32.f32 	%r75, %f78;
+	mov.f32 	%f79, %f54;
+	cvt.rzi.u32.f32 	%r76, %f79;
+	shl.b32 	%r77, %r76, 8;
+	or.b32 	%r78, %r75, %r77;
+	mov.f32 	%f80, %f52;
+	cvt.rzi.u32.f32 	%r79, %f80;
+	shl.b32 	%r80, %r79, 16;
+	or.b32 	%r81, %r78, %r80;
+	or.b32 	%r82, %r74, %r81;
+	mov.s32 	%r52, %r82;
+	.loc	17	67	0
+	mov.s32 	%r83, %r52;
+	bra.uni 	$LDWendi__Z13RGBAPACK_8bitfffj_245_3;
+$LDWendblock_245_4:
+$LDWendi__Z13RGBAPACK_8bitfffj_245_3:
+	.loc	17	125	0
+	ld.param.u32 	%r84, [__cudaparm_Passthru_drvapi_dstImage];
+	mov.s32 	%r85, %r18;
+	mov.s32 	%r86, %r24;
+	mov.s32 	%r87, %r7;
+	mul.lo.u32 	%r88, %r86, %r87;
+	add.u32 	%r89, %r85, %r88;
+	mul.lo.u32 	%r90, %r89, 4;
+	add.u32 	%r91, %r84, %r90;
+	st.global.u32 	[%r91+4], %r83;
+$LDWendblock_245_1:
+$LBB36_Passthru_drvapi:
+	.loc	17	126	0
+	exit;
+$LDWend_Passthru_drvapi:
+	} // Passthru_drvapi
+	.const .align 4 .b8 constHueColorSpaceMat[36];
+
+	.entry NV12ToARGB_drvapi (
+		.param .u32 __cudaparm_NV12ToARGB_drvapi_srcImage,
+		.param .u32 __cudaparm_NV12ToARGB_drvapi_nSourcePitch,
+		.param .u32 __cudaparm_NV12ToARGB_drvapi_dstImage,
+		.param .u32 __cudaparm_NV12ToARGB_drvapi_nDestPitch,
+		.param .u32 __cudaparm_NV12ToARGB_drvapi_width,
+		.param .u32 __cudaparm_NV12ToARGB_drvapi_height)
+	{
+	.reg .u32 %r<281>;
+	.reg .f32 %f<151>;
+	.reg .pred %p<6>;
+	.local .align 4 .b8 __cuda_local_var_156046_12_non_const_yuv101010Pel_36[8];
+	.local .align 4 .b8 __cuda___cuda_local_var_156102_11_non_const_red_9228[8];
+	.local .align 4 .b8 __cuda___cuda_local_var_156102_19_non_const_green_10436[8];
+	.local .align 4 .b8 __cuda___cuda_local_var_156102_29_non_const_blue_11644[8];
+	.local .align 4 .b8 __cuda___cuda_local_var_156101_12_non_const_yuvi_6084[24];
+	.loc	17	133	0
+$LDWbegin_NV12ToARGB_drvapi:
+$LDWbeginblock_246_1:
+	.loc	17	137	0
+	ld.param.u32 	%r1, [__cudaparm_NV12ToARGB_drvapi_width];
+	add.u32 	%r2, %r1, 63;
+	and.b32 	%r3, %r2, -64;
+	mov.s32 	%r4, %r3;
+	.loc	17	138	0
+	ld.param.u32 	%r5, [__cudaparm_NV12ToARGB_drvapi_nDestPitch];
+	shr.u32 	%r6, %r5, 2;
+	mov.s32 	%r7, %r6;
+	.loc	17	139	0
+	ld.param.u32 	%r8, [__cudaparm_NV12ToARGB_drvapi_srcImage];
+	mov.s32 	%r9, %r8;
+	.loc	17	141	0
+	ld.param.u32 	%r10, [__cudaparm_NV12ToARGB_drvapi_nSourcePitch];
+	mov.s32 	%r4, %r10;
+	.loc	17	144	0
+	cvt.u32.u16 	%r11, %ctaid.x;
+	cvt.u32.u16 	%r12, %ntid.x;
+	shl.b32 	%r13, %r12, 1;
+	mul.lo.u32 	%r14, %r11, %r13;
+	cvt.u32.u16 	%r15, %tid.x;
+	shl.b32 	%r16, %r15, 1;
+	add.u32 	%r17, %r14, %r16;
+	mov.s32 	%r18, %r17;
+	.loc	17	145	0
+	cvt.u32.u16 	%r19, %tid.y;
+	cvt.u32.u16 	%r20, %ctaid.y;
+	cvt.u32.u16 	%r21, %ntid.y;
+	mul.lo.u32 	%r22, %r20, %r21;
+	add.u32 	%r23, %r19, %r22;
+	mov.s32 	%r24, %r23;
+	.loc	17	147	0
+	ld.param.u32 	%r25, [__cudaparm_NV12ToARGB_drvapi_width];
+	mov.s32 	%r26, %r18;
+	setp.gt.u32 	%p1, %r25, %r26;
+	@%p1 bra 	$L_1_13570;
+	bra.uni 	$LBB46_NV12ToARGB_drvapi;
+$L_1_13570:
+	.loc	17	150	0
+	ld.param.u32 	%r27, [__cudaparm_NV12ToARGB_drvapi_height];
+	mov.s32 	%r28, %r24;
+	setp.gt.u32 	%p2, %r27, %r28;
+	@%p2 bra 	$L_1_13826;
+	bra.uni 	$LBB46_NV12ToARGB_drvapi;
+$L_1_13826:
+	.loc	17	155	0
+	mov.s32 	%r29, %r9;
+	mov.s32 	%r30, %r18;
+	mov.s32 	%r31, %r24;
+	mov.s32 	%r32, %r4;
+	mul.lo.u32 	%r33, %r31, %r32;
+	add.u32 	%r34, %r30, %r33;
+	add.u32 	%r35, %r29, %r34;
+	ld.global.u8 	%r36, [%r35+0];
+	shl.b32 	%r37, %r36, 2;
+	st.local.u32 	[__cuda_local_var_156046_12_non_const_yuv101010Pel_36+0], %r37;
+	.loc	17	156	0
+	mov.s32 	%r38, %r9;
+	mov.s32 	%r39, %r18;
+	mov.s32 	%r40, %r24;
+	mov.s32 	%r41, %r4;
+	mul.lo.u32 	%r42, %r40, %r41;
+	add.u32 	%r43, %r39, %r42;
+	add.u32 	%r44, %r38, %r43;
+	ld.global.u8 	%r45, [%r44+1];
+	shl.b32 	%r46, %r45, 2;
+	st.local.u32 	[__cuda_local_var_156046_12_non_const_yuv101010Pel_36+4], %r46;
+	.loc	17	158	0
+	ld.param.u32 	%r47, [__cudaparm_NV12ToARGB_drvapi_height];
+	mov.s32 	%r48, %r4;
+	mul.lo.u32 	%r49, %r47, %r48;
+	mov.s32 	%r50, %r49;
+	.loc	17	159	0
+	mov.s32 	%r51, %r24;
+	shr.s32 	%r52, %r51, 1;
+	mov.s32 	%r53, %r52;
+	.loc	17	161	0
+	mov.s32 	%r54, %r24;
+	and.b32 	%r55, %r54, 1;
+	mov.u32 	%r56, 0;
+	setp.eq.s32 	%p3, %r55, %r56;
+	@%p3 bra 	$L_1_14338;
+$LDWbeginblock_246_3:
+	.loc	17	166	0
+	mov.s32 	%r57, %r9;
+	mov.s32 	%r58, %r18;
+	mov.s32 	%r59, %r50;
+	mov.s32 	%r60, %r4;
+	mov.s32 	%r61, %r53;
+	mul.lo.u32 	%r62, %r60, %r61;
+	add.u32 	%r63, %r59, %r62;
+	add.u32 	%r64, %r58, %r63;
+	add.u32 	%r65, %r57, %r64;
+	ld.global.u8 	%r66, [%r65+0];
+	mov.s32 	%r67, %r66;
+	.loc	17	167	0
+	mov.s32 	%r68, %r9;
+	mov.s32 	%r69, %r18;
+	mov.s32 	%r70, %r50;
+	mov.s32 	%r71, %r4;
+	mov.s32 	%r72, %r53;
+	mul.lo.u32 	%r73, %r71, %r72;
+	add.u32 	%r74, %r70, %r73;
+	add.u32 	%r75, %r69, %r74;
+	add.u32 	%r76, %r68, %r75;
+	ld.global.u8 	%r77, [%r76+1];
+	mov.s32 	%r78, %r77;
+	.loc	17	169	0
+	mov.s32 	%r79, %r53;
+	ld.param.u32 	%r80, [__cudaparm_NV12ToARGB_drvapi_height];
+	shr.u32 	%r81, %r80, 1;
+	sub.u32 	%r82, %r81, 1;
+	setp.ge.u32 	%p4, %r79, %r82;
+	@%p4 bra 	$L_1_14594;
+	.loc	17	171	0
+	mov.s32 	%r83, %r9;
+	mov.s32 	%r84, %r18;
+	mov.s32 	%r85, %r50;
+	mov.s32 	%r86, %r53;
+	add.s32 	%r87, %r86, 1;
+	mov.s32 	%r88, %r4;
+	mul.lo.u32 	%r89, %r87, %r88;
+	add.u32 	%r90, %r85, %r89;
+	add.u32 	%r91, %r84, %r90;
+	add.u32 	%r92, %r83, %r91;
+	ld.global.u8 	%r93, [%r92+0];
+	mov.s32 	%r94, %r67;
+	add.u32 	%r95, %r93, %r94;
+	add.u32 	%r96, %r95, 1;
+	shr.u32 	%r97, %r96, 1;
+	mov.s32 	%r67, %r97;
+	.loc	17	172	0
+	mov.s32 	%r98, %r9;
+	mov.s32 	%r99, %r18;
+	mov.s32 	%r100, %r50;
+	mov.s32 	%r101, %r53;
+	add.s32 	%r102, %r101, 1;
+	mov.s32 	%r103, %r4;
+	mul.lo.u32 	%r104, %r102, %r103;
+	add.u32 	%r105, %r100, %r104;
+	add.u32 	%r106, %r99, %r105;
+	add.u32 	%r107, %r98, %r106;
+	ld.global.u8 	%r108, [%r107+1];
+	mov.s32 	%r109, %r78;
+	add.u32 	%r110, %r108, %r109;
+	add.u32 	%r111, %r110, 1;
+	shr.u32 	%r112, %r111, 1;
+	mov.s32 	%r78, %r112;
+$L_1_14594:
+	.loc	17	175	0
+	ld.local.u32 	%r113, [__cuda_local_var_156046_12_non_const_yuv101010Pel_36+0];
+	mov.s32 	%r114, %r67;
+	shl.b32 	%r115, %r114, 12;
+	or.b32 	%r116, %r113, %r115;
+	st.local.u32 	[__cuda_local_var_156046_12_non_const_yuv101010Pel_36+0], %r116;
+	.loc	17	176	0
+	ld.local.u32 	%r117, [__cuda_local_var_156046_12_non_const_yuv101010Pel_36+0];
+	mov.s32 	%r118, %r78;
+	shl.b32 	%r119, %r118, 22;
+	or.b32 	%r120, %r117, %r119;
+	st.local.u32 	[__cuda_local_var_156046_12_non_const_yuv101010Pel_36+0], %r120;
+	.loc	17	178	0
+	ld.local.u32 	%r121, [__cuda_local_var_156046_12_non_const_yuv101010Pel_36+4];
+	mov.s32 	%r122, %r67;
+	shl.b32 	%r123, %r122, 12;
+	or.b32 	%r124, %r121, %r123;
+	st.local.u32 	[__cuda_local_var_156046_12_non_const_yuv101010Pel_36+4], %r124;
+	.loc	17	179	0
+	ld.local.u32 	%r125, [__cuda_local_var_156046_12_non_const_yuv101010Pel_36+4];
+	mov.s32 	%r126, %r78;
+	shl.b32 	%r127, %r126, 22;
+	or.b32 	%r128, %r125, %r127;
+	st.local.u32 	[__cuda_local_var_156046_12_non_const_yuv101010Pel_36+4], %r128;
+$LDWendblock_246_3:
+	.loc	17	180	0
+	bra.uni 	$L_1_14082;
+$L_1_14338:
+	.loc	17	183	0
+	ld.local.u32 	%r129, [__cuda_local_var_156046_12_non_const_yuv101010Pel_36+0];
+	mov.s32 	%r130, %r9;
+	mov.s32 	%r131, %r18;
+	mov.s32 	%r132, %r50;
+	mov.s32 	%r133, %r4;
+	mov.s32 	%r134, %r53;
+	mul.lo.u32 	%r135, %r133, %r134;
+	add.u32 	%r136, %r132, %r135;
+	add.u32 	%r137, %r131, %r136;
+	add.u32 	%r138, %r130, %r137;
+	ld.global.u8 	%r139, [%r138+0];
+	shl.b32 	%r140, %r139, 12;
+	or.b32 	%r141, %r129, %r140;
+	st.local.u32 	[__cuda_local_var_156046_12_non_const_yuv101010Pel_36+0], %r141;
+	.loc	17	184	0
+	ld.local.u32 	%r142, [__cuda_local_var_156046_12_non_const_yuv101010Pel_36+0];
+	mov.s32 	%r143, %r9;
+	mov.s32 	%r144, %r18;
+	mov.s32 	%r145, %r50;
+	mov.s32 	%r146, %r4;
+	mov.s32 	%r147, %r53;
+	mul.lo.u32 	%r148, %r146, %r147;
+	add.u32 	%r149, %r145, %r148;
+	add.u32 	%r150, %r144, %r149;
+	add.u32 	%r151, %r143, %r150;
+	ld.global.u8 	%r152, [%r151+1];
+	shl.b32 	%r153, %r152, 22;
+	or.b32 	%r154, %r142, %r153;
+	st.local.u32 	[__cuda_local_var_156046_12_non_const_yuv101010Pel_36+0], %r154;
+	.loc	17	186	0
+	ld.local.u32 	%r155, [__cuda_local_var_156046_12_non_const_yuv101010Pel_36+4];
+	mov.s32 	%r156, %r9;
+	mov.s32 	%r157, %r18;
+	mov.s32 	%r158, %r50;
+	mov.s32 	%r159, %r4;
+	mov.s32 	%r160, %r53;
+	mul.lo.u32 	%r161, %r159, %r160;
+	add.u32 	%r162, %r158, %r161;
+	add.u32 	%r163, %r157, %r162;
+	add.u32 	%r164, %r156, %r163;
+	ld.global.u8 	%r165, [%r164+0];
+	shl.b32 	%r166, %r165, 12;
+	or.b32 	%r167, %r155, %r166;
+	st.local.u32 	[__cuda_local_var_156046_12_non_const_yuv101010Pel_36+4], %r167;
+	.loc	17	187	0
+	ld.local.u32 	%r168, [__cuda_local_var_156046_12_non_const_yuv101010Pel_36+4];
+	mov.s32 	%r169, %r9;
+	mov.s32 	%r170, %r18;
+	mov.s32 	%r171, %r50;
+	mov.s32 	%r172, %r4;
+	mov.s32 	%r173, %r53;
+	mul.lo.u32 	%r174, %r172, %r173;
+	add.u32 	%r175, %r171, %r174;
+	add.u32 	%r176, %r170, %r175;
+	add.u32 	%r177, %r169, %r176;
+	ld.global.u8 	%r178, [%r177+1];
+	shl.b32 	%r179, %r178, 22;
+	or.b32 	%r180, %r168, %r179;
+	st.local.u32 	[__cuda_local_var_156046_12_non_const_yuv101010Pel_36+4], %r180;
+$L_1_14082:
+	.loc	17	194	0
+	ld.local.u32 	%r181, [__cuda_local_var_156046_12_non_const_yuv101010Pel_36+0];
+	and.b32 	%r182, %r181, 1023;
+	st.local.u32 	[__cuda___cuda_local_var_156101_12_non_const_yuvi_6084+0], %r182;
+	.loc	17	195	0
+	ld.local.u32 	%r183, [__cuda_local_var_156046_12_non_const_yuv101010Pel_36+0];
+	shl.b32 	%r184, %r183, 12;
+	shr.u32 	%r185, %r184, 22;
+	st.local.u32 	[__cuda___cuda_local_var_156101_12_non_const_yuvi_6084+4], %r185;
+	.loc	17	196	0
+	ld.local.u32 	%r186, [__cuda_local_var_156046_12_non_const_yuv101010Pel_36+0];
+	shl.b32 	%r187, %r186, 2;
+	shr.u32 	%r188, %r187, 22;
+	st.local.u32 	[__cuda___cuda_local_var_156101_12_non_const_yuvi_6084+8], %r188;
+	.loc	17	198	0
+	ld.local.u32 	%r189, [__cuda_local_var_156046_12_non_const_yuv101010Pel_36+4];
+	and.b32 	%r190, %r189, 1023;
+	st.local.u32 	[__cuda___cuda_local_var_156101_12_non_const_yuvi_6084+12], %r190;
+	.loc	17	199	0
+	ld.local.u32 	%r191, [__cuda_local_var_156046_12_non_const_yuv101010Pel_36+4];
+	shl.b32 	%r192, %r191, 12;
+	shr.u32 	%r193, %r192, 22;
+	st.local.u32 	[__cuda___cuda_local_var_156101_12_non_const_yuvi_6084+16], %r193;
+	.loc	17	200	0
+	ld.local.u32 	%r194, [__cuda_local_var_156046_12_non_const_yuv101010Pel_36+4];
+	shl.b32 	%r195, %r194, 2;
+	shr.u32 	%r196, %r195, 22;
+	st.local.u32 	[__cuda___cuda_local_var_156101_12_non_const_yuvi_6084+20], %r196;
+	.loc	17	203	0
+	mov.u32 	%r197, __cuda___cuda_local_var_156101_12_non_const_yuvi_6084;
+	mov.s32 	%r198, %r197;
+	mov.u32 	%r199, __cuda___cuda_local_var_156102_11_non_const_red_9228;
+	mov.s32 	%r200, %r199;
+	mov.u32 	%r201, __cuda___cuda_local_var_156102_19_non_const_green_10436;
+	mov.s32 	%r202, %r201;
+	mov.u32 	%r203, __cuda___cuda_local_var_156102_29_non_const_blue_11644;
+	mov.s32 	%r204, %r203;
+$LDWbegini__Z7YUV2RGBPjPfS0_S0__246_44:
+$LDWbeginblock_246_42:
+	.loc	17	36	0
+	mov.s32 	%r205, %r198;
+	ld.local.u32 	%r206, [%r205+0];
+	cvt.rn.f32.u32 	%f1, %r206;
+	mov.f32 	%f2, %f1;
+	.loc	17	37	0
+	mov.s32 	%r207, %r198;
+	ld.local.s32 	%r208, [%r207+4];
+	cvt.rn.f32.s32 	%f3, %r208;
+	mov.f32 	%f4, 0fc4000000;     	// -512
+	add.f32 	%f5, %f3, %f4;
+	mov.f32 	%f6, %f5;
+	.loc	17	38	0
+	mov.s32 	%r209, %r198;
+	ld.local.s32 	%r210, [%r209+8];
+	cvt.rn.f32.s32 	%f7, %r210;
+	mov.f32 	%f8, 0fc4000000;     	// -512
+	add.f32 	%f9, %f7, %f8;
+	mov.f32 	%f10, %f9;
+	.loc	17	41	0
+	ld.const.f32 	%f11, [constHueColorSpaceMat+4];
+	mov.f32 	%f12, %f6;
+	mul.f32 	%f13, %f11, %f12;
+	ld.const.f32 	%f14, [constHueColorSpaceMat+0];
+	mov.f32 	%f15, %f2;
+	mad.f32 	%f16, %f14, %f15, %f13;
+	ld.const.f32 	%f17, [constHueColorSpaceMat+8];
+	mov.f32 	%f18, %f10;
+	mad.f32 	%f19, %f17, %f18, %f16;
+	mov.s32 	%r211, %r200;
+	st.local.f32 	[%r211+0], %f19;
+	.loc	17	44	0
+	ld.const.f32 	%f20, [constHueColorSpaceMat+16];
+	mov.f32 	%f21, %f6;
+	mul.f32 	%f22, %f20, %f21;
+	ld.const.f32 	%f23, [constHueColorSpaceMat+12];
+	mov.f32 	%f24, %f2;
+	mad.f32 	%f25, %f23, %f24, %f22;
+	ld.const.f32 	%f26, [constHueColorSpaceMat+20];
+	mov.f32 	%f27, %f10;
+	mad.f32 	%f28, %f26, %f27, %f25;
+	mov.s32 	%r212, %r202;
+	st.local.f32 	[%r212+0], %f28;
+	.loc	17	47	0
+	ld.const.f32 	%f29, [constHueColorSpaceMat+28];
+	mov.f32 	%f30, %f6;
+	mul.f32 	%f31, %f29, %f30;
+	ld.const.f32 	%f32, [constHueColorSpaceMat+24];
+	mov.f32 	%f33, %f2;
+	mad.f32 	%f34, %f32, %f33, %f31;
+	ld.const.f32 	%f35, [constHueColorSpaceMat+32];
+	mov.f32 	%f36, %f10;
+	mad.f32 	%f37, %f35, %f36, %f34;
+	mov.s32 	%r213, %r204;
+	st.local.f32 	[%r213+0], %f37;
+$LDWendblock_246_42:
+$LDWendi__Z7YUV2RGBPjPfS0_S0__246_41:
+	.loc	17	204	0
+	mov.u32 	%r214, __cuda___cuda_local_var_156101_12_non_const_yuvi_6084+12;
+	mov.s32 	%r215, %r214;
+	mov.u32 	%r216, __cuda___cuda_local_var_156102_11_non_const_red_9228+4;
+	mov.s32 	%r217, %r216;
+	mov.u32 	%r218, __cuda___cuda_local_var_156102_19_non_const_green_10436+4;
+	mov.s32 	%r219, %r218;
+	mov.u32 	%r220, __cuda___cuda_local_var_156102_29_non_const_blue_11644+4;
+	mov.s32 	%r221, %r220;
+$LDWbegini__Z7YUV2RGBPjPfS0_S0__246_40:
+$LDWbeginblock_246_38:
+	.loc	17	36	0
+	mov.s32 	%r222, %r215;
+	ld.local.u32 	%r223, [%r222+0];
+	cvt.rn.f32.u32 	%f38, %r223;
+	mov.f32 	%f2, %f38;
+	.loc	17	37	0
+	mov.s32 	%r224, %r215;
+	ld.local.s32 	%r225, [%r224+4];
+	cvt.rn.f32.s32 	%f39, %r225;
+	mov.f32 	%f40, 0fc4000000;    	// -512
+	add.f32 	%f41, %f39, %f40;
+	mov.f32 	%f6, %f41;
+	.loc	17	38	0
+	mov.s32 	%r226, %r215;
+	ld.local.s32 	%r227, [%r226+8];
+	cvt.rn.f32.s32 	%f42, %r227;
+	mov.f32 	%f43, 0fc4000000;    	// -512
+	add.f32 	%f44, %f42, %f43;
+	mov.f32 	%f10, %f44;
+	.loc	17	41	0
+	ld.const.f32 	%f45, [constHueColorSpaceMat+4];
+	mov.f32 	%f46, %f6;
+	mul.f32 	%f47, %f45, %f46;
+	ld.const.f32 	%f48, [constHueColorSpaceMat+0];
+	mov.f32 	%f49, %f2;
+	mad.f32 	%f50, %f48, %f49, %f47;
+	ld.const.f32 	%f51, [constHueColorSpaceMat+8];
+	mov.f32 	%f52, %f10;
+	mad.f32 	%f53, %f51, %f52, %f50;
+	mov.s32 	%r228, %r217;
+	st.local.f32 	[%r228+0], %f53;
+	.loc	17	44	0
+	ld.const.f32 	%f54, [constHueColorSpaceMat+16];
+	mov.f32 	%f55, %f6;
+	mul.f32 	%f56, %f54, %f55;
+	ld.const.f32 	%f57, [constHueColorSpaceMat+12];
+	mov.f32 	%f58, %f2;
+	mad.f32 	%f59, %f57, %f58, %f56;
+	ld.const.f32 	%f60, [constHueColorSpaceMat+20];
+	mov.f32 	%f61, %f10;
+	mad.f32 	%f62, %f60, %f61, %f59;
+	mov.s32 	%r229, %r219;
+	st.local.f32 	[%r229+0], %f62;
+	.loc	17	47	0
+	ld.const.f32 	%f63, [constHueColorSpaceMat+28];
+	mov.f32 	%f64, %f6;
+	mul.f32 	%f65, %f63, %f64;
+	ld.const.f32 	%f66, [constHueColorSpaceMat+24];
+	mov.f32 	%f67, %f2;
+	mad.f32 	%f68, %f66, %f67, %f65;
+	ld.const.f32 	%f69, [constHueColorSpaceMat+32];
+	mov.f32 	%f70, %f10;
+	mad.f32 	%f71, %f69, %f70, %f68;
+	mov.s32 	%r230, %r221;
+	st.local.f32 	[%r230+0], %f71;
+$LDWendblock_246_38:
+$LDWendi__Z7YUV2RGBPjPfS0_S0__246_37:
+	.loc	17	207	0
+	ld.local.f32 	%f72, [__cuda___cuda_local_var_156102_11_non_const_red_9228+0];
+	mov.f32 	%f73, %f72;
+	ld.local.f32 	%f74, [__cuda___cuda_local_var_156102_19_non_const_green_10436+0];
+	mov.f32 	%f75, %f74;
+	ld.local.f32 	%f76, [__cuda___cuda_local_var_156102_29_non_const_blue_11644+0];
+	mov.f32 	%f77, %f76;
+	ld.const.u32 	%r231, [constAlpha];
+	mov.s32 	%r232, %r231;
+$LDWbegini__Z14RGBAPACK_10bitfffj_246_36:
+$LDWbeginblock_246_22:
+	.loc	17	72	0
+	mov.u32 	%r233, 0;
+	mov.s32 	%r234, %r233;
+	.loc	17	75	0
+	mov.f32 	%f78, %f73;
+	mov.f32 	%f79, %f78;
+	mov.f32 	%f80, 0f00000000;    	// 0
+	mov.f32 	%f81, %f80;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_33:
+	.loc	16	8217	0
+	mov.f32 	%f82, %f79;
+	mov.f32 	%f83, %f81;
+	max.f32 	%f84, %f82, %f83;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_32:
+	.loc	17	75	0
+	mov.f32 	%f85, %f84;
+	mov.f32 	%f86, 0f447fc000;    	// 1023
+	mov.f32 	%f87, %f86;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_35:
+	.loc	16	8162	0
+	mov.f32 	%f88, %f85;
+	mov.f32 	%f89, %f87;
+	min.f32 	%f90, %f88, %f89;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_34:
+	.loc	17	75	0
+	mov.f32 	%f73, %f90;
+	.loc	17	76	0
+	mov.f32 	%f91, %f75;
+	mov.f32 	%f92, %f91;
+	mov.f32 	%f93, 0f00000000;    	// 0
+	mov.f32 	%f94, %f93;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_29:
+	.loc	16	8217	0
+	mov.f32 	%f95, %f92;
+	mov.f32 	%f96, %f94;
+	max.f32 	%f97, %f95, %f96;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_28:
+	.loc	17	76	0
+	mov.f32 	%f98, %f97;
+	mov.f32 	%f99, 0f447fc000;    	// 1023
+	mov.f32 	%f100, %f99;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_31:
+	.loc	16	8162	0
+	mov.f32 	%f101, %f98;
+	mov.f32 	%f102, %f100;
+	min.f32 	%f103, %f101, %f102;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_30:
+	.loc	17	76	0
+	mov.f32 	%f75, %f103;
+	.loc	17	77	0
+	mov.f32 	%f104, %f77;
+	mov.f32 	%f105, %f104;
+	mov.f32 	%f106, 0f00000000;   	// 0
+	mov.f32 	%f107, %f106;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_25:
+	.loc	16	8217	0
+	mov.f32 	%f108, %f105;
+	mov.f32 	%f109, %f107;
+	max.f32 	%f110, %f108, %f109;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_24:
+	.loc	17	77	0
+	mov.f32 	%f111, %f110;
+	mov.f32 	%f112, 0f447fc000;   	// 1023
+	mov.f32 	%f113, %f112;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_27:
+	.loc	16	8162	0
+	mov.f32 	%f114, %f111;
+	mov.f32 	%f115, %f113;
+	min.f32 	%f116, %f114, %f115;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_26:
+	.loc	17	77	0
+	mov.f32 	%f77, %f116;
+	.loc	17	80	0
+	mov.s32 	%r235, %r232;
+	mov.f32 	%f117, %f77;
+	cvt.rzi.u32.f32 	%r236, %f117;
+	shr.u32 	%r237, %r236, 2;
+	mov.f32 	%f118, %f75;
+	cvt.rzi.u32.f32 	%r238, %f118;
+	shr.u32 	%r239, %r238, 2;
+	shl.b32 	%r240, %r239, 8;
+	or.b32 	%r241, %r237, %r240;
+	mov.f32 	%f119, %f73;
+	cvt.rzi.u32.f32 	%r242, %f119;
+	shr.u32 	%r243, %r242, 2;
+	shl.b32 	%r244, %r243, 16;
+	or.b32 	%r245, %r241, %r244;
+	or.b32 	%r246, %r235, %r245;
+	mov.s32 	%r234, %r246;
+	.loc	17	84	0
+	mov.s32 	%r247, %r234;
+	bra.uni 	$LDWendi__Z14RGBAPACK_10bitfffj_246_21;
+$LDWendblock_246_22:
+$LDWendi__Z14RGBAPACK_10bitfffj_246_21:
+	.loc	17	207	0
+	ld.param.u32 	%r248, [__cudaparm_NV12ToARGB_drvapi_dstImage];
+	mov.s32 	%r249, %r18;
+	mov.s32 	%r250, %r24;
+	mov.s32 	%r251, %r7;
+	mul.lo.u32 	%r252, %r250, %r251;
+	add.u32 	%r253, %r249, %r252;
+	mul.lo.u32 	%r254, %r253, 4;
+	add.u32 	%r255, %r248, %r254;
+	st.global.u32 	[%r255+0], %r247;
+	.loc	17	208	0
+	ld.local.f32 	%f120, [__cuda___cuda_local_var_156102_11_non_const_red_9228+4];
+	mov.f32 	%f121, %f120;
+	ld.local.f32 	%f122, [__cuda___cuda_local_var_156102_19_non_const_green_10436+4];
+	mov.f32 	%f123, %f122;
+	ld.local.f32 	%f124, [__cuda___cuda_local_var_156102_29_non_const_blue_11644+4];
+	mov.f32 	%f125, %f124;
+	ld.const.u32 	%r256, [constAlpha];
+	mov.s32 	%r257, %r256;
+$LDWbegini__Z14RGBAPACK_10bitfffj_246_20:
+$LDWbeginblock_246_6:
+	.loc	17	72	0
+	mov.u32 	%r258, 0;
+	mov.s32 	%r234, %r258;
+	.loc	17	75	0
+	mov.f32 	%f126, %f121;
+	mov.f32 	%f79, %f126;
+	mov.f32 	%f127, 0f00000000;   	// 0
+	mov.f32 	%f81, %f127;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_17:
+	.loc	16	8217	0
+	mov.f32 	%f128, %f79;
+	mov.f32 	%f129, %f81;
+	max.f32 	%f84, %f128, %f129;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_16:
+	.loc	17	75	0
+	mov.f32 	%f85, %f84;
+	mov.f32 	%f130, 0f447fc000;   	// 1023
+	mov.f32 	%f87, %f130;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_19:
+	.loc	16	8162	0
+	mov.f32 	%f131, %f85;
+	mov.f32 	%f132, %f87;
+	min.f32 	%f90, %f131, %f132;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_18:
+	.loc	17	75	0
+	mov.f32 	%f121, %f90;
+	.loc	17	76	0
+	mov.f32 	%f133, %f123;
+	mov.f32 	%f92, %f133;
+	mov.f32 	%f134, 0f00000000;   	// 0
+	mov.f32 	%f94, %f134;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_13:
+	.loc	16	8217	0
+	mov.f32 	%f135, %f92;
+	mov.f32 	%f136, %f94;
+	max.f32 	%f97, %f135, %f136;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_12:
+	.loc	17	76	0
+	mov.f32 	%f98, %f97;
+	mov.f32 	%f137, 0f447fc000;   	// 1023
+	mov.f32 	%f100, %f137;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_15:
+	.loc	16	8162	0
+	mov.f32 	%f138, %f98;
+	mov.f32 	%f139, %f100;
+	min.f32 	%f103, %f138, %f139;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_14:
+	.loc	17	76	0
+	mov.f32 	%f123, %f103;
+	.loc	17	77	0
+	mov.f32 	%f140, %f125;
+	mov.f32 	%f105, %f140;
+	mov.f32 	%f141, 0f00000000;   	// 0
+	mov.f32 	%f107, %f141;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_9:
+	.loc	16	8217	0
+	mov.f32 	%f142, %f105;
+	mov.f32 	%f143, %f107;
+	max.f32 	%f110, %f142, %f143;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_8:
+	.loc	17	77	0
+	mov.f32 	%f111, %f110;
+	mov.f32 	%f144, 0f447fc000;   	// 1023
+	mov.f32 	%f113, %f144;
+$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_11:
+	.loc	16	8162	0
+	mov.f32 	%f145, %f111;
+	mov.f32 	%f146, %f113;
+	min.f32 	%f116, %f145, %f146;
+$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_10:
+	.loc	17	77	0
+	mov.f32 	%f125, %f116;
+	.loc	17	80	0
+	mov.s32 	%r259, %r257;
+	mov.f32 	%f147, %f125;
+	cvt.rzi.u32.f32 	%r260, %f147;
+	shr.u32 	%r261, %r260, 2;
+	mov.f32 	%f148, %f123;
+	cvt.rzi.u32.f32 	%r262, %f148;
+	shr.u32 	%r263, %r262, 2;
+	shl.b32 	%r264, %r263, 8;
+	or.b32 	%r265, %r261, %r264;
+	mov.f32 	%f149, %f121;
+	cvt.rzi.u32.f32 	%r266, %f149;
+	shr.u32 	%r267, %r266, 2;
+	shl.b32 	%r268, %r267, 16;
+	or.b32 	%r269, %r265, %r268;
+	or.b32 	%r270, %r259, %r269;
+	mov.s32 	%r234, %r270;
+	.loc	17	84	0
+	mov.s32 	%r271, %r234;
+	bra.uni 	$LDWendi__Z14RGBAPACK_10bitfffj_246_5;
+$LDWendblock_246_6:
+$LDWendi__Z14RGBAPACK_10bitfffj_246_5:
+	.loc	17	208	0
+	ld.param.u32 	%r272, [__cudaparm_NV12ToARGB_drvapi_dstImage];
+	mov.s32 	%r273, %r18;
+	mov.s32 	%r274, %r24;
+	mov.s32 	%r275, %r7;
+	mul.lo.u32 	%r276, %r274, %r275;
+	add.u32 	%r277, %r273, %r276;
+	mul.lo.u32 	%r278, %r277, 4;
+	add.u32 	%r279, %r272, %r278;
+	st.global.u32 	[%r279+4], %r271;
+$LDWendblock_246_1:
+$LBB46_NV12ToARGB_drvapi:
+	.loc	17	209	0
+	exit;
+$LDWend_NV12ToARGB_drvapi:
+	} // NV12ToARGB_drvapi
+
+ 	@@DWARF .section .debug_info, "",@progbits
+	@@DWARF .byte	0x00, 0x14, 0x00, 0x00, 0x02, 0x00
+	@@DWARF .4byte	.debug_abbrev
+	@@DWARF .4byte	0x3a430104, 0x6573552f, 0x732f7372, 0x6e6f7274
+	@@DWARF .4byte	0x2f7a6a67, 0x44707041, 0x2f617461, 0x61636f4c
+	@@DWARF .4byte	0x65542f6c, 0x742f706d, 0x6678706d, 0x30305f74
+	@@DWARF .4byte	0x33323030, 0x305f3863, 0x30303030, 0x2d303030
+	@@DWARF .4byte	0x4e5f3231, 0x54323156, 0x4752416f, 0x72645f42
+	@@DWARF .4byte	0x69706176, 0x7070632e, 0x00692e33, 0x505c3a43
+	@@DWARF .4byte	0x72676f72, 0x61446d61, 0x4e5c6174, 0x49444956
+	@@DWARF .4byte	0x6f432041, 0x726f7072, 0x6f697461, 0x55435c6e
+	@@DWARF .4byte	0x53204144, 0x6c706d61, 0x765c7365, 0x5c352e35
+	@@DWARF .4byte	0x6d495f33, 0x6e696761, 0x75635c67, 0x65446164
+	@@DWARF .4byte	0x65646f63, 0x6f004c47, 0x636e6570, 0x2e342063
+	@@DWARF .byte	0x31, 0x00, 0x04, 0x00
+	@@DWARF .4byte	.debug_line
+	@@DWARF .4byte	0x736e7502, 0x656e6769, 0x6e692064, 0x04070074
+	@@DWARF .4byte	0x75bd0b03, 0x33746e69, 0x01080c00, 0x0b040000
+	@@DWARF .4byte	0xc20078be, 0x02000000, 0x04010023, 0x0079be0b
+	@@DWARF .4byte	0x000000c2, 0x01042302, 0x7abe0b04, 0x0000c200
+	@@DWARF .4byte	0x08230200, 0x0b050001, 0x6975017d, 0x0033746e
+	@@DWARF .4byte	0x000000d2, 0x00010806, 0xa00b0700, 0x6d696401
+	@@DWARF .4byte	0x540c0033, 0x08000001, 0x7801a10b, 0x0000c200
+	@@DWARF .4byte	0x00230200, 0xa10b0801, 0xc2007901, 0x02000000
+	@@DWARF .4byte	0x08010423, 0x7a01a10b, 0x0000c200, 0x08230200
+	@@DWARF .4byte	0x0b050001, 0x696401a9, 0x1b00336d, 0x06000001
+	@@DWARF .4byte	0x00000154, 0x746e6902, 0x06040500, 0x00000166
+	@@DWARF .4byte	0x75130f09, 0x33746e69, 0x00c20032, 0x110a0000
+	@@DWARF .4byte	0x6e6f6319, 0x6c417473, 0x00616870, 0x00000172
+	@@DWARF .byte	0x05, 0x03
+	@@DWARF .4byte	constAlpha
+	@@DWARF .4byte	0x6c660204, 0x0074616f, 0x990b0404, 0x01000001
+	@@DWARF .4byte	0x000001af, 0x0a00080c, 0x6f631c11, 0x4874736e
+	@@DWARF .4byte	0x6f436575, 0x53726f6c, 0x65636170, 0x0074614d
+	@@DWARF .byte	0xa2, 0x01, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	constHueColorSpaceMat
+	@@DWARF .4byte	0x01990d04, 0x05040000, 0x756f6402, 0x00656c62
+	@@DWARF .4byte	0x6c020804, 0x20676e6f, 0x676e6f6c, 0x736e7520
+	@@DWARF .4byte	0x656e6769, 0x6e692064, 0x08070074, 0x6e6f6c02
+	@@DWARF .4byte	0x6f6c2067, 0x6920676e, 0x0500746e, 0x6f6c0208
+	@@DWARF .4byte	0x6920676e, 0x0500746e, 0x68630204, 0x06007261
+	@@DWARF .4byte	0x021b0601, 0x230d0000, 0x04000002, 0x100b0705
+	@@DWARF .4byte	0x6f6c6601, 0x00327461, 0x00025c08, 0x100b0800
+	@@DWARF .4byte	0x99007801, 0x02000001, 0x08010023, 0x7901100b
+	@@DWARF .4byte	0x00019900, 0x04230200, 0x0b050001, 0x6c660189
+	@@DWARF .4byte	0x3274616f, 0x00022f00, 0x00c20b00, 0x78010000
+	@@DWARF .4byte	0x0c000002, 0x100e0005, 0x5f5f23d5, 0x61647563
+	@@DWARF .4byte	0x695f7472, 0x69706f32, 0x6b00665f, 0x03000002
+	@@DWARF .4byte	0x6975b50b, 0x0032746e, 0x0002ba08, 0xb50b0400
+	@@DWARF .4byte	0x00c20078, 0x23020000, 0x0b040100, 0xc20079b5
+	@@DWARF .4byte	0x02000000, 0x00010423, 0x017b0b05, 0x746e6975
+	@@DWARF .4byte	0x02910032, 0x660d0000, 0x04000001, 0x00c20b05
+	@@DWARF .4byte	0xdc010000, 0x0c000002, 0x990f0006, 0x06000001
+	@@DWARF .4byte	0x00000199, 0x0001da0d, 0x0d050400, 0x00000172
+	@@DWARF .4byte	0x02050504, 0x697301ae, 0x745f657a, 0x0000c200
+	@@DWARF .4byte	0x140f0900, 0x33746e69, 0x01660032, 0x720b0000
+	@@DWARF .4byte	0x01000001, 0x0000031d, 0x0200010c, 0x69736e75
+	@@DWARF .4byte	0x64656e67, 0x61686320, 0x01080072, 0x75120f09
+	@@DWARF .4byte	0x38746e69, 0x00031d00, 0x032e0d00, 0x05040000
+	@@DWARF .4byte	0x0001990b, 0x034f0100, 0x010c0000, 0x01720b00
+	@@DWARF .4byte	0x5c010000, 0x0c000003, 0x11100005, 0x7361505c
+	@@DWARF .4byte	0x72687473, 0x72645f75, 0x69706176, 0x01010100
+	@@DWARF .byte	0x00
+	@@DWARF .4byte	$LDWbegin_Passthru_drvapi
+	@@DWARF .4byte	$LDWend_Passthru_drvapi
+	@@DWARF .4byte	0x00000899, 0x735c1111, 0x6d496372, 0x00656761
+	@@DWARF .byte	0xed, 0x02, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cudaparm_Passthru_drvapi_srcImage
+	@@DWARF .4byte	0x5c111107, 0x756f536e, 0x50656372, 0x68637469
+	@@DWARF .byte	0x00, 0xf4, 0x02, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cudaparm_Passthru_drvapi_nSourcePitch
+	@@DWARF .4byte	0x5c111107, 0x49747364, 0x6567616d, 0x0002ed00
+	@@DWARF .byte	0x00, 0x05, 0x03
+	@@DWARF .4byte	__cudaparm_Passthru_drvapi_dstImage
+	@@DWARF .4byte	0x5c111107, 0x7365446e, 0x74695074, 0xf4006863
+	@@DWARF .byte	0x02, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cudaparm_Passthru_drvapi_nDestPitch
+	@@DWARF .4byte	0x5c111107, 0x74646977, 0x01720068, 0x03050000
+	@@DWARF .4byte	__cudaparm_Passthru_drvapi_width
+	@@DWARF .4byte	0x5c111107, 0x67696568, 0x72007468, 0x05000001
+	@@DWARF .byte	0x03
+	@@DWARF .4byte	__cudaparm_Passthru_drvapi_height
+	@@DWARF .byte	0x07, 0x12
+	@@DWARF .4byte	$LDWbeginblock_245_1
+	@@DWARF .4byte	$LDWendblock_245_1
+	@@DWARF .4byte	0x785e110a, 0x00030300, 0xb8900600, 0x02abc8e2
+	@@DWARF .4byte	0x5e110a02, 0x03030079, 0x90060000, 0xabc8e4b4
+	@@DWARF .4byte	0x110a0202, 0x7675795f, 0x30313031, 0x65503031
+	@@DWARF .byte	0x6c, 0x00, 0x10, 0x03, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda_local_var_156005_12_non_const_yuv101010Pel_36
+	@@DWARF .4byte	0x60110a06, 0x636f7270, 0x69737365, 0x6950676e
+	@@DWARF .4byte	0x00686374, 0x00000172, 0xe4b49005, 0x0a020195
+	@@DWARF .4byte	0x73646111, 0x616d4974, 0x69506567, 0x00686374
+	@@DWARF .4byte	0x00000172, 0xe4b79005, 0x0a020195, 0x72736211
+	@@DWARF .4byte	0x616d4963, 0x38556567, 0x00033b00, 0xb9900500
+	@@DWARF .4byte	0x020195e4, 0x6c76110a, 0x00616d75, 0x00000342
+	@@DWARF .byte	0x05, 0x03
+	@@DWARF .4byte	__cuda_local_var_156028_11_non_const_luma_44
+	@@DWARF .byte	0x06, 0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__Z13RGBAPACK_8bitfffj_245_18
+	@@DWARF .4byte	$LDWendi__Z13RGBAPACK_8bitfffj_245_3
+	@@DWARF .4byte	0x0000119b, 0x72351114, 0x99006465, 0x06000001
+	@@DWARF .4byte	0x98eab290, 0xbf0202ab, 0x14000011, 0x72673511
+	@@DWARF .4byte	0x006e6565, 0x00000199, 0xeab49006, 0x0202ab98
+	@@DWARF .4byte	0x000011ca, 0x62351114, 0x0065756c, 0x00000199
+	@@DWARF .4byte	0xeab69006, 0x0202ab98, 0x000011d7, 0x61351114
+	@@DWARF .4byte	0x6168706c, 0x00017200, 0xb2900600, 0x02abc8ee
+	@@DWARF .byte	0x02, 0xe3, 0x11, 0x00, 0x00, 0x12
+	@@DWARF .4byte	$LDWbeginblock_245_4
+	@@DWARF .4byte	$LDWendblock_245_4
+	@@DWARF .4byte	0x41371115, 0x70424752, 0x6c657869, 0x00017200
+	@@DWARF .byte	0x00, 0x06, 0x90, 0xb2, 0xea, 0xc8, 0xab, 0x02
+	@@DWARF .byte	0x02, 0xf1, 0x11, 0x00, 0x00, 0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_7
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_6
+	@@DWARF .4byte	0x000010a2, 0x20171016, 0x01990061, 0x90060000
+	@@DWARF .4byte	0xab98e6b6, 0x11080202, 0x10160000, 0x00622017
+	@@DWARF .4byte	0x00000199, 0xe6b89006, 0x0202ab98, 0x00001112
+	@@DWARF .byte	0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_9
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_8
+	@@DWARF .4byte	0x00001027, 0x1fe01016, 0x01990061, 0x90060000
+	@@DWARF .4byte	0xab98e8b2, 0x108d0202, 0x10160000, 0x00621fe0
+	@@DWARF .4byte	0x00000199, 0xe8b49006, 0x0202ab98, 0x00001097
+	@@DWARF .byte	0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_11
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_10
+	@@DWARF .4byte	0x000010a2, 0x20171016, 0x01990061, 0x90060000
+	@@DWARF .4byte	0xab98e4b3, 0x11080202, 0x10160000, 0x00622017
+	@@DWARF .4byte	0x00000199, 0xe4b59006, 0x0202ab98, 0x00001112
+	@@DWARF .byte	0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_13
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_12
+	@@DWARF .4byte	0x00001027, 0x1fe01016, 0x01990061, 0x90060000
+	@@DWARF .4byte	0xab98e4b9, 0x108d0202, 0x10160000, 0x00621fe0
+	@@DWARF .4byte	0x00000199, 0xe6b19006, 0x0202ab98, 0x00001097
+	@@DWARF .byte	0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_15
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_14
+	@@DWARF .4byte	0x000010a2, 0x20171016, 0x01990061, 0x90060000
+	@@DWARF .4byte	0xab98e2b0, 0x11080202, 0x10160000, 0x00622017
+	@@DWARF .4byte	0x00000199, 0xe2b29006, 0x0202ab98, 0x00001112
+	@@DWARF .byte	0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_17
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_16
+	@@DWARF .4byte	0x00001027, 0x1fe01016, 0x01990061, 0x90060000
+	@@DWARF .4byte	0xab98e2b6, 0x108d0202, 0x10160000, 0x00621fe0
+	@@DWARF .4byte	0x00000199, 0xe2b89006, 0x0202ab98, 0x00001097
+	@@DWARF .byte	0x00, 0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__Z13RGBAPACK_8bitfffj_245_34
+	@@DWARF .4byte	$LDWendi__Z13RGBAPACK_8bitfffj_245_19
+	@@DWARF .4byte	0x0000119b, 0x72351114, 0x99006465, 0x05000001
+	@@DWARF .4byte	0x95ccb490, 0x11bf0201, 0x11140000, 0x65726735
+	@@DWARF .4byte	0x99006e65, 0x05000001, 0x95ccb690, 0x11ca0201
+	@@DWARF .4byte	0x11140000, 0x756c6235, 0x01990065, 0x90050000
+	@@DWARF .4byte	0x0195ccb8, 0x0011d702, 0x35111400, 0x68706c61
+	@@DWARF .4byte	0x01720061, 0x90060000, 0xabc8eab0, 0x11e30202
+	@@DWARF .byte	0x00, 0x00, 0x12
+	@@DWARF .4byte	$LDWbeginblock_245_20
+	@@DWARF .4byte	$LDWendblock_245_20
+	@@DWARF .4byte	0x41371115, 0x70424752, 0x6c657869, 0x00017200
+	@@DWARF .byte	0x00, 0x06, 0x90, 0xb2, 0xea, 0xc8, 0xab, 0x02
+	@@DWARF .byte	0x02, 0xf1, 0x11, 0x00, 0x00, 0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_23
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_22
+	@@DWARF .4byte	0x000010a2, 0x20171016, 0x01990061, 0x90060000
+	@@DWARF .4byte	0xab98e6b6, 0x11080202, 0x10160000, 0x00622017
+	@@DWARF .4byte	0x00000199, 0xe6b89006, 0x0202ab98, 0x00001112
+	@@DWARF .byte	0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_25
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_24
+	@@DWARF .4byte	0x00001027, 0x1fe01016, 0x01990061, 0x90060000
+	@@DWARF .4byte	0xab98e8b2, 0x108d0202, 0x10160000, 0x00621fe0
+	@@DWARF .4byte	0x00000199, 0xe8b49006, 0x0202ab98, 0x00001097
+	@@DWARF .byte	0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_27
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_26
+	@@DWARF .4byte	0x000010a2, 0x20171016, 0x01990061, 0x90060000
+	@@DWARF .4byte	0xab98e4b3, 0x11080202, 0x10160000, 0x00622017
+	@@DWARF .4byte	0x00000199, 0xe4b59006, 0x0202ab98, 0x00001112
+	@@DWARF .byte	0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_29
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_28
+	@@DWARF .4byte	0x00001027, 0x1fe01016, 0x01990061, 0x90060000
+	@@DWARF .4byte	0xab98e4b9, 0x108d0202, 0x10160000, 0x00621fe0
+	@@DWARF .4byte	0x00000199, 0xe6b19006, 0x0202ab98, 0x00001097
+	@@DWARF .byte	0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_31
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_245_30
+	@@DWARF .4byte	0x000010a2, 0x20171016, 0x01990061, 0x90060000
+	@@DWARF .4byte	0xab98e2b0, 0x11080202, 0x10160000, 0x00622017
+	@@DWARF .4byte	0x00000199, 0xe2b29006, 0x0202ab98, 0x00001112
+	@@DWARF .byte	0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_33
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_245_32
+	@@DWARF .4byte	0x00001027, 0x1fe01016, 0x01990061, 0x90060000
+	@@DWARF .4byte	0xab98e2b6, 0x108d0202, 0x10160000, 0x00621fe0
+	@@DWARF .4byte	0x00000199, 0xe2b89006, 0x0202ab98, 0x00001097
+	@@DWARF .4byte	0x10000000, 0x564e8511, 0x6f543231, 0x42475241
+	@@DWARF .byte	0x5f, 0x64, 0x72, 0x76, 0x61, 0x70, 0x69, 0x00
+	@@DWARF .byte	0x01, 0x01, 0x01, 0x00
+	@@DWARF .4byte	$LDWbegin_NV12ToARGB_drvapi
+	@@DWARF .4byte	$LDWend_NV12ToARGB_drvapi
+	@@DWARF .4byte	0x00001027, 0x73851111, 0x6d496372, 0x00656761
+	@@DWARF .byte	0xed, 0x02, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cudaparm_NV12ToARGB_drvapi_srcImage
+	@@DWARF .4byte	0x85111107, 0x756f536e, 0x50656372, 0x68637469
+	@@DWARF .byte	0x00, 0xf4, 0x02, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cudaparm_NV12ToARGB_drvapi_nSourcePitch
+	@@DWARF .4byte	0x85111107, 0x49747364, 0x6567616d, 0x0002ed00
+	@@DWARF .byte	0x00, 0x05, 0x03
+	@@DWARF .4byte	__cudaparm_NV12ToARGB_drvapi_dstImage
+	@@DWARF .4byte	0x85111107, 0x7365446e, 0x74695074, 0xf4006863
+	@@DWARF .byte	0x02, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cudaparm_NV12ToARGB_drvapi_nDestPitch
+	@@DWARF .4byte	0x85111107, 0x74646977, 0x01720068, 0x03050000
+	@@DWARF .4byte	__cudaparm_NV12ToARGB_drvapi_width
+	@@DWARF .4byte	0x85111107, 0x67696568, 0x72007468, 0x05000001
+	@@DWARF .byte	0x03
+	@@DWARF .4byte	__cudaparm_NV12ToARGB_drvapi_height
+	@@DWARF .byte	0x07, 0x12
+	@@DWARF .4byte	$LDWbeginblock_246_1
+	@@DWARF .4byte	$LDWendblock_246_1
+	@@DWARF .4byte	0x7887110a, 0x00030300, 0xb8900600, 0x02abc8e2
+	@@DWARF .4byte	0x87110a02, 0x03030079, 0x90060000, 0xabc8e4b4
+	@@DWARF .4byte	0x110a0202, 0x76757988, 0x30313031, 0x65503031
+	@@DWARF .byte	0x6c, 0x00, 0x10, 0x03, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda_local_var_156046_12_non_const_yuv101010Pel_36
+	@@DWARF .4byte	0x89110a06, 0x636f7270, 0x69737365, 0x6950676e
+	@@DWARF .4byte	0x00686374, 0x00000172, 0xe4b49005, 0x0a020195
+	@@DWARF .4byte	0x73648a11, 0x616d4974, 0x69506567, 0x00686374
+	@@DWARF .4byte	0x00000172, 0xe4b79005, 0x0a020195, 0x72738b11
+	@@DWARF .4byte	0x616d4963, 0x38556567, 0x00033b00, 0xb9900500
+	@@DWARF .4byte	0x020195e4, 0x639e110a, 0x6d6f7268, 0x66664f61
+	@@DWARF .4byte	0x00746573, 0x00000172, 0xeab09006, 0x0202abc8
+	@@DWARF .4byte	0x799f110a, 0x7268635f, 0x00616d6f, 0x00000303
+	@@DWARF .4byte	0xeab39006, 0x0202abc8, 0x79bf110a, 0x00697675
+	@@DWARF .byte	0x4f, 0x03, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda___cuda_local_var_156101_12_non_const_yuvi_6084
+	@@DWARF .byte	0x06, 0x0a, 0x11, 0xc0, 0x72, 0x65, 0x64, 0x00
+	@@DWARF .byte	0x42, 0x03, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda___cuda_local_var_156102_11_non_const_red_9228
+	@@DWARF .4byte	0xc0110a06, 0x65657267, 0x0342006e, 0x03050000
+	@@DWARF .4byte	__cuda___cuda_local_var_156102_19_non_const_green_10436
+	@@DWARF .byte	0x06, 0x0a, 0x11, 0xc0, 0x62, 0x6c, 0x75, 0x65
+	@@DWARF .byte	0x00, 0x42, 0x03, 0x00, 0x00, 0x05, 0x03
+	@@DWARF .4byte	__cuda___cuda_local_var_156102_29_non_const_blue_11644
+	@@DWARF .byte	0x06, 0x12
+	@@DWARF .4byte	$LDWbeginblock_246_3
+	@@DWARF .4byte	$LDWendblock_246_3
+	@@DWARF .4byte	0x63a3110a, 0x6d6f7268, 0x00624361, 0x00000172
+	@@DWARF .4byte	0xecb79006, 0x0202abc8, 0x63a4110a, 0x6d6f7268
+	@@DWARF .4byte	0x00724361, 0x00000172, 0xeeb89006, 0x0202abc8
+	@@DWARF .byte	0x00, 0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__Z14RGBAPACK_10bitfffj_246_20
+	@@DWARF .4byte	$LDWendi__Z14RGBAPACK_10bitfffj_246_5
+	@@DWARF .4byte	0x000012d0, 0x72461114, 0x99006465, 0x07000001
+	@@DWARF .4byte	0xc4e4b190, 0x0204d6b1, 0x000012f1, 0x67461114
+	@@DWARF .4byte	0x6e656572, 0x00019900, 0xb3900700, 0xd6b1c4e4
+	@@DWARF .4byte	0x12fc0204, 0x11140000, 0x756c6246, 0x01990065
+	@@DWARF .4byte	0x90070000, 0xb1c4e4b5, 0x090204d6, 0x14000013
+	@@DWARF .4byte	0x6c614611, 0x00616870, 0x00000172, 0xeab79007
+	@@DWARF .byte	0xc8, 0x91, 0xd7, 0x04, 0x02, 0x15, 0x13, 0x00
+	@@DWARF .byte	0x00, 0x12
+	@@DWARF .4byte	$LDWbeginblock_246_6
+	@@DWARF .4byte	$LDWendblock_246_6
+	@@DWARF .4byte	0x41481115, 0x70424752, 0x6c657869, 0x00017200
+	@@DWARF .4byte	0xb4900700, 0xd791c8e6, 0x13230204, 0x13000000
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_9
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_8
+	@@DWARF .4byte	0x000010a2, 0x20171016, 0x01990061, 0x90070000
+	@@DWARF .4byte	0xb1c4e0b5, 0x080204d6, 0x16000011, 0x62201710
+	@@DWARF .4byte	0x00019900, 0xb7900700, 0xd6b1c4e0, 0x11120204
+	@@DWARF .byte	0x00, 0x00, 0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_11
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_10
+	@@DWARF .4byte	0x00001027, 0x1fe01016, 0x01990061, 0x90070000
+	@@DWARF .4byte	0xb1c4e2b1, 0x8d0204d6, 0x16000010, 0x621fe010
+	@@DWARF .4byte	0x00019900, 0xb3900700, 0xd6b1c4e2, 0x10970204
+	@@DWARF .byte	0x00, 0x00, 0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_13
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_12
+	@@DWARF .4byte	0x000010a2, 0x20171016, 0x01990061, 0x90060000
+	@@DWARF .4byte	0xab98f2b2, 0x11080202, 0x10160000, 0x00622017
+	@@DWARF .4byte	0x00000199, 0xf2b49006, 0x0202ab98, 0x00001112
+	@@DWARF .byte	0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_15
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_14
+	@@DWARF .4byte	0x00001027, 0x1fe01016, 0x01990061, 0x90060000
+	@@DWARF .4byte	0xab98f2b8, 0x108d0202, 0x10160000, 0x00621fe0
+	@@DWARF .4byte	0x00000199, 0xe0b09007, 0x04d6b1c4, 0x00109702
+	@@DWARF .byte	0x00, 0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_17
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_16
+	@@DWARF .4byte	0x000010a2, 0x20171016, 0x01990061, 0x90060000
+	@@DWARF .4byte	0xab98eeb9, 0x11080202, 0x10160000, 0x00622017
+	@@DWARF .4byte	0x00000199, 0xf0b19006, 0x0202ab98, 0x00001112
+	@@DWARF .byte	0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_19
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_18
+	@@DWARF .4byte	0x00001027, 0x1fe01016, 0x01990061, 0x90060000
+	@@DWARF .4byte	0xab98f0b5, 0x108d0202, 0x10160000, 0x00621fe0
+	@@DWARF .4byte	0x00000199, 0xf0b79006, 0x0202ab98, 0x00001097
+	@@DWARF .byte	0x00, 0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__Z14RGBAPACK_10bitfffj_246_36
+	@@DWARF .4byte	$LDWendi__Z14RGBAPACK_10bitfffj_246_21
+	@@DWARF .4byte	0x000012d0, 0x72461114, 0x99006465, 0x06000001
+	@@DWARF .4byte	0x98eeb390, 0xf10202ab, 0x14000012, 0x72674611
+	@@DWARF .4byte	0x006e6565, 0x00000199, 0xeeb59006, 0x0202ab98
+	@@DWARF .4byte	0x000012fc, 0x62461114, 0x0065756c, 0x00000199
+	@@DWARF .4byte	0xeeb79006, 0x0202ab98, 0x00001309, 0x61461114
+	@@DWARF .4byte	0x6168706c, 0x00017200, 0xb2900700, 0xd791c8e6
+	@@DWARF .byte	0x04, 0x02, 0x15, 0x13, 0x00, 0x00, 0x12
+	@@DWARF .4byte	$LDWbeginblock_246_22
+	@@DWARF .4byte	$LDWendblock_246_22
+	@@DWARF .4byte	0x41481115, 0x70424752, 0x6c657869, 0x00017200
+	@@DWARF .4byte	0xb4900700, 0xd791c8e6, 0x13230204, 0x13000000
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_25
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_24
+	@@DWARF .4byte	0x000010a2, 0x20171016, 0x01990061, 0x90070000
+	@@DWARF .4byte	0xb1c4e0b5, 0x080204d6, 0x16000011, 0x62201710
+	@@DWARF .4byte	0x00019900, 0xb7900700, 0xd6b1c4e0, 0x11120204
+	@@DWARF .byte	0x00, 0x00, 0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_27
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_26
+	@@DWARF .4byte	0x00001027, 0x1fe01016, 0x01990061, 0x90070000
+	@@DWARF .4byte	0xb1c4e2b1, 0x8d0204d6, 0x16000010, 0x621fe010
+	@@DWARF .4byte	0x00019900, 0xb3900700, 0xd6b1c4e2, 0x10970204
+	@@DWARF .byte	0x00, 0x00, 0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_29
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_28
+	@@DWARF .4byte	0x000010a2, 0x20171016, 0x01990061, 0x90060000
+	@@DWARF .4byte	0xab98f2b2, 0x11080202, 0x10160000, 0x00622017
+	@@DWARF .4byte	0x00000199, 0xf2b49006, 0x0202ab98, 0x00001112
+	@@DWARF .byte	0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_31
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_30
+	@@DWARF .4byte	0x00001027, 0x1fe01016, 0x01990061, 0x90060000
+	@@DWARF .4byte	0xab98f2b8, 0x108d0202, 0x10160000, 0x00621fe0
+	@@DWARF .4byte	0x00000199, 0xe0b09007, 0x04d6b1c4, 0x00109702
+	@@DWARF .byte	0x00, 0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_33
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3maxEff_246_32
+	@@DWARF .4byte	0x000010a2, 0x20171016, 0x01990061, 0x90060000
+	@@DWARF .4byte	0xab98eeb9, 0x11080202, 0x10160000, 0x00622017
+	@@DWARF .4byte	0x00000199, 0xf0b19006, 0x0202ab98, 0x00001112
+	@@DWARF .byte	0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_35
+	@@DWARF .4byte	$LDWendi__ZN74_INTERNAL_52_tmpxft_000023c8_00000000_5_NV12ToARGB_drvapi_cpp1_ii_f4b7532e3minEff_246_34
+	@@DWARF .4byte	0x00001027, 0x1fe01016, 0x01990061, 0x90060000
+	@@DWARF .4byte	0xab98f0b5, 0x108d0202, 0x10160000, 0x00621fe0
+	@@DWARF .4byte	0x00000199, 0xf0b79006, 0x0202ab98, 0x00001097
+	@@DWARF .byte	0x00, 0x00, 0x13
+	@@DWARF .4byte	$LDWbegini__Z7YUV2RGBPjPfS0_S0__246_40
+	@@DWARF .4byte	$LDWendi__Z7YUV2RGBPjPfS0_S0__246_37
+	@@DWARF .4byte	0x0000111d, 0x791f1114, 0x00697675, 0x000002ed
+	@@DWARF .4byte	0xe2b59007, 0x04d791c8, 0x00113c02, 0x1f111400
+	@@DWARF .4byte	0x00646572, 0x000001d3, 0xe2b79007, 0x04d791c8
+	@@DWARF .4byte	0x00114802, 0x1f111400, 0x65657267, 0x01d3006e
+	@@DWARF .4byte	0x90070000, 0x91c8e2b9, 0x530204d7, 0x14000011
+	@@DWARF .4byte	0x6c621f11, 0xd3006575, 0x07000001, 0xc8e4b190
+	@@DWARF .byte	0x91, 0xd7, 0x04, 0x02, 0x60, 0x11, 0x00, 0x00
+	@@DWARF .byte	0x12
+	@@DWARF .4byte	$LDWbeginblock_246_38
+	@@DWARF .4byte	$LDWendblock_246_38
+	@@DWARF .4byte	0x6c211115, 0x00616d75, 0x00000199, 0xccb29005
+	@@DWARF .4byte	0x6d020195, 0x15000011, 0x68632111, 0x616d6f72
+	@@DWARF .4byte	0x99006243, 0x05000001, 0x95ccb690, 0x11790201
+	@@DWARF .4byte	0x11150000, 0x72686321, 0x43616d6f, 0x01990072
+	@@DWARF .4byte	0x90060000, 0xab98e2b0, 0x11890202, 0x00000000
+	@@DWARF .byte	0x13
+	@@DWARF .4byte	$LDWbegini__Z7YUV2RGBPjPfS0_S0__246_44
+	@@DWARF .4byte	$LDWendi__Z7YUV2RGBPjPfS0_S0__246_41
+	@@DWARF .4byte	0x0000111d, 0x791f1114, 0x00697675, 0x000002ed
+	@@DWARF .4byte	0xf2b89007, 0x04d791c4, 0x00113c02, 0x1f111400
+	@@DWARF .4byte	0x00646572, 0x000001d3, 0xe0b09007, 0x04d791c8
+	@@DWARF .4byte	0x00114802, 0x1f111400, 0x65657267, 0x01d3006e
+	@@DWARF .4byte	0x90070000, 0x91c8e0b2, 0x530204d7, 0x14000011
+	@@DWARF .4byte	0x6c621f11, 0xd3006575, 0x07000001, 0xc8e0b490
+	@@DWARF .byte	0x91, 0xd7, 0x04, 0x02, 0x60, 0x11, 0x00, 0x00
+	@@DWARF .byte	0x12
+	@@DWARF .4byte	$LDWbeginblock_246_42
+	@@DWARF .4byte	$LDWendblock_246_42
+	@@DWARF .4byte	0x6c211115, 0x00616d75, 0x00000199, 0xccb29005
+	@@DWARF .4byte	0x6d020195, 0x15000011, 0x68632111, 0x616d6f72
+	@@DWARF .4byte	0x99006243, 0x05000001, 0x95ccb690, 0x11790201
+	@@DWARF .4byte	0x11150000, 0x72686321, 0x43616d6f, 0x01990072
+	@@DWARF .4byte	0x90060000, 0xab98e2b0, 0x11890202, 0x00000000
+	@@DWARF .4byte	0xe0101700, 0x4e5a5f1f, 0x495f3437, 0x5245544e
+	@@DWARF .4byte	0x5f4c414e, 0x745f3235, 0x6678706d, 0x30305f74
+	@@DWARF .4byte	0x33323030, 0x305f3863, 0x30303030, 0x5f303030
+	@@DWARF .4byte	0x564e5f35, 0x6f543231, 0x42475241, 0x7672645f
+	@@DWARF .4byte	0x5f697061, 0x31707063, 0x5f69695f, 0x37623466
+	@@DWARF .4byte	0x65323335, 0x6e696d33, 0x00666645, 0x00000199
+	@@DWARF .4byte	0xa2010101, 0x18000010, 0x611fe010, 0x00019900
+	@@DWARF .4byte	0xe0101800, 0x9900621f, 0x00000001, 0x20171017
+	@@DWARF .4byte	0x374e5a5f, 0x4e495f34, 0x4e524554, 0x355f4c41
+	@@DWARF .4byte	0x6d745f32, 0x74667870, 0x3030305f, 0x63333230
+	@@DWARF .4byte	0x30305f38, 0x30303030, 0x355f3030, 0x31564e5f
+	@@DWARF .4byte	0x416f5432, 0x5f424752, 0x61767264, 0x635f6970
+	@@DWARF .4byte	0x5f317070, 0x665f6969, 0x35376234, 0x33653233
+	@@DWARF .4byte	0x4578616d, 0x99006666, 0x01000001, 0x111d0101
+	@@DWARF .4byte	0x10180000, 0x00612017, 0x00000199, 0x20171018
+	@@DWARF .4byte	0x01990062, 0x19000000, 0x5a5f1f11, 0x56555937
+	@@DWARF .4byte	0x42475232, 0x66506a50, 0x535f3053, 0x01005f30
+	@@DWARF .4byte	0x119b0101, 0x111a0000, 0x7675791f, 0x02ed0069
+	@@DWARF .4byte	0x111a0000, 0x6465721f, 0x0001d300, 0x1f111a00
+	@@DWARF .4byte	0x65657267, 0x01d3006e, 0x111a0000, 0x756c621f
+	@@DWARF .4byte	0x01d30065, 0x1c1b0000, 0x756c2111, 0x9900616d
+	@@DWARF .4byte	0x1c000001, 0x68632111, 0x616d6f72, 0x99006243
+	@@DWARF .4byte	0x1c000001, 0x68632111, 0x616d6f72, 0x99007243
+	@@DWARF .4byte	0x00000001, 0x35111d00, 0x33315a5f, 0x41424752
+	@@DWARF .4byte	0x4b434150, 0x6962385f, 0x66666674, 0x0172006a
+	@@DWARF .4byte	0x01010000, 0x0012d001, 0x35111a00, 0x00646572
+	@@DWARF .4byte	0x00000199, 0x6735111a, 0x6e656572, 0x00019900
+	@@DWARF .4byte	0x35111a00, 0x65756c62, 0x00019900, 0x35111a00
+	@@DWARF .4byte	0x68706c61, 0x01720061, 0x1c1b0000, 0x52413711
+	@@DWARF .4byte	0x69704247, 0x006c6578, 0x00000172, 0x10a21e00
+	@@DWARF .4byte	0x101f0000, 0x00612017, 0x00000199, 0x00001108
+	@@DWARF .4byte	0x2017101f, 0x01990062, 0x11120000, 0x1e000000
+	@@DWARF .4byte	0x00001027, 0x1fe0101f, 0x01990061, 0x108d0000
+	@@DWARF .4byte	0x101f0000, 0x00621fe0, 0x00000199, 0x00001097
+	@@DWARF .4byte	0x10a21e00, 0x101f0000, 0x00612017, 0x00000199
+	@@DWARF .4byte	0x00001108, 0x2017101f, 0x01990062, 0x11120000
+	@@DWARF .4byte	0x1e000000, 0x00001027, 0x1fe0101f, 0x01990061
+	@@DWARF .4byte	0x108d0000, 0x101f0000, 0x00621fe0, 0x00000199
+	@@DWARF .4byte	0x00001097, 0x10a21e00, 0x101f0000, 0x00612017
+	@@DWARF .4byte	0x00000199, 0x00001108, 0x2017101f, 0x01990062
+	@@DWARF .4byte	0x11120000, 0x1e000000, 0x00001027, 0x1fe0101f
+	@@DWARF .4byte	0x01990061, 0x108d0000, 0x101f0000, 0x00621fe0
+	@@DWARF .4byte	0x00000199, 0x00001097, 0x11200000, 0x315a5f46
+	@@DWARF .4byte	0x42475234, 0x43415041, 0x30315f4b, 0x66746962
+	@@DWARF .4byte	0x006a6666, 0x00000172, 0x1a010101, 0x65724611
+	@@DWARF .4byte	0x01990064, 0x111a0000, 0x65726746, 0x99006e65
+	@@DWARF .4byte	0x1a000001, 0x6c624611, 0x99006575, 0x1a000001
+	@@DWARF .4byte	0x6c614611, 0x00616870, 0x00000172, 0x48111c1b
+	@@DWARF .4byte	0x42475241, 0x65786970, 0x0172006c, 0x1e000000
+	@@DWARF .4byte	0x000010a2, 0x2017101f, 0x01990061, 0x11080000
+	@@DWARF .4byte	0x101f0000, 0x00622017, 0x00000199, 0x00001112
+	@@DWARF .4byte	0x10271e00, 0x101f0000, 0x00611fe0, 0x00000199
+	@@DWARF .4byte	0x0000108d, 0x1fe0101f, 0x01990062, 0x10970000
+	@@DWARF .4byte	0x1e000000, 0x000010a2, 0x2017101f, 0x01990061
+	@@DWARF .4byte	0x11080000, 0x101f0000, 0x00622017, 0x00000199
+	@@DWARF .4byte	0x00001112, 0x10271e00, 0x101f0000, 0x00611fe0
+	@@DWARF .4byte	0x00000199, 0x0000108d, 0x1fe0101f, 0x01990062
+	@@DWARF .4byte	0x10970000, 0x1e000000, 0x000010a2, 0x2017101f
+	@@DWARF .4byte	0x01990061, 0x11080000, 0x101f0000, 0x00622017
+	@@DWARF .4byte	0x00000199, 0x00001112, 0x10271e00, 0x101f0000
+	@@DWARF .4byte	0x00611fe0, 0x00000199, 0x0000108d, 0x1fe0101f
+	@@DWARF .byte	0x62, 0x00, 0x99, 0x01, 0x00, 0x00, 0x97, 0x10
+	@@DWARF .byte	0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+
+ 	@@DWARF .section .debug_pubnames, "",@progbits
+	@@DWARF .byte	0x38, 0x00, 0x00, 0x00, 0x02, 0x00
+	@@DWARF .4byte	.debug_info
+	@@DWARF .4byte	0x00001404, 0x0000035c, 0x73736150, 0x75726874
+	@@DWARF .4byte	0x7672645f, 0x00697061, 0x00000899, 0x3231564e
+	@@DWARF .4byte	0x52416f54, 0x645f4247, 0x70617672, 0x00000069
+	@@DWARF .byte	0x00, 0x00
+
+ 	@@DWARF .section .debug_line, "",@progbits
+	@@DWARF .4byte	0x0000001c, 0x00100002, 0x00040000, 0x000a04ff
+	@@DWARF .4byte	0x01010101, 0x01000000, 0xd6020000, 0x01010001
+
+ 	@@DWARF .section .debug_abbrev, "",@progbits
+	@@DWARF .4byte	0x03011101, 0x25081b08, 0x420b1308, 0x0006100b
+	@@DWARF .4byte	0x00240200, 0x0b3e0803, 0x00000b0b, 0x3a011303
+	@@DWARF .4byte	0x030b3b0b, 0x010b0b08, 0x04000013, 0x0b3a000d
+	@@DWARF .4byte	0x08030b3b, 0x0a381349, 0x00000b32, 0x3a001605
+	@@DWARF .4byte	0x03053b0b, 0x00134908, 0x00260600, 0x00001349
+	@@DWARF .4byte	0x3a011307, 0x03053b0b, 0x010b0b08, 0x08000013
+	@@DWARF .4byte	0x0b3a000d, 0x0803053b, 0x0a381349, 0x00000b32
+	@@DWARF .4byte	0x3a001609, 0x030b3b0b, 0x00134908, 0x00340a00
+	@@DWARF .4byte	0x0b3b0b3a, 0x13490803, 0x0b330a02, 0x010b0000
+	@@DWARF .4byte	0x3c134901, 0x0013010c, 0x00210c00, 0x00000b2f
+	@@DWARF .4byte	0x49000f0d, 0x330b0b13, 0x0e00000b, 0x0b3a0034
+	@@DWARF .4byte	0x0803053b, 0x00001349, 0x4900350f, 0x10000013
+	@@DWARF .4byte	0x0b3a012e, 0x08030b3b, 0x0c270c3f, 0x400c408b
+	@@DWARF .4byte	0x1201110a, 0x00130101, 0x00051100, 0x0b3b0b3a
+	@@DWARF .4byte	0x13490803, 0x0b330a02, 0x0b120000, 0x12011101
+	@@DWARF .4byte	0x13000001, 0x0111011d, 0x13310112, 0x05140000
+	@@DWARF .4byte	0x3b0b3a00, 0x4908030b, 0x330a0213, 0x0013310b
+	@@DWARF .4byte	0x00341500, 0x0b3b0b3a, 0x13490803, 0x0b330a02
+	@@DWARF .4byte	0x00001331, 0x3a000516, 0x03053b0b, 0x02134908
+	@@DWARF .4byte	0x310b330a, 0x17000013, 0x0b3a012e, 0x0803053b
+	@@DWARF .4byte	0x0c271349, 0x408b0b20, 0x0013010c, 0x00051800
+	@@DWARF .4byte	0x053b0b3a, 0x13490803, 0x2e190000, 0x3b0b3a01
+	@@DWARF .4byte	0x2708030b, 0x8b0b200c, 0x13010c40, 0x051a0000
+	@@DWARF .4byte	0x3b0b3a00, 0x4908030b, 0x1b000013, 0x0000010b
+	@@DWARF .4byte	0x3a00341c, 0x030b3b0b, 0x00134908, 0x012e1d00
+	@@DWARF .4byte	0x0b3b0b3a, 0x13490803, 0x0b200c27, 0x010c408b
+	@@DWARF .4byte	0x1e000013, 0x1331011d, 0x051f0000, 0x3b0b3a00
+	@@DWARF .4byte	0x49080305, 0x00133113, 0x012e2000, 0x0b3b0b3a
+	@@DWARF .byte	0x03, 0x08, 0x49, 0x13, 0x27, 0x0c, 0x20, 0x0b
+	@@DWARF .byte	0x8b, 0x40, 0x0c, 0x00, 0x00, 0x00, 0x00
+
